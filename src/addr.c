@@ -5,12 +5,11 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.24 2003/02/27 03:01:11 dugsong Exp $
+ * $Id: addr.c,v 1.25 2003/03/10 05:31:48 dugsong Exp $
  */
 
 #include "config.h"
 
-#include <sys/param.h>
 #include <sys/types.h>
 #ifdef HAVE_NET_IF_H
 # include <sys/socket.h>
