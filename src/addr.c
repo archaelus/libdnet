@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.18 2002/04/17 16:56:33 dugsong Exp $
+ * $Id: addr.c,v 1.19 2002/08/20 04:42:50 dugsong Exp $
  */
 
 #include "config.h"
@@ -112,7 +112,7 @@ addr_cmp(const struct addr *a, const struct addr *b)
 	if ((k = b->addr_bits % 8) == 0)
 		return (0);
 
-	k = ~(~0 << (8 - k));
+	k = ~0 << (8 - k);
 	i = b->addr_data8[j] & k;
 	j = a->addr_data8[j] & k;
 	
