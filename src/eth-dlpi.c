@@ -5,14 +5,19 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.1 2001/10/11 04:14:55 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.2 2001/10/12 06:50:23 dugsong Exp $
  */
 
 #include "config.h"
 
 #include <sys/types.h>
+#ifdef HAVE_SYS_BUFMOD_H
 #include <sys/bufmod.h>
+#endif
 #include <sys/dlpi.h>
+#ifdef HAVE_SYS_DLPI_EXT_H
+#include <sys/dlpi_ext.h>
+#endif
 #include <sys/stream.h>
 
 #include <errno.h>
@@ -128,8 +133,7 @@ eth_open(char *device)
 	memset(&dlp->bind_req, 0, DL_BIND_REQ_SIZE);
 	dlp->bind_req.dl_primitive = DL_BIND_REQ;
 #ifdef DL_HP_RAWDLS
-	dlp->bind_req.dl_sap = 22;			/* INSAP */
-	dlp->bind_req.dl_max_conid = 1;			/* XXX - magic */
+	dlp->bind_req.dl_sap = ETH_TYPE_IP + 1;		/* XXX */
 	dlp->bind_req.dl_service_mode = DL_HP_RAWDLS;
 #else
 	dlp->bind_req.dl_service_mode = DL_CLDLS;
