@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: hex.c,v 1.3 2002/02/08 07:43:53 dugsong Exp $
+ * $Id: hex.c,v 1.4 2002/02/09 04:27:14 dugsong Exp $
  */
 
 #include "config.h"
@@ -37,7 +37,7 @@ hex_main(int argc, char *argv[])
 		hex_usage();
 	
 	for (c = 1; c < argc; c++) {
-		if ((len = fmt_aton(argv[c], argv[c])) < 0)
+		if ((len = fmt_aton(argv[c], (u_char *)argv[c])) < 0)
 			hex_usage();
 		
 		if (write(STDOUT_FILENO, argv[c], len) != len)
