@@ -1,7 +1,7 @@
 .\"
 .\" Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 .\"
-.\" $Id: dnet.3,v 1.33 2003/02/27 03:01:09 dugsong Exp $
+.\" $Id: dnet.3,v 1.34 2004/01/03 08:48:12 dugsong Exp $
 .\"
 .Dd August 21, 2001
 .Dt DNET 3
@@ -578,6 +578,14 @@ retrieves an interface configuration
 .Fa entry ,
 keyed on
 .Fa intf_name .
+For all 
+.Fn intf_get
+functions, 
+.Fa intf_len
+should be set to the size of the buffer pointed to by
+.Fa entry 
+(usually sizeof(struct intf_entry), but should be larger to accomodate
+any interface alias addresses.
 .Pp
 .Fn intf_get_src
 retrieves the configuration for the interface whose primary address
