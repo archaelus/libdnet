@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.10 2001/12/31 19:14:02 dugsong Exp $
+ * $Id: intf.c,v 1.11 2001/12/31 19:30:00 dugsong Exp $
  */
 
 #include "config.h"
@@ -25,6 +25,12 @@
 #include <unistd.h>
 
 #include "dnet.h"
+
+/* XXX - Tru64 */
+#if defined(SIOCRIPMTU) && defined(SIOCSIPMTU)
+#define SIOCGIFMTU	SIOCRIPMTU
+#define SIOCSIFMTU	SIOCSIPMTU
+#endif
 
 struct intf_handle {
 	int	fd;
