@@ -1,7 +1,7 @@
 #
 # dnet.pyx
 #
-# $Id: dnet.pyx,v 1.17 2004/09/28 03:44:36 dugsong Exp $
+# $Id: dnet.pyx,v 1.18 2004/09/28 04:57:46 dugsong Exp $
 
 """dumb networking library
 
@@ -465,7 +465,7 @@ cdef class addr:
         def __set__(self, value):
             if self._addr.addr_type != ADDR_TYPE_IP:
                 raise ValueError, "non-IP address"
-            # XXX - handle < 2.3, or else we'd use PyLong_AsUnsignedLong()
+            # XXX - handle < 2.3, or else we'd use PyInt_AsUnsignedLongMask()
             if PyInt_Check(value):
                 self._addr.addr_ip = htonl(PyInt_AsLong(value))
             elif PyLong_Check(value):
@@ -1302,15 +1302,16 @@ cdef class rand:
         """Return a random 32-bit integer."""
         return rand_uint32(self.rand)
 
-    def xrange(self, start, stop=0):
+    def xrange(self, start, stop=None):
         """xrange([start,] stop) -> xrange object
 
         Return a random permutation iterator to walk an unsigned integer range,
         like xrange().
         """
-        if stop == 0:
-            start, stop = 0, start
-        return __rand_xrange(self, start, stop)
+        if stop == None:
+            return __rand_xrange(self, 0, start)
+        else:
+            return __rand_xrange(self, start, stop)
     
     def __dealloc__(self):
         if self.rand:
@@ -1333,8 +1334,20 @@ cdef class __rand_xrange:
         cdef unsigned int bits
         
         self.rand = (<rand>r).rand
-        self.start = PyLong_AsUnsignedLong(start)
-        self.max = PyLong_AsUnsignedLong(stop) - self.start
+        if PyInt_Check(start):
+            self.start = PyInt_AsLong(start)
+        elif PyLong_Check(start):
+            self.start = PyLong_AsUnsignedLong(start)
+        else:
+            raise TypeError, 'start must be an integer'
+        
+        if PyInt_Check(start):
+            self.max = PyInt_AsLong(stop) - self.start
+        elif PyLong_Check(start):
+            self.max = PyLong_AsUnsignedLong(stop) - self.start
+        else:
+            raise TypeError, 'stop must be an integer'
+        
         # XXX - permute range once only!
         rand_get(self.rand, <char *>self.sbox, sizeof(self.sbox))
         
