@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-win32.c,v 1.2 2002/01/09 04:15:41 dugsong Exp $
+ * $Id: route-win32.c,v 1.3 2002/01/09 04:28:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -74,7 +74,7 @@ route_delete(route_t *route, const struct addr *dst)
 }
 
 int
-route_get(route_t *route, const struct addr *dst, const struct addr *gw)
+route_get(route_t *route, const struct addr *dst, struct addr *gw)
 {
 	MIB_IPFORWARDROW ipfrow;
 	DWORD mask;

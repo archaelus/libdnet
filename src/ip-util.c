@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-util.c,v 1.1 2002/01/07 07:59:57 dugsong Exp $
+ * $Id: ip-util.c,v 1.2 2002/01/09 04:28:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -15,7 +15,7 @@
 #include "dnet.h"
 
 char *
-ip_ntoa(ip_addr_t *ip)
+ip_ntoa(const ip_addr_t *ip)
 {
 	struct addr addr;
 
@@ -27,7 +27,7 @@ ip_ntoa(ip_addr_t *ip)
 }
 
 int
-ip_aton(char *src, ip_addr_t *ip)
+ip_aton(const char *src, ip_addr_t *ip)
 {
 	struct addr addr;
 
@@ -43,8 +43,8 @@ ip_aton(char *src, ip_addr_t *ip)
 }
 
 size_t
-ip_add_option(void *buf, size_t len,
-    int proto, const void *optbuf, size_t optlen)
+ip_add_option(void *buf, size_t len, int proto,
+    const void *optbuf, size_t optlen)
 {
 	struct ip_hdr *ip;
 	struct tcp_hdr *tcp = NULL;

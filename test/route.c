@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: route.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
+ * $Id: route.c,v 1.3 2002/01/09 04:21:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -25,27 +25,15 @@ usage(void)
 	fprintf(stderr, "Usage: route show\n"
 	                "Usage: route get dst\n"
 	                "Usage: route add dst gw\n"
-	                "Usage: route delete dst\n"
-	                "Usage: route flush\n");
+			"Usage: route delete dst\n");
 	exit(1);
 }
 
 static int
-print_route(struct addr *dst, struct addr *gw, void *arg)
+print_route(const struct addr *dst, const struct addr *gw, void *arg)
 {
 	printf("%-20s %-20s\n", addr_ntoa(dst), addr_ntoa(gw));
 	return (0);
-}
-
-static int
-delete_route(struct addr *dst, struct addr *gw, void *arg)
-{
-	route_t *r = (route_t *)arg;
-
-	if (route_delete(r, dst) < 0)
-		return (-1);
-
-	return (print_route(dst, gw, NULL));
 }
 
 int
@@ -99,9 +87,6 @@ main(int argc, char *argv[])
 		printf("delete %s %s\n",
 		    (dst.addr_bits < IP_ADDR_BITS) ? "net" : "host",
 		    addr_ntoa(&dst));
-	} else if (strcmp(cmd, "flush") == 0) {
-		if (route_loop(r, delete_route, r) < 0)
-			err(1, "route_loop");
 	} else
 		usage();
 

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.3 2002/01/09 04:08:23 dugsong Exp $
+ * $Id: intf-win32.c,v 1.4 2002/01/09 04:28:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -18,7 +18,7 @@
 #include "dnet.h"
 
 struct intf_handle {
-	char			*device;
+	const char		*device;
 	struct intf_info	*info;
 };
 

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.2 2002/01/09 03:55:46 dugsong Exp $
+ * $Id: arp-win32.c,v 1.3 2002/01/09 04:28:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -18,9 +18,9 @@
 #include "dnet.h"
 
 struct arp_handle {
-	intf_t		*intf;
-	struct addr	*pa;
-	struct addr	*ha;
+	intf_t			*intf;
+	const struct addr	*pa;
+	struct addr		*ha;
 };
 
 arp_t *

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.22 2002/01/07 07:59:57 dugsong Exp $
+ * $Id: ip.c,v 1.23 2002/01/09 04:23:36 dugsong Exp $
  */
 
 #include "config.h"
@@ -107,7 +107,7 @@ ip_open(void)
 
 #ifdef HAVE_RAWIP_COOKED
 static int
-ip_match_intf(char *device, struct intf_info *info, void *arg)
+ip_match_intf(const char *device, const struct intf_info *info, void *arg)
 {
 	ip_t *i = (ip_t *)arg;
 	
