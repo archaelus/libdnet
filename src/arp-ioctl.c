@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.18 2002/02/02 07:35:59 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.19 2002/02/02 07:39:15 dugsong Exp $
  */
 
 #include "config.h"
@@ -344,7 +344,7 @@ int
 arp_loop(arp_t *r, arp_handler callback, void *arg)
 {
 	struct nmparms nm;
-	struct addr entry;
+	struct arp_entry entry;
 	mib_ipNetToMediaEnt arpentries[MAX_ARPENTRIES];
 	int fd, i, n, ret;
 	
