@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: tcp.h,v 1.7 2001/12/18 08:30:32 dugsong Exp $
+ * $Id: tcp.h,v 1.8 2001/12/31 02:22:29 dugsong Exp $
  */
 
 #ifndef DNET_TCP_H
@@ -13,7 +13,7 @@
 
 #define TCP_HDR_LEN	20
 #define TCP_OPT_LEN	2
-#define TCP_OPT_LEN_MAX	44
+#define TCP_OPT_LEN_MAX	40
 #define TCP_HDR_LEN_MAX	(TCP_HDR_LEN + TCP_OPT_LEN_MAX)
 
 /*
@@ -103,9 +103,5 @@ struct tcp_opt {
 	tcp_fill_p->th_win = htons(win);				\
 	tcp_fill_p->th_urp = htons(urp);				\
 } while (0)
-
-__BEGIN_DECLS
-size_t	tcp_add_opt(void *buf, size_t len, const void *optbuf, size_t optlen);
-__END_DECLS
 
 #endif /* DNET_TCP_H */
