@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-hpux.c,v 1.8 2002/02/09 04:02:09 dugsong Exp $
+ * $Id: route-hpux.c,v 1.9 2003/03/16 19:29:45 dugsong Exp $
  */
 
 #include "config.h"
@@ -18,6 +18,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include "dnet.h"
