@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: tcp.c,v 1.3 2002/01/07 00:55:29 dugsong Exp $
+ * $Id: tcp.c,v 1.4 2002/01/07 02:15:47 dugsong Exp $
  */
 
 #include "config.h"
@@ -11,7 +11,6 @@
 #include <sys/types.h>
 
 #include <err.h>
-#include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.c,v 1.6 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: fw.c,v 1.7 2002/01/07 02:15:47 dugsong Exp $
  */
 
 #include "config.h"
@@ -12,7 +12,6 @@
 
 #include <err.h>
 #include <errno.h>
-#include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
