@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.1 2002/02/05 00:44:56 dugsong Exp $
+ * $Id: addr.c,v 1.2 2002/02/08 07:26:58 dugsong Exp $
  */
 
 #include "config.h"
@@ -18,14 +18,13 @@
 #include <unistd.h>
 
 #include "dnet.h"
-#include "dnet-int.h"
+#include "mod.h"
 
 void
-addr_usage(int die)
+addr_usage(void)
 {
-	fprintf(stderr, "Usage: dnet addr <value> ...\n");
-	if (die)
-		exit(1);
+	fprintf(stderr, "Usage: dnet addr <address> ...\n");
+	exit(1);
 }
 
 int
@@ -34,17 +33,23 @@ addr_main(int argc, char *argv[])
 	struct addr addr;
 	int c, len;
 	
-	if (argc == 0)
-		addr_usage(1);
+	if (argc == 1 || *(argv[1]) == '-')
+		addr_usage();
 	
-	for (c = 0; c < argc; c++) {
+	for (c = 1; c < argc; c++) {
 		if (addr_aton(argv[c], &addr) < 0)
-			addr_usage(1);
+			addr_usage();
 		
 		len = addr.addr_bits / 8;
 		
 		if (write(STDOUT_FILENO, addr.addr_data8, len) != len)
 			err(1, "write");
 	}
-	return (0);
+	exit(0);
 }
+
+struct mod mod_addr = {
+	"addr",
+	MOD_TYPE_DATA,
+	addr_main
+};
