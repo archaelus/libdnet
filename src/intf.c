@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.1 2001/10/11 04:14:51 dugsong Exp $
+ * $Id: intf.c,v 1.2 2001/10/12 06:48:20 dugsong Exp $
  */
 
 #include "config.h"
@@ -116,7 +116,7 @@ intf_add(intf_t *i, char *device, struct addr *addr)
 	strlcpy(ifra.ifra_name, device, sizeof(ifra.ifra_name));
 	addr_ntos(addr, &ifra.ifra_addr);
 	/* XXX - needed? */
-	if (addr->mask > 0 && addr->mask < 32)
+	if (addr->mask > 0 && addr->mask < IP_ADDR_BITS)
 		addr_mtos(addr->mask, &ifra.ifra_mask);
 	/* XXX - broadcast? */
 	
