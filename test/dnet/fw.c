@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.c,v 1.1 2002/02/08 07:26:58 dugsong Exp $
+ * $Id: fw.c,v 1.2 2003/04/07 05:43:56 dugsong Exp $
  */
 
 #include "config.h"
@@ -165,7 +165,7 @@ fw_main(int argc, char *argv[])
 		printf("+ ");
 		print_rule(&fr, NULL);
 		if (fw_add(fw, &fr) < 0)
-			err(1, "fw_delete");
+			err(1, "fw_add");
 	} else if (argc > 2 && strcmp(argv[1], "delete") == 0) {
 		if (arg_to_fr(argc - 2, argv + 2, &fr) < 0)
 			err(1, "arg_to_fr");
