@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.5 2001/10/27 16:09:03 dugsong Exp $
+ * $Id: intf.c,v 1.6 2001/10/31 03:44:07 dugsong Exp $
  */
 
 #include "config.h"
@@ -159,6 +159,9 @@ intf_set(intf_t *i, char *device, struct addr *addr, int *flags)
 		{
 #ifdef SIOCSIFHWADDR
 			return (ioctl(i->fd, SIOCSIFHWADDR, &ifr));
+			break;
+#elif defined(SIOCSIFLLADDR)
+			return (ioctl(i->fd, SIOCSIFLLADDR, &ifr));
 			break;
 #else
 			eth_t *eth;
