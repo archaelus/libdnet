@@ -2,10 +2,11 @@
  * tun-linux.c
  *
  * Universal TUN/TAP driver, in Linux 2.4+
+ * /usr/src/linux/Documentation/networking/tuntap.txt
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: tun-linux.c,v 1.2 2005/01/25 21:30:40 dugsong Exp $
+ * $Id: tun-linux.c,v 1.3 2005/02/10 20:18:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -58,8 +59,6 @@ tun_open(struct addr *src, struct addr *dst, int mtu)
 	if (intf_set(tun->intf, &ifent) < 0)
 		return (tun_close(tun));
 	
-	intf_close(tun->intf);
-	
 	return (tun);
 }
 
@@ -78,13 +77,29 @@ tun_fileno(tun_t *tun)
 ssize_t
 tun_send(tun_t *tun, const void *buf, size_t size)
 {
-	return (write(tun->fd, buf, size));
+	struct iovec iov[2];
+	uint32_t type = ETH_TYPE_IP;
+	
+	iov[0].iov_base = &type;
+	iov[0].iov_len = sizeof(type);
+	iov[1].iov_base = (void *)buf;
+	iov[1].iov_len = size;
+	
+	return (writev(tun->fd, iov, 2));
 }
 
 ssize_t
 tun_recv(tun_t *tun, void *buf, size_t size)
 {
-	return (read(tun->fd, buf, size));
+	struct iovec iov[2];
+	uint32_t type;
+
+	iov[0].iov_base = &type;
+	iov[0].iov_len = sizeof(type);
+	iov[1].iov_base = (void *)buf;
+	iov[1].iov_len = size;
+	
+	return (readv(tun->fd, iov, 2) - sizeof(type));
 }
 
 tun_t *
