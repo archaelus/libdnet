@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-win32.c,v 1.3 2002/01/09 04:28:10 dugsong Exp $
+ * $Id: route-win32.c,v 1.4 2002/01/09 07:22:09 dugsong Exp $
  */
 
 #include "config.h"
@@ -65,6 +65,7 @@ route_delete(route_t *route, const struct addr *dst)
 	if (ipfrow.dwForwardDest != dst->addr_ip ||
 	    ipfrow.dwForwardMask != mask) {
 		errno = ENXIO;
+		SetLastError(ERROR_NO_DATA);
 		return (-1);
 	}
 	if (DeleteIpForwardEntry(&ipfrow) != NO_ERROR)
@@ -87,6 +88,7 @@ route_get(route_t *route, const struct addr *dst, struct addr *gw)
 	    (IP_ADDR_LOOPBACK|IP_CLASSA_NET) &&
 	    !IP_LOCAL_GROUP(ipfrow.dwForwardNextHop)) { 
 		errno = ENXIO;
+		SetLastError(ERROR_NO_DATA);
 		return (-1);
 	}
 	addr_btom(dst->addr_bits, &mask, IP_ADDR_LEN);

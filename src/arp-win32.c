@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.3 2002/01/09 04:28:10 dugsong Exp $
+ * $Id: arp-win32.c,v 1.4 2002/01/09 07:22:09 dugsong Exp $
  */
 
 #include "config.h"
@@ -102,6 +102,7 @@ arp_get(arp_t *arp, const struct addr *pa, struct addr *ha)
 
 	if (ret == 0) {
 		errno = ENXIO;
+		SetLastError(ERROR_NO_DATA);
 		return (-1);
 	} else if (ret == 1)
 		return (0);
