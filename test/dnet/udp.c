@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: udp.c,v 1.4 2002/01/07 02:15:47 dugsong Exp $
+ * $Id: udp.c,v 1.5 2002/01/07 02:27:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,7 @@ udp_usage(int die)
 }
 
 static int
-port_aton(char *string, u_short *port)
+port_aton(char *string, uint16_t *port)
 {
 	struct servent *sp;
 	long l;

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
+ * $Id: eth.c,v 1.3 2002/01/07 02:27:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,7 @@ eth_usage(int die)
 }
 
 static int
-type_aton(char *string, u_short *type)
+type_aton(char *string, uint16_t *type)
 {
 	long l;
 	char *p;

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.5 2002/01/07 02:15:47 dugsong Exp $
+ * $Id: ip.c,v 1.6 2002/01/07 02:27:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -30,7 +30,7 @@ ip_usage(int die)
 }
 
 static int
-proto_aton(char *string, u_char *proto)
+proto_aton(char *string, uint8_t *proto)
 {
 	struct protoent *pp;
 	long l;

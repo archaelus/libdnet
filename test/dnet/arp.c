@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.c,v 1.3 2002/01/07 00:55:29 dugsong Exp $
+ * $Id: arp.c,v 1.4 2002/01/07 02:27:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,7 @@ arp_usage(int die)
 }
 
 static int
-op_aton(char *string, u_short *op)
+op_aton(char *string, uint16_t *op)
 {
 	long l;
 	char *p;
