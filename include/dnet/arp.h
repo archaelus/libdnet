@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.h,v 1.8 2002/01/09 03:55:46 dugsong Exp $
+ * $Id: arp.h,v 1.9 2002/01/20 21:21:00 dugsong Exp $
  */
 
 #ifndef DNET_ARP_H
@@ -54,19 +54,6 @@ struct arp_ethip {
 	uint8_t		ar_tpa[IP_ADDR_LEN];	/* target protocol address */
 };
 
-typedef struct arp_handle arp_t;
-
-typedef int (*arp_handler)(const struct addr *pa, const struct addr *ha,
-    void *arg);
-
-__BEGIN_DECLS
-arp_t	*arp_open(void);
-int	 arp_add(arp_t *a, const struct addr *pa, const struct addr *ha);
-int	 arp_delete(arp_t *a, const struct addr *pa);
-int	 arp_get(arp_t *a, const struct addr *pa, struct addr *ha);
-int	 arp_loop(arp_t *a, arp_handler callback, void *arg);
-int	 arp_close(arp_t *a);
-
 #define arp_fill_hdr_ethip(hdr, op, sha, spa, tha, tpa) do {	\
 	struct arp_hdr *fill_arp_p = (struct arp_hdr *)(hdr);	\
 	struct arp_ethip *fill_ethip_p = (struct arp_ethip *)	\
@@ -81,6 +68,19 @@ int	 arp_close(arp_t *a);
 	memmove(fill_ethip_p->ar_tha, &(tha), ETH_ADDR_LEN);	\
 	memmove(fill_ethip_p->ar_tpa, &(tpa), IP_ADDR_LEN);	\
 } while (0)
+
+typedef struct arp_handle arp_t;
+
+typedef int (*arp_handler)(const struct addr *pa, const struct addr *ha,
+    void *arg);
+
+__BEGIN_DECLS
+arp_t	*arp_open(void);
+int	 arp_add(arp_t *a, const struct addr *pa, const struct addr *ha);
+int	 arp_delete(arp_t *a, const struct addr *pa);
+int	 arp_get(arp_t *a, const struct addr *pa, struct addr *ha);
+int	 arp_loop(arp_t *a, arp_handler callback, void *arg);
+arp_t	*arp_close(arp_t *a);
 __END_DECLS
 
 #endif /* DNET_ARP_H */

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.h,v 1.7 2002/01/09 03:48:48 dugsong Exp $
+ * $Id: addr.h,v 1.8 2002/01/20 21:21:00 dugsong Exp $
  */
 
 #ifndef DNET_ADDR_H
@@ -32,6 +32,12 @@ struct addr {
 #define addr_data16	__addr_u.__data16
 #define addr_data32	__addr_u.__data32
 
+#define addr_fill(addr, type, bits, data, len) do {	\
+	(addr)->addr_type = type;			\
+	(addr)->addr_bits = bits;			\
+	memmove((addr)->addr_data8, (char *)data, len);	\
+} while (0)
+
 __BEGIN_DECLS
 int	 addr_cmp(const struct addr *a, const struct addr *b);
 int	 addr_bcast(const struct addr *a, struct addr *b);
@@ -50,12 +56,6 @@ int	 addr_stob(const struct sockaddr *sa, uint16_t *bits);
 
 int	 addr_btom(uint16_t bits, void *mask, size_t size);
 int	 addr_mtob(const void *mask, size_t size, uint16_t *bits);
-
-#define addr_fill(addr, type, bits, data, len) do {	\
-	(addr)->addr_type = type;			\
-	(addr)->addr_bits = bits;			\
-	memmove((addr)->addr_data8, (char *)data, len);	\
-} while (0)
 __END_DECLS
 
 #endif /* DNET_ADDR_H */

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.h,v 1.10 2002/01/09 04:06:25 dugsong Exp $
+ * $Id: fw.h,v 1.11 2002/01/20 21:21:00 dugsong Exp $
  */
 
 #ifndef DNET_FW_H
@@ -28,17 +28,6 @@ struct fw_rule {
 #define FW_DIR_IN	1
 #define FW_DIR_OUT	2
 
-typedef struct fw_handle fw_t;
-
-typedef int (*fw_handler)(const struct fw_rule *rule, void *arg);
-
-__BEGIN_DECLS
-fw_t	*fw_open(void);
-int	 fw_add(fw_t *f, const struct fw_rule *rule);
-int	 fw_delete(fw_t *f, const struct fw_rule *rule);
-int	 fw_loop(fw_t *f, fw_handler callback, void *arg);
-int	 fw_close(fw_t *f);
-
 #define fw_fill_rule(rule, dev, o, dir, p, s, d, sp1, sp2, dp1, dp2) \
 do {									\
 	strlcpy((rule)->fw_device, dev, sizeof((rule)->fw_device));	\
@@ -49,6 +38,17 @@ do {									\
 	(rule)->fw_sport[0] = sp1; (rule)->fw_sport[1] = sp2;		\
 	(rule)->fw_dport[0] = dp1; (rule)->fw_dport[1] = dp2;		\
 } while (0)
+
+typedef struct fw_handle fw_t;
+
+typedef int (*fw_handler)(const struct fw_rule *rule, void *arg);
+
+__BEGIN_DECLS
+fw_t	*fw_open(void);
+int	 fw_add(fw_t *f, const struct fw_rule *rule);
+int	 fw_delete(fw_t *f, const struct fw_rule *rule);
+int	 fw_loop(fw_t *f, fw_handler callback, void *arg);
+fw_t	*fw_close(fw_t *f);
 __END_DECLS
 
 #endif /* DNET_FW_H */
