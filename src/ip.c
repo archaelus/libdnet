@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.16 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: ip.c,v 1.17 2001/12/31 23:52:08 dugsong Exp $
  */
 
 #include "config.h"
@@ -301,7 +301,7 @@ ip_add_option(void *buf, size_t len,
 	}
 	ip = (struct ip_hdr *)buf;
 	hl = ip->ip_hl << 2;
-	p = buf + hl;
+	p = (u_char *)buf + hl;
 	
 	if (proto == IP_PROTO_TCP) {
 		tcp = (struct tcp_hdr *)p;
