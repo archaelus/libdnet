@@ -5,14 +5,14 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.22 2002/12/04 03:52:44 dugsong Exp $
+ * $Id: addr.c,v 1.23 2002/12/04 04:05:49 dugsong Exp $
  */
 
 #include "config.h"
 
 #include <sys/types.h>
-#include <sys/socket.h>
 #ifdef HAVE_NET_IF_H
+# include <sys/socket.h>
 # include <net/if.h>
 #endif
 #ifdef HAVE_NET_IF_DL_H
@@ -21,7 +21,6 @@
 #ifdef HAVE_NET_RAW_H
 # include <net/raw.h>
 #endif
-#include <netinet/in.h>
 
 #include <ctype.h>
 #include <errno.h>
