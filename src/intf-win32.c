@@ -1,9 +1,9 @@
 /*
- * intf.c
+ * intf-win32.c
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.1 2002/01/07 02:00:57 dugsong Exp $
+ * $Id: intf-win32.c,v 1.2 2002/01/07 05:01:56 dugsong Exp $
  */
 
 #include "config.h"
