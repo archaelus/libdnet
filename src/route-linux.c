@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.2 2001/10/11 04:20:57 dugsong Exp $
+ * $Id: route-linux.c,v 1.3 2001/10/11 04:22:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -127,7 +127,7 @@ route_get(route_t *r, struct addr *dst, struct addr *gw)
 	u_char buf[512];
 	int i;
 
-	if (dst->type != ADDR_TYPE_IP) {
+	if (dst->addr_type != ADDR_TYPE_IP) {
 		errno = EINVAL;
 		return (-1);
 	}
@@ -188,7 +188,7 @@ route_get(route_t *r, struct addr *dst, struct addr *gw)
 	
 	while (RTA_OK(rta, i)) {
 		if (rta->rta_type == RTA_GATEWAY) {
-			gw->type = ADDR_TYPE_IP;
+			gw->addr_type = ADDR_TYPE_IP;
 			memcpy(&gw->addr_ip, RTA_DATA(rta), IP_ADDR_LEN);
 			gw->addr_bits = IP_ADDR_BITS;
 			return (0);
