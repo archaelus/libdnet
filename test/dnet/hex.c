@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: hex.c,v 1.5 2002/03/29 06:07:08 dugsong Exp $
+ * $Id: hex.c,v 1.6 2004/03/28 17:38:18 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,6 +29,7 @@ hex_usage(void)
 int
 hex_main(int argc, char *argv[])
 {
+	char buf[IP_LEN_MAX], *p = buf;
 	int c, len;
 	
 	if (argc == 1 || *(argv[1]) == '-')
@@ -41,6 +42,16 @@ hex_main(int argc, char *argv[])
 		if (write(STDOUT_FILENO, argv[c], len) != len)
 			err(1, "write");
 	}
+	if (!isatty(STDIN_FILENO)) {
+		len = sizeof(buf);
+		while ((c = read(STDIN_FILENO, p, len)) > 0) {
+			p += c;
+			len -= c;
+		}
+		len = p - buf;
+		if (write(STDOUT_FILENO, buf, len) != len)
+			err(1, "write");
+	}                                  
 	return (0);
 }
 
