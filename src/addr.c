@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.26 2003/03/18 18:49:11 dugsong Exp $
+ * $Id: addr.c,v 1.27 2003/06/10 04:34:19 dugsong Exp $
  */
 
 #include "config.h"
@@ -196,7 +196,7 @@ addr_pton(const char *src, struct addr *dst)
 		errno = EINVAL;
 		return (-1);
 	}
-	if (bits > 0) {
+	if (bits >= 0) {
 		if (bits > dst->addr_bits) {
 			errno = EINVAL;
 			return (-1);
