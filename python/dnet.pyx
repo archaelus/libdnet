@@ -5,7 +5,7 @@
 #
 # Copyright (c) 2003 Dug Song <dugsong@monkey.org>
 #
-# $Id: dnet.pyx,v 1.6 2004/01/13 07:50:04 dugsong Exp $
+# $Id: dnet.pyx,v 1.7 2004/05/04 23:07:34 dugsong Exp $
 
 """dumb networking library
 
@@ -625,7 +625,7 @@ def icmp_pack_hdr(type, code):
 #
 cdef extern from *:
     void __tcp_pack_hdr "tcp_pack_hdr" (char *hdr,
-        int sport, int dport, int seq, int ack, int flags, int win, int urp)
+        int sport, int dport, unsigned long seq, unsigned long ack, int flags, int win, int urp)
 
 TCP_HDR_LEN =	20		# /* base TCP header length */
 
