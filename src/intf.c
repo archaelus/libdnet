@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.26 2002/02/01 03:42:37 dugsong Exp $
+ * $Id: intf.c,v 1.27 2002/02/01 03:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -231,7 +231,7 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 			return (-1);
 		addr_bcast(&entry->intf_alias_addr[i], &bcast);
 		addr_ntos(&bcast, &ifra.ifra_brdaddr);
-		addr_btos(&entry->intf_alias_addr[i].addr_bits,
+		addr_btos(entry->intf_alias_addr[i].addr_bits,
 		    &ifra.ifra_mask);
 		
 		if (ioctl(intf->fd, SIOCAIFADDR, &ifra) < 0)
