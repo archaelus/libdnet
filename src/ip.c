@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.18 2002/01/03 06:34:23 dugsong Exp $
+ * $Id: ip.c,v 1.19 2002/01/06 21:57:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -419,7 +419,7 @@ ip_checksum(void *buf, size_t len)
 }
 
 int
-ip_cksum_add(void *buf, size_t len, int cksum)
+ip_cksum_add(const void *buf, size_t len, int cksum)
 {
 	uint16_t *sp = (uint16_t *)buf;
 	int n, sn;
