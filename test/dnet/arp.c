@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.c,v 1.4 2002/01/07 02:27:05 dugsong Exp $
+ * $Id: arp.c,v 1.5 2002/02/04 04:02:00 dugsong Exp $
  */
 
 #include "config.h"
@@ -42,10 +42,6 @@ op_aton(char *string, uint16_t *op)
 		*op = htons(ARP_OP_REVREQUEST);
 	else if (strncasecmp(string, "revrep", 6) == 0)
 		*op = htons(ARP_OP_REVREPLY);
-	else if (strncasecmp(string, "invreq", 6) == 0)
-		*op = htons(ARP_OP_INVREQUEST);
-	else if (strncasecmp(string, "invrep", 6) == 0)
-		*op = htons(ARP_OP_INVREPLY);
 	else {
 		l = strtol(string, &p, 10);
 		if (*string == '\0' || *p != '\0' || l > 0xffff)
