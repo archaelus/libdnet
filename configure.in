@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.1 2001/10/11 04:14:39 dugsong Exp $
+dnl $Id: configure.in,v 1.2 2001/10/11 15:42:03 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -96,8 +96,9 @@ else
 fi
 
 dnl Check for cooked raw IP sockets.
-dnl XXX - Solaris, what else?
 if test $ac_cv_dnet_solaris_dev_ip = yes ; then
+	LIBOBJS="$LIBOBJS ip-cooked.o"
+elif test $ac_cv_header_net_raw_h = yes ; then
 	LIBOBJS="$LIBOBJS ip-cooked.o"
 else
 	LIBOBJS="$LIBOBJS ip.o"
