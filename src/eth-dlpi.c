@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.4 2001/10/14 03:51:17 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.5 2001/10/14 03:55:14 dugsong Exp $
  */
 
 #include "config.h"
@@ -238,7 +238,10 @@ eth_send(eth_t *e, const void *buf, size_t len)
 	data.len = len;
 	data.buf = (char *)buf;
 
-	return (putmsg(e->fd, &ctl, &data, 0));
+	if (putmsg(e->fd, &ctl, &data, 0) < 0)
+		return (-1);
+
+	return (len);
 #endif
 }
 
