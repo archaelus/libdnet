@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.c,v 1.3 2004/01/05 02:31:02 dugsong Exp $
+ * $Id: fw.c,v 1.4 2005/02/14 20:45:04 dugsong Exp $
  */
 
 #include "config.h"
@@ -56,17 +56,13 @@ print_rule(const struct fw_rule *fr, void *arg)
 	case IP_PROTO_TCP:
 	case IP_PROTO_UDP:
 		if (fr->fw_sport[0] == fr->fw_sport[1]) {
-			if (fr->fw_sport[0])
-				snprintf(sport, sizeof(sport), ":%d",
-				    fr->fw_sport[0]);
+			snprintf(sport, sizeof(sport), ":%d", fr->fw_sport[0]);
 		} else
 			snprintf(sport, sizeof(sport), ":%d-%d",
 			    fr->fw_sport[0], fr->fw_sport[1]);
 		
 		if (fr->fw_dport[0] == fr->fw_dport[1]) {
-			if (fr->fw_dport[0])
-				snprintf(dport, sizeof(dport), ":%d",
-				    fr->fw_dport[0]);
+			snprintf(dport, sizeof(dport), ":%d", fr->fw_dport[0]);
 		} else
 			snprintf(dport, sizeof(dport), ":%d-%d",
 			    fr->fw_dport[0], fr->fw_dport[1]);
@@ -121,6 +117,9 @@ arg_to_fr(int argc, char *argv[], struct fw_rule *fr)
 			fr->fw_sport[1] = (uint16_t)strtol(p + 1, NULL, 10);
 		else
 			fr->fw_sport[1] = fr->fw_sport[0];
+	} else if (fr->fw_proto == IP_PROTO_TCP || fr->fw_proto == IP_PROTO_UDP) {
+		fr->fw_sport[0] = 0;
+		fr->fw_sport[1] = TCP_PORT_MAX;
 	}
 	p = strtok(argv[5], ":");
 	
@@ -133,7 +132,10 @@ arg_to_fr(int argc, char *argv[], struct fw_rule *fr)
 			fr->fw_dport[1] = (uint16_t)strtol(p + 1, NULL, 10);
 		else
 			fr->fw_dport[1] = fr->fw_dport[0];
-	}
+	} else if (fr->fw_proto == IP_PROTO_TCP || fr->fw_proto == IP_PROTO_UDP) {
+		fr->fw_dport[0] = 0;
+		fr->fw_dport[1] = TCP_PORT_MAX;
+	}	
 	if (argc > 6) {
 		if (fr->fw_proto != IP_PROTO_ICMP &&
 		    fr->fw_proto != IP_PROTO_IGMP) {
