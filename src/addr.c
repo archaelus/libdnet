@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.31 2004/01/13 03:05:27 dugsong Exp $
+ * $Id: addr.c,v 1.32 2004/08/27 01:23:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -341,7 +341,7 @@ addr_btos(uint16_t bits, struct sockaddr *sa)
 	union sockunion *so = (union sockunion *)sa;
 
 #ifdef HAVE_SOCKADDR_IN6
-	if (bits > IP_ADDR_BITS && bits < IP6_ADDR_BITS) {
+	if (bits > IP_ADDR_BITS && bits <= IP6_ADDR_BITS) {
 		memset(&so->sin6, 0, sizeof(so->sin6));
 #ifdef HAVE_SOCKADDR_SA_LEN
 		so->sin6.sin6_len = IP6_ADDR_LEN + (bits / 8) + (bits % 8);
@@ -350,7 +350,7 @@ addr_btos(uint16_t bits, struct sockaddr *sa)
 		return (addr_btom(bits, &so->sin6.sin6_addr, IP6_ADDR_LEN));
 	} else
 #endif
-	if (bits < IP_ADDR_BITS) {
+	if (bits <= IP_ADDR_BITS) {
 		memset(&so->sin, 0, sizeof(so->sin));
 #ifdef HAVE_SOCKADDR_SA_LEN
 		so->sin.sin_len = IP_ADDR_LEN + (bits / 8) + (bits % 8);
