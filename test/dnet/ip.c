@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.6 2002/01/07 02:27:05 dugsong Exp $
+ * $Id: ip.c,v 1.7 2002/02/04 16:40:06 dugsong Exp $
  */
 
 #include "config.h"
@@ -23,8 +23,8 @@
 void
 ip_usage(int die)
 {
-	fprintf(stderr, "Usage: dnet ip [tos|id|ttl|proto|src|dst value] ... "
-	    "[send]\n");
+	fprintf(stderr, "Usage: dnet ip [tos|id|off|ttl|proto|src|dst value] "
+	    "... [send]\n");
 	if (die)
 		exit(1);
 }
@@ -46,7 +46,27 @@ proto_aton(char *string, uint8_t *proto)
 	}
 	return (0);
 }
-		
+
+static int
+off_aton(char *string, uint16_t *off)
+{
+	int i;
+	char *p;
+
+	if (strncmp(string, "0x", 2) == 0) {
+		if (sscanf(string, "%i", &i) != 1 || i > IP_OFFMASK)
+			return (-1);
+		*off = htons(i);
+	} else {
+		i = strtol(string, &p, 10);
+		if (*string == '\0' || (*p != '\0' && *p != '+') ||
+		    i > IP_OFFMASK)
+			return (-1);
+		*off = htons(((*p == '+') ? IP_MF : 0) | (i >> 3));
+	}
+	return (0);
+}
+
 int
 ip_main(int argc, char *argv[])
 {
@@ -79,7 +99,10 @@ ip_main(int argc, char *argv[])
 			ip->ip_tos = atoi(value);
 		else if (strcmp(name, "id") == 0)
 			ip->ip_id = ntohs(atoi(value));
-		else if (strcmp(name, "ttl") == 0)
+		else if (strcmp(name, "off") == 0) {
+			if (off_aton(value, &ip->ip_off) < 0)
+				ip_usage(1);
+		} else if (strcmp(name, "ttl") == 0)
 			ip->ip_ttl = atoi(value);
 		else if (strcmp(name, "proto") == 0) {
 			if (proto_aton(value, &ip->ip_p) < 0)
