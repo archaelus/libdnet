@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: blob.h,v 1.1 2002/04/05 03:05:41 dugsong Exp $
+ * $Id: blob.h,v 1.2 2002/04/05 03:06:44 dugsong Exp $
  */
 
 #ifndef DNET_BLOB_H
@@ -18,6 +18,7 @@ typedef struct blob {
 	int		 size;		/* size of allocation */
 } blob_t;
 
+__BEGIN_DECLS
 blob_t	*blob_new(void);
 
 int	 blob_read(blob_t *b, void *buf, int len);
@@ -50,5 +51,6 @@ typedef int (*blob_fmt_cb)(int pack, int len, blob_t *b, va_list *arg);
 
 int	 blob_register_pack(char c, blob_fmt_cb fmt_cb);
 #endif
+__END_DECLS
 
 #endif /* DNET_BLOB_H */
