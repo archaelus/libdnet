@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.8 2003/03/06 04:32:59 dugsong Exp $
+ * $Id: os.h,v 1.9 2003/03/16 17:38:04 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
@@ -15,6 +15,11 @@
 # include <windows.h>
 # include <winsock2.h>
 # include <stdint.h>
+/* XXX */
+# undef IP_OPT_LSRR
+# undef IP_OPT_TS
+# undef IP_OPT_RR
+# undef IP_OPT_SSRR
 #else
 # include <sys/param.h>
 # include <sys/types.h>
