@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.5 2001/10/16 06:16:07 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.6 2001/10/16 06:50:19 dugsong Exp $
  */
 
 #include "config.h"
@@ -296,7 +296,7 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 		}
 	}
 	ret = 0;
-	for (ipfw = (struct ip_fw *)buf; ipfw->fw_number < 65535; ipfw++) {
+	for (ipfw = (struct ip_fw *)buf; ipfw->fw_number <= 65535; ipfw++) {
 		ipfw_to_fr(ipfw, &fr);
 		if ((ret = callback(&fr, arg)) != 0)
 			break;
