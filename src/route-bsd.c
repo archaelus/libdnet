@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.10 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: route-bsd.c,v 1.11 2002/01/09 04:15:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -190,20 +190,21 @@ route_open(void)
 }
 
 int
-route_add(route_t *r, struct addr *dst, struct addr *gw)
+route_add(route_t *r, const struct addr *dst, const struct addr *gw)
 {
 	u_char buf[BUFSIZ];
 
 	assert(dst != NULL && gw != NULL);
 
-	if (route_msg(r, RTM_ADD, buf, sizeof(buf), dst, gw) < 0)
+	if (route_msg(r, RTM_ADD, buf, sizeof(buf), (struct addr *)dst,
+	    (struct addr *)gw) < 0)
 		return (-1);
 	
 	return (0);
 }
 
 int
-route_delete(route_t *r, struct addr *dst)
+route_delete(route_t *r, const struct addr *dst)
 {
 	struct addr gw;
 	u_char buf[BUFSIZ];
@@ -213,20 +214,22 @@ route_delete(route_t *r, struct addr *dst)
 	if (route_get(r, dst, &gw) < 0)
 		return (-1);
 	
-	if (route_msg(r, RTM_DELETE, buf, sizeof(buf), dst, &gw) < 0)
+	if (route_msg(r, RTM_DELETE, buf, sizeof(buf),
+	    (struct addr *)dst, &gw) < 0)
 		return (-1);
 	
 	return (0);
 }
 
 int
-route_get(route_t *r, struct addr *dst, struct addr *gw)
+route_get(route_t *r, const struct addr *dst, struct addr *gw)
 {
 	u_char buf[BUFSIZ];
 	
 	assert(dst != NULL && gw != NULL);
 	
-	if (route_msg(r, RTM_GET, buf, sizeof(buf), dst, gw) < 0)
+	if (route_msg(r, RTM_GET, buf, sizeof(buf),
+	    (struct addr *)dst, gw) < 0)
 		return (-1);
 	
 	return (0);

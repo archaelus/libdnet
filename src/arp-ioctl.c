@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.13 2002/01/09 03:55:46 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.14 2002/01/09 04:17:52 dugsong Exp $
  */
 
 #include "config.h"
@@ -87,7 +87,7 @@ arp_open(void)
 
 #ifdef HAVE_ARPREQ_ARP_DEV
 static int
-arp_set_dev(char *device, struct intf_info *info, void *arg)
+arp_set_dev(const char *device, const struct intf_info *info, void *arg)
 {
 	struct arpreq *ar = (struct arpreq *)arg;
 	struct addr dst;

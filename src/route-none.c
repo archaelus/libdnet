@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-none.c,v 1.2 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: route-none.c,v 1.3 2002/01/09 04:15:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -24,21 +24,21 @@ route_open(void)
 }
 
 int
-route_add(route_t *r, struct addr *dst, struct addr *gw)
+route_add(route_t *r, const struct addr *dst, const struct addr *gw)
 {
 	errno = ENOSYS;
 	return (-1);
 }
 
 int
-route_delete(route_t *r, struct addr *dst)
+route_delete(route_t *r, const struct addr *dst)
 {
 	errno = ENOSYS;
 	return (-1);
 }
 
 int
-route_get(route_t *r, struct addr *dst, struct addr *gw)
+route_get(route_t *r, const struct addr *dst, struct addr *gw)
 {
 	errno = ENOSYS;
 	return (-1);

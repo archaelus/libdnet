@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.7 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: route-linux.c,v 1.8 2002/01/09 04:15:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -65,7 +65,7 @@ route_open(void)
 }
 
 int
-route_add(route_t *r, struct addr *dst, struct addr *gw)
+route_add(route_t *r, const struct addr *dst, const struct addr *gw)
 {
 	struct rtentry rt;
 
@@ -89,7 +89,7 @@ route_add(route_t *r, struct addr *dst, struct addr *gw)
 }
 
 int
-route_delete(route_t *r, struct addr *dst)
+route_delete(route_t *r, const struct addr *dst)
 {
 	struct rtentry rt;
 
@@ -112,7 +112,7 @@ route_delete(route_t *r, struct addr *dst)
 }
 
 int
-route_get(route_t *r, struct addr *dst, struct addr *gw)
+route_get(route_t *r, const struct addr *dst, struct addr *gw)
 {
 	static int seq;
 	struct nlmsghdr *nmsg;
