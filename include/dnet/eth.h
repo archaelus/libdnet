@@ -5,15 +5,11 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.6 2001/12/14 14:27:29 dugsong Exp $
+ * $Id: eth.h,v 1.7 2001/12/14 15:29:20 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
 #define DNET_ETH_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #define ETH_ADDR_LEN	6
 #define ETH_ADDR_BITS	48
@@ -56,6 +52,7 @@ struct eth_hdr {
 
 typedef struct eth_handle eth_t;
 
+__BEGIN_DECLS
 eth_t	*eth_open(char *device);
 int	 eth_get(eth_t *e, eth_addr_t *ea);
 int	 eth_set(eth_t *e, eth_addr_t *ea);
@@ -68,9 +65,6 @@ int	 eth_close(eth_t *e);
 	memmove(&eth_fill_p->eth_src, &(src), ETH_ADDR_LEN);	\
 	eth_fill_p->eth_type = htons(type);			\
 } while (0)
-
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS
 
 #endif /* DNET_ETH_H */

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.2 2001/10/12 06:49:48 dugsong Exp $
+ * $Id: os.h,v 1.3 2001/12/14 15:29:20 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
@@ -69,6 +69,17 @@
 # else
 #  error "bytesex unknown"
 # endif
+#endif
+
+/* C++ support. */
+#undef __BEGIN_DECLS
+#undef __END_DECLS
+#ifdef __cplusplus
+#define __BEGIN_DECLS	extern "C" {
+# define __END_DECLS	}
+#else
+# define __BEGIN_DECLS
+# define __END_DECLS
 #endif
 
 #endif /* DNET_OS_H */

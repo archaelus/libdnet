@@ -5,15 +5,11 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.h,v 1.5 2001/12/14 14:27:29 dugsong Exp $
+ * $Id: arp.h,v 1.6 2001/12/14 15:29:20 dugsong Exp $
  */
 
 #ifndef DNET_ARP_H
 #define DNET_ARP_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*
  * See RFC 826 for protocol description. ARP packets are variable in
@@ -62,6 +58,7 @@ typedef struct arp_handle arp_t;
 
 typedef int (*arp_handler)(struct addr *pa, struct addr *ha, void *arg);
 
+__BEGIN_DECLS
 arp_t	*arp_open(void);
 int	 arp_add(arp_t *a, struct addr *pa, struct addr *ha);
 int	 arp_delete(arp_t *a, struct addr *pa);
@@ -83,9 +80,6 @@ int	 arp_close(arp_t *a);
 	memmove(fill_ethip_p->ar_tha, &(tha), ETH_ADDR_LEN);	\
 	memmove(fill_ethip_p->ar_tpa, &(tpa), IP_ADDR_LEN);	\
 } while (0)
-
-#ifdef __cplusplus
-}
-#endif
+__END_DECLS
 
 #endif /* DNET_ARP_H */

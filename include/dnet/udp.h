@@ -5,16 +5,12 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: udp.h,v 1.5 2001/12/14 14:27:29 dugsong Exp $
+ * $Id: udp.h,v 1.6 2001/12/14 15:29:20 dugsong Exp $
  */
 
 #ifndef DNET_UDP_H
 #define DNET_UDP_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
 #define UDP_HDR_LEN	8
 
 struct udp_hdr {
@@ -32,9 +28,5 @@ struct udp_hdr {
 	udp_fill_p->uh_dport = htons(dport);			\
 	udp_fill_p->uh_ulen = htons(ulen);			\
 } while (0)
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* DNET_UDP_H */
