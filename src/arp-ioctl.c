@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.12 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.13 2002/01/09 03:55:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -105,7 +105,7 @@ arp_set_dev(char *device, struct intf_info *info, void *arg)
 #endif
 
 int
-arp_add(arp_t *a, struct addr *pa, struct addr *ha)
+arp_add(arp_t *a, const struct addr *pa, const struct addr *ha)
 {
 	struct arpreq ar;
 
@@ -168,7 +168,7 @@ arp_add(arp_t *a, struct addr *pa, struct addr *ha)
 }
 
 int
-arp_delete(arp_t *a, struct addr *pa)
+arp_delete(arp_t *a, const struct addr *pa)
 {
 	struct arpreq ar;
 
@@ -184,7 +184,7 @@ arp_delete(arp_t *a, struct addr *pa)
 }
 
 int
-arp_get(arp_t *a, struct addr *pa, struct addr *ha)
+arp_get(arp_t *a, const struct addr *pa, struct addr *ha)
 {
 	struct arpreq ar;
 

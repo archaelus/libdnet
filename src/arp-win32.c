@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.1 2002/01/07 05:04:40 dugsong Exp $
+ * $Id: arp-win32.c,v 1.2 2002/01/09 03:55:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -39,7 +39,7 @@ arp_open(void)
 }
 
 int
-arp_add(arp_t *arp, struct addr *pa, struct addr *ha)
+arp_add(arp_t *arp, const struct addr *pa, const struct addr *ha)
 {
 	MIB_IPFORWARDROW ipfrow;
 	MIB_IPNETROW iprow;
@@ -60,7 +60,7 @@ arp_add(arp_t *arp, struct addr *pa, struct addr *ha)
 }
 
 int
-arp_delete(arp_t *arp, struct addr *pa)
+arp_delete(arp_t *arp, const struct addr *pa)
 {
 	MIB_IPFORWARDROW ipfrow;
 	MIB_IPNETROW iprow;
@@ -79,7 +79,7 @@ arp_delete(arp_t *arp, struct addr *pa)
 }
 
 static int
-_arp_get(struct addr *pa, struct addr *ha, void *arg)
+_arp_get(const struct addr *pa, const struct addr *ha, void *arg)
 {
 	arp_t *arp = (arp_t *)arg;
 	
@@ -91,7 +91,7 @@ _arp_get(struct addr *pa, struct addr *ha, void *arg)
 }
 
 int
-arp_get(arp_t *arp, struct addr *pa, struct addr *ha)
+arp_get(arp_t *arp, const struct addr *pa, struct addr *ha)
 {
 	int ret;
 	

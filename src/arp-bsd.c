@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-bsd.c,v 1.5 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: arp-bsd.c,v 1.6 2002/01/09 03:55:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -97,7 +97,7 @@ arp_msg(arp_t *a, struct arpmsg *msg)
 }
 
 int
-arp_add(arp_t *a, struct addr *pa, struct addr *ha)
+arp_add(arp_t *a, const struct addr *pa, const struct addr *ha)
 {
 	struct arpmsg msg;
 	struct sockaddr_in *sin;
@@ -162,7 +162,7 @@ arp_add(arp_t *a, struct addr *pa, struct addr *ha)
 }
 
 int
-arp_delete(arp_t *a, struct addr *pa)
+arp_delete(arp_t *a, const struct addr *pa)
 {
 	struct arpmsg msg;
 	struct sockaddr_in *sin;
@@ -209,7 +209,7 @@ arp_delete(arp_t *a, struct addr *pa)
 }
 
 int
-arp_get(arp_t *a, struct addr *pa, struct addr *ha)
+arp_get(arp_t *a, const struct addr *pa, struct addr *ha)
 {
 	struct arpmsg msg;
 	struct sockaddr_in *sin;
