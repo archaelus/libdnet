@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.2 2001/10/12 06:48:20 dugsong Exp $
+ * $Id: intf.c,v 1.3 2001/10/14 03:55:42 dugsong Exp $
  */
 
 #include "config.h"
@@ -210,7 +210,7 @@ intf_get(intf_t *i, char *device, struct addr *addr, int *flags)
 			if (addr_ston(&ifr.ifr_hwaddr, addr) < 0)
 				return (-1);
 			break;
-#elif defined(HAVE_SYS_DLPI_H) || defined(HAVE_NET_RAW_H)
+#elif defined(HAVE_SYS_DLPI_H) || defined(HAVE_SYS_DLPIHDR_H) || defined(HAVE_NET_RAW_H)
 			eth_t *eth;
 
 			if ((eth = eth_open(device)) == NULL)
