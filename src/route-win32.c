@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-win32.c,v 1.11 2004/01/14 06:47:31 dugsong Exp $
+ * $Id: route-win32.c,v 1.12 2005/02/15 07:11:32 dugsong Exp $
  */
 
 #include "config.h"
@@ -132,7 +132,7 @@ route_loop(route_t *r, route_handler callback, void *arg)
 	entry.route_gw.addr_type = ADDR_TYPE_IP;
 	entry.route_gw.addr_bits = IP_ADDR_BITS;
 	
-	for (i = 0; i < r->ipftable->dwNumEntries; i++) {
+	for (i = 0; i < (int)r->ipftable->dwNumEntries; i++) {
 		entry.route_dst.addr_ip = r->ipftable->table[i].dwForwardDest;
 		addr_mtob(&r->ipftable->table[i].dwForwardMask, IP_ADDR_LEN,
 		    &entry.route_dst.addr_bits);
