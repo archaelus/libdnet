@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.7 2002/11/12 22:27:42 dugsong Exp $
+ * $Id: os.h,v 1.8 2003/03/06 04:32:59 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
@@ -72,7 +72,7 @@
     defined(MIPSEB) || defined(_MIPSEB) || defined(_IBMR2) || defined(DGUX) ||\
     defined(apollo) || defined(__convex__) || defined(_CRAY) || \
     defined(__hppa) || defined(__hp9000) || \
-    defined(__hp9000s300) || defined(__hp9000s700) || \
+    defined(__hp9000s300) || defined(__hp9000s700) || defined(__ia64) || \
     defined (BIT_ZERO_ON_LEFT) || defined(m68k)
 #  define DNET_BYTESEX		DNET_BIG_ENDIAN
 # else
