@@ -1,9 +1,12 @@
-# $Id: THANKS,v 1.9 2005/02/10 17:12:51 dugsong Exp $
+# $Id: THANKS,v 1.10 2005/02/17 02:58:11 dugsong Exp $
 
 many thanks to all the folks who have contributed to libdnet:
 
 Thamer Al-Harbash <tmh@whitefang.com>
 	excellent bug reports and fearless beta-testing
+
+Marc Bevand <bevand_m@epita.fr>
+	RFC 768 UDP zero-checksum fix
 
 Michael Coulter <mjc@bitz.ca>
 	OpenBSD pfioc_pooladdr fix, pf rule deletion bug report
