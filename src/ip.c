@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.21 2002/01/07 01:55:15 dugsong Exp $
+ * $Id: ip.c,v 1.20 2002/01/07 01:54:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -233,7 +233,7 @@ ip_send(ip_t *i, const void *buf, size_t len)
 	return (len);
 }
 #else /* !HAVE_RAWIP_COOKED */
-size_t
+ssize_t
 ip_send(ip_t *i, const void *buf, size_t len)
 {
 	struct ip_hdr *ip;
