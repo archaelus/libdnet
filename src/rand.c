@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.7 2002/04/07 19:20:03 dugsong Exp $
+ * $Id: rand.c,v 1.8 2002/04/08 00:19:26 dugsong Exp $
  */
 
 #include "config.h"
@@ -168,6 +168,9 @@ rand_shuffle(rand_t *r, void *base, size_t nmemb, size_t size)
 	u_char *save, *src, *dst, *start = (u_char *)base;
 	int i, j;
 
+	if (nmemb < 2)
+		return (0);
+	
 	if (r->tmplen < size) {
 		if (r->tmp == NULL) {
 			if ((save = malloc(size)) == NULL)
