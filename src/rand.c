@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.3 2002/04/01 06:44:17 dugsong Exp $
+ * $Id: rand.c,v 1.4 2002/04/02 05:23:07 dugsong Exp $
  */
 
 #include "config.h"
@@ -117,6 +117,14 @@ int
 rand_set(rand_t *r, const void *buf, size_t len)
 {
 	rand_init(r);
+	rand_addrandom(r, (u_char *)buf, len);
+	rand_addrandom(r, (u_char *)buf, len);
+	return (0);
+}
+
+int
+rand_add(rand_t *r, const void *buf, size_t len)
+{
 	rand_addrandom(r, (u_char *)buf, len);
 	return (0);
 }
