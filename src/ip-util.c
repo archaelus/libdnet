@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-util.c,v 1.3 2002/01/19 23:23:58 dugsong Exp $
+ * $Id: ip-util.c,v 1.4 2002/01/20 18:59:21 dugsong Exp $
  */
 
 #include "config.h"
@@ -107,7 +107,7 @@ void
 ip_checksum(void *buf, size_t len)
 {
 	struct ip_hdr *ip;
-	int hl, sum;
+	int hl, off, sum;
 
 	ip = (struct ip_hdr *)buf;
 	hl = ip->ip_hl << 2;
@@ -118,7 +118,8 @@ ip_checksum(void *buf, size_t len)
 	sum = ip_cksum_add(ip, hl, 0);
 	ip->ip_sum = ip_cksum_carry(sum);
 
-	if ((ip->ip_off & IP_OFFMASK) != 0)
+	off = htons(ip->ip_off);
+	if ((off & IP_OFFMASK) != 0 || (off & IP_MF) != 0)
 		return;
 	
 	if (ip->ip_p == IP_PROTO_TCP && len >= TCP_HDR_LEN) {
