@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.44 2003/02/09 03:57:51 dugsong Exp $
+ * $Id: intf.c,v 1.45 2004/01/03 08:50:37 dugsong Exp $
  */
 
 #include "config.h"
@@ -417,7 +417,8 @@ _intf_get_aliases(intf_t *intf, struct intf_entry *entry)
 	}
 	entry->intf_alias_num = 0;
 	ap = entry->intf_alias_addrs;
-	lifr = (struct ifreq *)&intf->ifc.ifc_buf[intf->ifc.ifc_len];
+	lifr = (struct ifreq *)intf->ifc.ifc_buf + 
+	    (intf->ifc.ifc_len / sizeof(*lifr));
 	lap = (struct addr *)((u_char *)entry + entry->intf_len);
 	
 	/* Get addresses for this interface. */
