@@ -6,14 +6,16 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.1 2002/03/29 06:06:17 dugsong Exp $
+ * $Id: rand.c,v 1.2 2002/03/29 06:22:29 dugsong Exp $
  */
 
 #include "config.h"
 
 #ifdef WIN32
+#include <windows.h>
 #include <wincrypt.h>
 #else
+#include <sys/types.h>
 #include <sys/time.h>
 #endif
 #include <fcntl.h>
@@ -66,7 +68,7 @@ rand_open(void)
 	CryptAcquireContext(&hcrypt, NULL, NULL, PROV_RSA_FULL,
 	    CRYPT_VERIFYCONTEXT);
 	CryptGenRandom(hcrypt, sizeof(seed), seed);
-	CryptReleaseContext(&hcrypt, 0);
+	CryptReleaseContext(hcrypt, 0);
 #else
 	struct timeval *tv = (struct timeval *)seed;
 	int fd;
