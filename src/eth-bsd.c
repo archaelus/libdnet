@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-bsd.c,v 1.7 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: eth-bsd.c,v 1.8 2003/02/23 02:32:09 dugsong Exp $
  */
 
 #include "config.h"
@@ -54,7 +54,7 @@ eth_open(const char *device)
 			break;
 	}
 	if (e->fd < 0)
-		return (NULL);
+		return (eth_close(e));
 	
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, device, sizeof(ifr.ifr_name));
