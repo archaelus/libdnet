@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.36 2002/01/26 21:58:00 dugsong Exp $
+dnl $Id: configure.in,v 1.37 2002/02/04 04:11:13 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -182,6 +182,8 @@ fi
 dnl Check for raw IP interface.
 if test "$ac_cv_header_Iphlpapi_h" = yes ; then
 	LIBOBJS="$LIBOBJS ip-win32.o"
+elif test "$ac_cv_dnet_rawip_cooked" = yes ; then
+	LIBOBJS="$LIBOBJS ip-cooked.o"
 else
 	LIBOBJS="$LIBOBJS ip.o"
 fi
