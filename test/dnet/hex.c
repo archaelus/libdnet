@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: hex.c,v 1.4 2002/02/09 04:27:14 dugsong Exp $
+ * $Id: hex.c,v 1.5 2002/03/29 06:07:08 dugsong Exp $
  */
 
 #include "config.h"
@@ -13,8 +13,6 @@
 #include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include <unistd.h>
 
 #include "dnet.h"
