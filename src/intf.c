@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.39 2002/05/09 22:12:50 dugsong Exp $
+ * $Id: intf.c,v 1.40 2002/12/02 05:49:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -459,10 +459,9 @@ _match_intf_src(const struct intf_entry *entry, void *arg)
 	struct intf_entry *save = (struct intf_entry *)arg;
 	
 	if (entry->intf_addr.addr_type == ADDR_TYPE_IP &&
-	    entry->intf_addr.addr_ip == save->intf_addr.addr_ip &&
-	    entry->intf_len <= save->intf_len) {
-		save->intf_len = entry->intf_len;
-		memcpy(save, entry, entry->intf_len);
+	    entry->intf_addr.addr_ip == save->intf_addr.addr_ip) {
+		/* XXX - truncated result if entry is too small. */
+		memcpy(save, entry, save->intf_len);
 		return (1);
 	}
 	return (0);
