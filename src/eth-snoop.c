@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-snoop.c,v 1.2 2001/10/12 02:09:17 dugsong Exp $
+ * $Id: eth-snoop.c,v 1.3 2001/10/14 19:05:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -74,10 +74,25 @@ eth_get_hwaddr(eth_t *e, struct addr *ha)
 	if (addr_ston(&ifr.ifr_addr, ha) < 0)
 		return (-1);
 
-	if (ha->addr_type != ADDR_TYPE_ETH)
+	if (ha->addr_type != ADDR_TYPE_ETH) {
+		errno = EINVAL;
 		return (-1);
-
+	}
 	return (0);
+}
+
+int
+eth_set_hwaddr(eth_t *e, struct addr *ha)
+{
+	struct ifreq ifr;
+
+	memset(&ifr, 0, sizeof(ifr));
+	strlcpy(ifr.ifr_name, e->device, sizeof(ifr.ifr_name));
+	
+	if (addr_ntos(ha, &ifr.ifr_addr) < 0)
+		return (-1);
+	
+	return (ioctl(e->fd, SIOCSIFADDR, &ifr));
 }
 
 ssize_t
