@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.22 2002/12/02 04:28:06 dugsong Exp $
+ * $Id: ip.h,v 1.23 2003/03/16 17:39:17 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -23,6 +23,11 @@
 #define IP_LEN_MIN	IP_HDR_LEN
 
 typedef uint32_t	ip_addr_t;
+
+#ifndef __GNUC__
+# define __attribute__(x)
+# pragma pack(1)
+#endif
 
 /*
  * IP header, without options
@@ -268,10 +273,6 @@ struct ip_hdr {
 #define IP_OPT_NUMBER(o)	((o) & 0x1f)
 #define IP_OPT_TYPEONLY(o)	((o) == IP_OPT_EOL || (o) == IP_OPT_NOP)
 
-#ifndef __GNUC__
-# define __attribute__(x)
-# pragma pack(1)			/* XXX - begin squirrely alignment */
-#endif
 /*
  * Security option data - RFC 791, 3.1
  */
@@ -349,7 +350,7 @@ struct ip_opt {
 } __attribute__((__packed__));
 
 #ifndef __GNUC__
-# pragma pack()				/* XXX - end squirrely alignment */
+# pragma pack()
 #endif
 
 /*

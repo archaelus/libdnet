@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip6.h,v 1.4 2002/12/13 16:43:17 dugsong Exp $
+ * $Id: ip6.h,v 1.5 2003/03/16 17:39:17 dugsong Exp $
  */
 
 #ifndef DNET_IP6_H
@@ -26,7 +26,7 @@ typedef struct ip6_addr {
 
 #ifndef __GNUC__
 # define __attribute__(x)
-# pragma pack(1)			/* XXX - begin squirrely alignment */
+# pragma pack(1)
 #endif
 
 /*
@@ -150,7 +150,7 @@ struct ip6_ext_hdr {
 } __attribute__((__packed__));
 
 #ifndef __GNUC__
-# pragma pack()				/* XXX - end squirrely alignment */
+# pragma pack()
 #endif
 
 /*
