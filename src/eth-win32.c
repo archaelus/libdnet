@@ -3,10 +3,12 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-win32.c,v 1.9 2005/01/25 21:30:40 dugsong Exp $
+ * $Id: eth-win32.c,v 1.10 2005/02/15 05:38:24 dugsong Exp $
  */
 
 #include "config.h"
+
+#include "dnet.h"
 
 /* XXX - VC++ 6.0 bogosity */
 #define sockaddr_storage sockaddr
@@ -16,8 +18,6 @@
 
 #include <errno.h>
 #include <stdlib.h>
-
-#include "dnet.h"
 
 struct eth_handle {
 	LPADAPTER	 lpa;
