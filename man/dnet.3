@@ -1,7 +1,7 @@
 .\"
 .\" Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 .\"
-.\" $Id: dnet.3,v 1.32 2002/12/14 04:25:29 dugsong Exp $
+.\" $Id: dnet.3,v 1.33 2003/02/27 03:01:09 dugsong Exp $
 .\"
 .Dd August 21, 2001
 .Dt DNET 3
@@ -16,6 +16,8 @@
 .Fn addr_cmp "const struct addr *a" "const struct addr *b"
 .Ft int
 .Fn addr_bcast "const struct addr *a" "struct addr *b"
+.Ft int
+.Fn addr_net "const struct addr *a" "struct addr *b"
 .Ft char *
 .Fn addr_ntop "const struct addr *src" "char *dst" "size_t size"
 .Ft int
@@ -231,6 +233,12 @@ Both addresses must be of the same address type.
 .Pp
 .Fn addr_bcast
 computes the broadcast address for the network specified in
+.Fa a
+and writes it into
+.Fa b .
+.Pp
+.Fn addr_net
+computes the network address for the network specified in
 .Fa a
 and writes it into
 .Fa b .
