@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.6 2001/10/19 01:01:06 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.7 2001/10/19 01:04:38 dugsong Exp $
  */
 
 #include "config.h"
@@ -374,8 +374,7 @@ arp_loop(arp_t *r, arp_handler callback, void *arg)
 	ret = 0;
 	
 	for (i = 0; i < n; i++) {
-		if ((arpentries[i].Type != INTM_DYNAMIC &&
-		    arpentries[i].Type != INTM_STATIC) ||
+		if (arpentries[i].Type != INTM_DYNAMIC ||
 		    arpentries[i].PhysAddr.o_length != ETH_ADDR_LEN)
 			continue;
 		
