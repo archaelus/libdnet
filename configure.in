@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.42 2002/04/01 05:03:56 dugsong Exp $
+dnl $Id: configure.in,v 1.43 2002/04/01 06:22:03 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -100,16 +100,14 @@ AC_ARG_WITH(libcheck,
      fi
      ;;
   esac ],
-[ if test -f ${prefix}/include/check.h -a -f ${prefix}/lib/libcheck.a;
-then
+[ if test -f ${prefix}/include/check.h -a -f ${prefix}/lib/libcheck.a; then
      CHECKINC="-I${prefix}/include"
      CHECKLIB="-L${prefix}/lib -lcheck"
+     AC_MSG_RESULT(yes)
   else
      AC_MSG_RESULT(no)
-     AC_ERROR(libcheck not found)
   fi
-  AC_MSG_RESULT(yes) ]
-)
+])
 AC_SUBST(CHECKINC)
 AC_SUBST(CHECKLIB)
 
