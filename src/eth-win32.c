@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-win32.c,v 1.2 2002/01/26 21:31:30 dugsong Exp $
+ * $Id: eth-win32.c,v 1.3 2002/08/22 17:38:31 dugsong Exp $
  */
 
 #include "config.h"
@@ -14,6 +14,7 @@
 #include "dnet.h"
 
 #include <Packet32.h>
+#include <Ntddndis.h>
 
 struct eth_handle {
 	LPADAPTER	 lpa;
