@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.9 2002/04/11 19:56:23 dugsong Exp $
+ * $Id: rand.c,v 1.10 2003/03/06 04:32:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -93,7 +93,7 @@ rand_open(void)
 	return (r);
 }
 
-static inline uint8_t
+static uint8_t
 rand_getbyte(rand_t *r)
 {
 	uint8_t si, sj;
