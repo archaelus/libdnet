@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.24 2002/01/31 23:50:01 dugsong Exp $
+ * $Id: intf.c,v 1.25 2002/01/31 23:51:08 dugsong Exp $
  */
 
 #include "config.h"
@@ -49,7 +49,7 @@ struct dnet_ifaliasreq {
 	struct sockaddr ifra_addr;
 	struct sockaddr ifra_brdaddr;
 	struct sockaddr ifra_mask;
-	int		cookie;		/* XXX - IRIX!@#$ */
+	int		ifra_cookie;	/* XXX - IRIX!@#$ */
 };
 
 struct intf_handle {
