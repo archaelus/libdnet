@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.3 2002/02/04 04:11:13 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.4 2002/02/04 05:25:39 dugsong Exp $
  */
 
 #include "config.h"
@@ -110,6 +110,10 @@ _lookup_ip_intf(ip_t *ip, ip_addr_t dst)
 			if (ipi->eth == NULL) {
 				if ((ipi->eth = eth_open(ipi->name)) == NULL)
 					return (NULL);
+			}
+			if (ipi != LIST_FIRST(&ip->ip_intf_list)) {
+				LIST_REMOVE(ipi, next);
+				LIST_INSERT_HEAD(&ip->ip_intf_list, ipi, next);
 			}
 			return (ipi);
 		}
