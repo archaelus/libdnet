@@ -5,12 +5,16 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: icmp.h,v 1.3 2001/12/10 07:59:19 dugsong Exp $
+ * $Id: icmp.h,v 1.4 2001/12/14 14:27:29 dugsong Exp $
  */
 
 #ifndef DNET_ICMP_H
 #define DNET_ICMP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 #define ICMP_HDR_LEN	4
 #define ICMP_LEN_MIN	8		/* minimum ICMP msg size, with hdr */
 
@@ -175,5 +179,9 @@ union icmp_msg {
 	frag_fill_p->icmp_nextmtu = htons(mtu);				\
 	memmove(frag_fill_p->icmp_ip8, pkt, len);			\
 } while (0)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DNET_ICMP_H */

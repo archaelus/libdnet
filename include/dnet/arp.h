@@ -5,11 +5,15 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.h,v 1.4 2001/12/10 07:59:19 dugsong Exp $
+ * $Id: arp.h,v 1.5 2001/12/14 14:27:29 dugsong Exp $
  */
 
 #ifndef DNET_ARP_H
 #define DNET_ARP_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * See RFC 826 for protocol description. ARP packets are variable in
@@ -79,5 +83,9 @@ int	 arp_close(arp_t *a);
 	memmove(fill_ethip_p->ar_tha, &(tha), ETH_ADDR_LEN);	\
 	memmove(fill_ethip_p->ar_tpa, &(tpa), IP_ADDR_LEN);	\
 } while (0)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DNET_ARP_H */

@@ -5,11 +5,15 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.5 2001/12/09 17:23:50 dugsong Exp $
+ * $Id: eth.h,v 1.6 2001/12/14 14:27:29 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
 #define DNET_ETH_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define ETH_ADDR_LEN	6
 #define ETH_ADDR_BITS	48
@@ -64,5 +68,9 @@ int	 eth_close(eth_t *e);
 	memmove(&eth_fill_p->eth_src, &(src), ETH_ADDR_LEN);	\
 	eth_fill_p->eth_type = htons(type);			\
 } while (0)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DNET_ETH_H */
