@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.12 2002/01/07 00:42:26 dugsong Exp $
+ * $Id: ip.h,v 1.13 2002/01/07 00:47:19 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -122,8 +122,8 @@ struct ip_hdr {
 #define IP_OPT_DEBMEAS		0x40
 #define IP_OPT_RESERVED2	0x60
 
-#define IP_OPT_EOL		0x0		/* end of options */
-#define IP_OPT_NOP		0x1		/* no operation */
+#define IP_OPT_EOL		0		/* end of options */
+#define IP_OPT_NOP		1		/* no operation */
 #define IP_OPT_RR		0x7		/* record route */
 #define IP_OPT_TS		0x44		/* timestamp */
 #define IP_OPT_SECURITY		0x82		/* provide s,c,h,tcc */
