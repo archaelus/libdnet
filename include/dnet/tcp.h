@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: tcp.h,v 1.2 2001/10/30 19:23:26 dugsong Exp $
+ * $Id: tcp.h,v 1.3 2001/12/09 17:23:50 dugsong Exp $
  */
 
 #ifndef DNET_TCP_H
@@ -42,7 +42,7 @@ struct tcp_hdr {
 #define TCP_PORT_MAX	65535
 #define TCP_WIN_MAX	65535		/* maximum (unscaled) window */
 
-#define tcp_fill(h, sport, dport, seq, ack, flags, win, urp) do {	\
+#define tcp_fill_hdr(h, sport, dport, seq, ack, flags, win, urp) do {	\
 	struct tcp_hdr *tcp_fill_p = (struct tcp_hdr *)(h);		\
 	tcp_fill_p->th_sport = htons(sport);				\
 	tcp_fill_p->th_dport = htons(dport);				\

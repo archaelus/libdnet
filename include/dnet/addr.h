@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.h,v 1.1 2001/10/11 04:14:48 dugsong Exp $
+ * $Id: addr.h,v 1.2 2001/12/09 17:23:50 dugsong Exp $
  */
 
 #ifndef DNET_ADDR_H
@@ -48,5 +48,11 @@ int	 addr_stob(struct sockaddr *sa, u_short *bits);
 
 int	 addr_btom(u_short bits, u_int32_t *mask);
 int	 addr_mtob(u_int32_t mask, u_short *bits);
+
+#define addr_fill(addr, type, bits, data, len) do {	\
+	(addr)->addr_type = type;			\
+	(addr)->addr_bits = bits;			\
+	memmove((addr)->addr_data8, (char *)data, len);	\
+} while (0)
 
 #endif /* DNET_ADDR_H */

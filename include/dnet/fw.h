@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.h,v 1.2 2001/10/11 05:40:04 dugsong Exp $
+ * $Id: fw.h,v 1.3 2001/12/09 17:23:50 dugsong Exp $
  */
 
 #ifndef DNET_FW_H
@@ -38,4 +38,16 @@ int	 fw_delete(fw_t *f, struct fw_rule *rule);
 int	 fw_loop(fw_t *f, fw_handler callback, void *arg);
 int	 fw_close(fw_t *f);
 
+#define fw_fill_rule(h, dev, op, dir, p, src, dst, sp1, sp2, dp1, dp2)	\
+do {									\
+	struct fw_rule *fw_fill_p = (struct fw_rule *)(h);		\
+	strlcpy(fw_fill_p->device, device, sizeof(fw_fill_p->device));	\
+	fw_fill_p->op = op; fw_fill_p->direction = dir;			\
+	fw_fill_p->proto = p;						\
+	memset(&fw_fill_p->src, src, sizeof(&fw_fill_p->src));		\
+	memset(&fw_fill_p->dst, dst, sizeof(&fw_fill_p->dst));		\
+	fw_fill_p->sport[0] = sp1; fw_fill_p->sport[1] = sp2;		\
+	fw_fill_p->dport[0] = dp1; fw_fill_p->dport[1] = dp2;		\
+} while (0)
+ 
 #endif /* DNET_FW_H */

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.4 2001/12/09 15:50:31 dugsong Exp $
+ * $Id: eth.h,v 1.5 2001/12/09 17:23:50 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
@@ -58,10 +58,10 @@ int	 eth_set(eth_t *e, eth_addr_t *ea);
 ssize_t	 eth_send(eth_t *e, const void *buf, size_t len);
 int	 eth_close(eth_t *e);
 
-#define eth_fill(h, dst, src, type) do {			\
+#define eth_fill_hdr(h, dst, src, type) do {			\
 	struct eth_hdr *eth_fill_p = (struct eth_hdr *)(h);	\
-	memcpy(&eth_fill_p->eth_dst, &(dst), ETH_ADDR_LEN);	\
-	memcpy(&eth_fill_p->eth_src, &(src), ETH_ADDR_LEN);	\
+	memmove(&eth_fill_p->eth_dst, &(dst), ETH_ADDR_LEN);	\
+	memmove(&eth_fill_p->eth_src, &(src), ETH_ADDR_LEN);	\
 	eth_fill_p->eth_type = htons(type);			\
 } while (0)
 
