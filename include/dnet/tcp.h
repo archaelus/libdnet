@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: tcp.h,v 1.9 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: tcp.h,v 1.10 2001/12/31 23:12:58 dugsong Exp $
  */
 
 #ifndef DNET_TCP_H
@@ -81,7 +81,7 @@ struct tcp_opt {
 	union tcp_opt_data {
 		uint16_t	mss;
 		uint8_t		wscale[2];	/* XXX - scale + NOP */
-		uint16_t	sack __flexarr;	/* origin / size pairs */
+		uint16_t	sack[19];	/* XXX - origin / size pairs */
 		uint32_t	cc;
 		uint8_t		md5[16];
 		uint8_t		data8[TCP_OPT_LEN_MAX - TCP_OPT_LEN];
