@@ -1,7 +1,7 @@
 #
 # dnet.pyx
 #
-# $Id: dnet.pyx,v 1.23 2005/02/17 23:11:57 dugsong Exp $
+# $Id: dnet.pyx,v 1.24 2005/02/25 23:05:09 dugsong Exp $
 
 """dumb networking library
 
@@ -16,7 +16,7 @@ __author__ = 'Dug Song <dugsong@monkey.org>'
 __copyright__ = 'Copyright (c) 2003 Dug Song'
 __license__ = 'BSD'
 __url__ = 'http://libdnet.sourceforge.net/'
-__version__ = '1.9'
+__version__ = '1.10'
 
 cdef extern from "dnet.h":
     pass
