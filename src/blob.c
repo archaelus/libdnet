@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: blob.c,v 1.3 2002/04/11 19:55:39 dugsong Exp $
+ * $Id: blob.c,v 1.4 2002/08/20 05:18:49 dugsong Exp $
  */
 
 #include "config.h"
@@ -160,7 +160,7 @@ blob_fmt(blob_t *b, int pack, const char *fmt, va_list *ap)
 	for (p = (char *)fmt; *p != '\0'; p++) {
 		if (*p == '%') {
 			p++;
-			if (isdigit(*p)) {
+			if (isdigit((int)*p)) {
 				len = strtol(p, &p, 10);
 			} else if (*p == '*') {
 				len = va_arg(*ap, int);
