@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.h,v 1.10 2002/02/02 00:00:28 dugsong Exp $
+ * $Id: intf.h,v 1.11 2002/02/02 01:50:51 dugsong Exp $
  */
 
 #ifndef DNET_INTF_H
@@ -16,7 +16,7 @@
  */
 struct intf_entry {
 	u_int		 intf_len;		/* length of entry buffer */
-	char		 intf_name[24];		/* interface name */
+	char		 intf_name[60];		/* interface name */
 	u_short		 intf_type;		/* interface type (r/o) */
 	u_short		 intf_flags;		/* interface flags */
 	u_int		 intf_mtu;		/* interface MTU */
