@@ -1,5 +1,6 @@
-make iterators prevent modification within loop, or 
-modify only post-iteration
+
+make *_loop() prevent modification within loop, or modify only
+post-iteration
 
 prefix everything with dnet_*
 
@@ -66,4 +67,4 @@ no support for ICMP code in ipfw, therefore none in fw-ipfw.c
 need reliable, legit Tru64, Unixware, and AIX accounts with root
 access to finish the ports to those platforms...
 
-$Id: TODO,v 1.19 2002/02/09 02:36:55 dugsong Exp $
+$Id: TODO,v 1.20 2002/02/09 04:48:52 dugsong Exp $
