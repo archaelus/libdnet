@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.14 2002/01/25 04:25:40 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.15 2003/01/06 14:26:02 dugsong Exp $
  */
 
 #include "config.h"
@@ -12,6 +12,7 @@
 #include <sys/queue.h>
 #include <sys/socket.h>
 
+#include <net/if.h>
 #include <netinet/in.h>
 #include <netinet/ip_fw.h>
 
