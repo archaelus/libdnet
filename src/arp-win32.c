@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.7 2002/02/02 04:15:57 dugsong Exp $
+ * $Id: arp-win32.c,v 1.8 2002/02/03 05:47:17 dugsong Exp $
  */
 
 #include "config.h"
@@ -68,9 +68,10 @@ arp_delete(arp_t *arp, const struct arp_entry *entry)
 	iprow.dwIndex = ipfrow.dwForwardIfIndex;
 	iprow.dwAddr = entry->arp_pa.addr_ip;
 
-	if (DeleteIpNetEntry(&iprow) != NO_ERROR)
+	if (DeleteIpNetEntry(&iprow) != NO_ERROR) {
+		errno = ENXIO;
 		return (-1);
-
+	}
 	return (0);
 }
 
