@@ -1,7 +1,7 @@
 .\"
 .\" Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 .\"
-.\" $Id: dnet.3,v 1.24 2002/02/23 19:54:57 dugsong Exp $
+.\" $Id: dnet.3,v 1.25 2002/03/29 01:36:58 dugsong Exp $
 .\"
 .Dd August 21, 2001
 .Dt DNET 3
@@ -82,6 +82,10 @@
 .Fn intf_open "void"
 .Ft int
 .Fn intf_get "intf_t *i" "struct intf_entry *entry"
+.Ft int
+.Fn intf_get_src "intf_t *i" "struct intf_entry *entry" "struct addr *src"
+.Ft int
+.Fn intf_get_dst "intf_t *i" "struct intf_entry *entry" "struct addr *dst"
 .Ft int
 .Fn intf_set "intf_t *i" "const struct intf_entry *entry"
 .Ft int
@@ -388,6 +392,16 @@ retrieves an interface configuration
 .Fa entry ,
 keyed on
 .Fa intf_name .
+.Pp
+.Fn intf_get_src
+retrieves the configuration for the interface whose primary address
+matches the specified
+.Fa src .
+.Pp
+.Fn intf_get_dst
+retrieves the configuration for the best interface with which to reach
+the specified
+.Fa dst .
 .Pp
 .Fn intf_set
 sets the interface configuration
