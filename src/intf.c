@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.43 2002/12/14 03:59:36 dugsong Exp $
+ * $Id: intf.c,v 1.44 2003/02/09 03:57:51 dugsong Exp $
  */
 
 #include "config.h"
@@ -234,8 +234,11 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 		if (ioctl(intf->fd, SIOCSIFADDR, &ifr) < 0 && errno != EEXIST)
 			return (-1);
 		
-		if (addr_btos(entry->intf_addr.addr_bits,
-		    &ifr.ifr_addr) == 0) {
+		if (addr_btos(entry->intf_addr.addr_bits, &ifr.ifr_addr) == 0
+#ifdef __linux__
+		    && entry->intf_addr.addr_ip != 0
+#endif
+		    ) {
 			if (ioctl(intf->fd, SIOCSIFNETMASK, &ifr) < 0)
 				return (-1);
 		}
