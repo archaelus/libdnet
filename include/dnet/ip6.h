@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip6.h,v 1.3 2002/12/02 04:28:06 dugsong Exp $
+ * $Id: ip6.h,v 1.4 2002/12/13 16:43:17 dugsong Exp $
  */
 
 #ifndef DNET_IP6_H
@@ -146,7 +146,6 @@ struct ip6_ext_hdr {
 	union {
 		struct ip6_ext_data_routing	routing;
 		struct ip6_ext_data_fragment	fragment;
-		uint8_t				data8 __flexarr;
 	} ext_data;
 } __attribute__((__packed__));
 
