@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.3 2001/10/16 05:51:13 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.4 2001/10/16 06:07:35 dugsong Exp $
  */
 
 #include "config.h"
@@ -111,7 +111,7 @@ ipfw_to_fr(struct ip_fw *ipfw, struct fw_rule *fr)
 {
 	int i;
 	
-	memset(fr, 0, sizeof(fr));
+	memset(fr, 0, sizeof(*fr));
 
 	if ((ipfw->fw_flg & IP_FW_F_IN) && *ipfw->fw_in_if.fu_via_if.name)
 		snprintf(fr->device, sizeof(fr->device), "%s%d",
