@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.3 2004/01/06 21:00:43 dugsong Exp $
+## $Id: Makefile.am,v 1.4 2004/05/04 23:03:36 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -7,11 +7,11 @@ if PYTHON
 
 noinst_SCRIPTS = python-build
 
-dnet.c: dnet.pyx
-	pyrexc dnet.pyx
+$(srcdir)/dnet.c: $(srcdir)/dnet.pyx
+	pyrexc $(srcdir)/dnet.pyx
 
-python-build: dnet.c
-	$(PYTHON) setup.py build --build-lib build
+python-build: $(srcdir)/dnet.c
+	$(PYTHON) $(srcdir)/setup.py build --build-lib build
 	touch python-build
 
 python-clean:
@@ -20,7 +20,7 @@ python-clean:
 clean: python-clean
 
 install-exec-local:
-	python setup.py install --prefix=$(DESTDIR)$(prefix)
+	python $(srcdir)/setup.py install --prefix=$(DESTDIR)$(prefix)
 
 TESTS = test.py
 endif
