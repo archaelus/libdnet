@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.20 2002/04/02 05:05:39 dugsong Exp $
+ * $Id: ip.h,v 1.21 2002/10/12 23:38:13 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -225,7 +225,7 @@ struct ip_hdr {
 #define IP_PROTO_RSVPIGN	134		/* RSVP-E2E-IGNORE */
 #define	IP_PROTO_RAW		255		/* Raw IP packets */
 #define IP_PROTO_RESERVED	IP_PROTO_RAW	/* Reserved */
-#define	IP_PROTO_MAX		256
+#define	IP_PROTO_MAX		255
 
 /*
  * Option types (opt_type) - http://www.iana.org/assignments/ip-parameters
