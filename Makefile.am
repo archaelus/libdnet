@@ -1,8 +1,8 @@
-## $Id: Makefile.am,v 1.6 2003/06/25 06:02:52 dugsong Exp $
+## $Id: Makefile.am,v 1.7 2004/01/03 08:52:22 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
-SUBDIRS =	include man src swig test
+SUBDIRS =	include man src python test
 
 bin_SCRIPTS =	dnet-config
 
