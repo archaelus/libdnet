@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.34 2002/01/26 20:45:02 dugsong Exp $
+dnl $Id: configure.in,v 1.35 2002/01/26 20:51:37 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -14,6 +14,11 @@ dnl Check for system type.
 dnl XXX - we do this to qualify our later feature checks, since some
 dnl systems claim to support multiple features, but are quite b0rked.
 AC_CANONICAL_HOST
+
+dnl Initialize prefix.
+if test "$prefix" = "NONE"; then
+   prefix="/usr/local"
+fi
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -51,9 +56,9 @@ if test "$CYGWIN" = yes ; then
 	     AC_MSG_ERROR(packet32.h or packet.a not found in $withval)
 	  fi ],
 	[ for dir in ${prefix} ${HOME}/WPdpack ; do
-	     if test -f ${prefix}/include/packet32.h -a -f ${prefix}/lib/packet.a; then
-	        CFLAGS="$CFLAGS -I${prefix}/include"
-		LIBS="$LIBS -L${prefix}/lib -lpacket"
+	     if test -f ${dir}/include/packet32.h -a -f ${dir}/lib/packet.a; then
+	        CFLAGS="$CFLAGS -I${dir}/include"
+		LIBS="$LIBS -L${dir}/lib -lpacket"
 		have_pcap=yes
 		break;
 	     fi
