@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.35 2002/02/23 19:58:13 dugsong Exp $
+ * $Id: intf.c,v 1.36 2002/02/23 20:08:51 dugsong Exp $
  */
 
 #include "config.h"
@@ -111,7 +111,7 @@ intf_open(void)
 	if ((intf->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
 		return (intf_close(intf));
 
-	intf->ifc.ifc_buf = intf->ifcbuf;
+	intf->ifc.ifc_buf = (caddr_t)intf->ifcbuf;
 	intf->ifc.ifc_len = sizeof(intf->ifcbuf);
 	
 	return (intf);
