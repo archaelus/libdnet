@@ -1,13 +1,14 @@
-## $Id: Makefile.am,v 1.2 2001/12/30 00:08:13 dugsong Exp $
+## $Id: Makefile.am,v 1.3 2002/02/08 07:24:21 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
-noinst_PROGRAMS = dnet
+bin_PROGRAMS = dnet
 
-dnet_SOURCES = dnet-int.h dnet.c eth.c arp.c ip.c icmp.c tcp.c udp.c
+dnet_SOURCES = dnet-int.h dnet.c addr.c arp.c aton.c eth.c hex.c ip.c icmp.c \
+	tcp.c udp.c send.c fw.c intf.c route.c
 
-noinst_MANS = dnet.8
+man_MANS = dnet.8
 
-EXTRA_DIST = $(noinst_MANS)
+EXTRA_DIST = $(man_MANS)
 
 LDADD = $(top_srcdir)/src/libdnet.a
