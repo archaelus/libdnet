@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: aton.c,v 1.2 2002/02/08 07:26:58 dugsong Exp $
+ * $Id: aton.c,v 1.3 2002/10/14 15:42:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -117,10 +117,11 @@ seq_aton(char *string, uint32_t *seq)
 {
 	char *p;
 	
-	*seq = strtol(string, &p, 10);
+	*seq = strtoul(string, &p, 10);
 	if (*string == '\0' || *p != '\0')
 		return (-1);
 
+	*seq = htonl(*seq);
 	return (0);
 }
 
