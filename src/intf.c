@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.11 2001/12/31 19:30:00 dugsong Exp $
+ * $Id: intf.c,v 1.12 2002/01/07 10:35:22 dugsong Exp $
  */
 
 #include "config.h"
@@ -228,7 +228,8 @@ intf_loop(intf_t *i, intf_handler callback, void *arg)
 	struct intf_info info;
 	struct ifreq *ifr;
 	struct ifconf ifc;
-	u_char *p, *pdev, buf[BUFSIZ];
+	u_char *p, buf[BUFSIZ];
+	char *pdev;
 	int ret;
 	
 	ifc.ifc_len = sizeof(buf);
