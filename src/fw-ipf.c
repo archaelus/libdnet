@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.17 2005/02/14 20:42:54 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.18 2005/02/16 21:42:53 dugsong Exp $
  */
 
 #include "config.h"
@@ -12,7 +12,6 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
-#include <sys/queue.h>
 #include <sys/socket.h>
 
 #include <net/if.h>
