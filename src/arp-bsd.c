@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-bsd.c,v 1.4 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: arp-bsd.c,v 1.5 2002/01/06 22:00:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -293,7 +293,7 @@ arp_loop(arp_t *a, arp_handler callback, void *arg)
 int
 arp_loop(arp_t *a, arp_handler callback, void *arg)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }
 #endif

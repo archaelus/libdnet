@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.9 2001/12/26 16:59:54 dugsong Exp $
+ * $Id: route-bsd.c,v 1.10 2002/01/06 22:00:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -428,7 +428,7 @@ route_loop(route_t *r, route_handler callback, void *arg)
 int
 route_loop(route_t *r, route_handler callback, void *arg)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }
 #endif

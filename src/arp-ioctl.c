@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.11 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.12 2002/01/06 22:00:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -392,7 +392,7 @@ arp_loop(arp_t *r, arp_handler callback, void *arg)
 int
 arp_loop(arp_t *a, arp_handler callback, void *arg)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }
 #endif

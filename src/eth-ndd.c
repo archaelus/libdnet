@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-ndd.c,v 1.1 2001/12/09 15:48:56 dugsong Exp $
+ * $Id: eth-ndd.c,v 1.2 2002/01/06 22:00:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -111,6 +111,6 @@ eth_get(eth_t *e, eth_addr_t *ea)
 int
 eth_set(eth_t *e, eth_addr_t *ea)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-bsd.c,v 1.3 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: eth-bsd.c,v 1.4 2002/01/06 22:00:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -145,7 +145,7 @@ eth_get(eth_t *e, eth_addr_t *ea)
 int
 eth_get(eth_t *e, eth_addr_t *ea)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }
 #endif
@@ -171,7 +171,7 @@ eth_set(eth_t *e, eth_addr_t *ea)
 int
 eth_set(eth_t *e, eth_addr_t *ea)
 {
-	errno = EOPNOTSUPP;
+	errno = ENOSYS;
 	return (-1);
 }
 #endif
