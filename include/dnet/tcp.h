@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: tcp.h,v 1.13 2002/01/29 23:44:01 dugsong Exp $
+ * $Id: tcp.h,v 1.14 2002/04/02 02:55:53 dugsong Exp $
  */
 
 #ifndef DNET_TCP_H
@@ -30,6 +30,8 @@ struct tcp_hdr {
 #elif DNET_BYTESEX == DNET_LIL_ENDIAN
 	uint8_t		th_x2:4,
 			th_off:4;
+#else
+# error "need to include <dnet.h>"
 #endif
 	uint8_t		th_flags;	/* control flags */
 	uint16_t	th_win;		/* window */

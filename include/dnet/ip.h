@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.18 2002/01/30 00:12:55 dugsong Exp $
+ * $Id: ip.h,v 1.19 2002/04/02 02:55:53 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -34,6 +34,8 @@ struct ip_hdr {
 #elif DNET_BYTESEX == DNET_LIL_ENDIAN
 	uint8_t		ip_hl:4,
 			ip_v:4;
+#else
+# error "need to include <dnet.h>"	
 #endif
 	uint8_t		ip_tos;		/* type of service */
 	uint16_t	ip_len;		/* total length (incl header) */
