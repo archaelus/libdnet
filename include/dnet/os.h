@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.6 2002/01/07 02:13:39 dugsong Exp $
+ * $Id: os.h,v 1.7 2002/11/12 22:27:42 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
@@ -22,7 +22,15 @@
 # include <netinet/in.h>
 # include <arpa/inet.h>
 # include <netdb.h>
-# include <inttypes.h>
+# ifdef __bsdi__
+#  include <machine/types.h>
+   typedef u_int8_t	uint8_t;
+   typedef u_int16_t	uint16_t;
+   typedef u_int32_t	uint32_t;
+   typedef u_int64_t	uint64_t;
+# else
+#  include <inttypes.h>
+# endif
 #endif
 
 #define DNET_LIL_ENDIAN		1234
