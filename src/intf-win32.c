@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.8 2002/02/02 01:54:14 dugsong Exp $
+ * $Id: intf-win32.c,v 1.9 2002/02/08 13:53:45 dugsong Exp $
  */
 
 #include "config.h"
@@ -145,7 +145,7 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 		}
 		/* Get addresses. */
 		for (j = 0; j < iptable->dwNumEntries; j++) {
-			if (iptable->table[i].dwIndex !=
+			if (iptable->table[j].dwIndex !=
 			    iftable->table[i].dwIndex)
 				continue;
 			
