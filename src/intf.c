@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.20 2002/01/31 09:17:59 dugsong Exp $
+ * $Id: intf.c,v 1.21 2002/01/31 09:30:38 dugsong Exp $
  */
 
 #include "config.h"
@@ -404,7 +404,6 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 				}
 				eth_close(eth);
 			}
-			entry->intf_link_addr = ap++;
 #endif
 		}
 		/* Get interface MTU. */
