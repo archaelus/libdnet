@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.16 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.17 2005/02/14 20:42:54 dugsong Exp $
  */
 
 #include "config.h"
@@ -132,8 +132,8 @@ ipf_ports_to_rule(uint8_t cmp, uint16_t port, uint16_t top, uint16_t *range)
 		range[1] = top;
 		break;
 	case FR_INRANGE:
-		range[0] = top;
-		range[1] = port;
+		range[0] = port;
+		range[1] = top;
 		break;
 	default:
 		range[0] = 0;
