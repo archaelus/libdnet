@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.2 2001/10/11 16:05:21 dugsong Exp $
+ * $Id: route-bsd.c,v 1.3 2001/10/13 04:10:44 dugsong Exp $
  */
 
 #include "config.h"
@@ -399,7 +399,14 @@ route_loop(route_t *r, route_handler callback, void *arg)
 	}
 	return (0);
 }
-#endif /* HAVE_SOLARIS_DEV_IP */
+#else
+int
+route_loop(route_t *r, route_handler callback, void *arg)
+{
+	errno = EOPNOTSUPP;
+	return (-1);
+}
+#endif
 
 int
 route_close(route_t *r)
