@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.h,v 1.12 2002/02/02 04:15:11 dugsong Exp $
+ * $Id: intf.h,v 1.13 2002/02/23 19:54:57 dugsong Exp $
  */
 
 #ifndef DNET_INTF_H
@@ -15,17 +15,16 @@
  * Interface entry
  */
 struct intf_entry {
-	u_int		 intf_len;		/* length of entry */
-	char		 intf_name[60];		/* interface name */
-	u_short		 intf_type;		/* interface type (r/o) */
-	u_short		 intf_flags;		/* interface flags */
-	u_int		 intf_mtu;		/* interface MTU */
-	struct addr	*intf_addr;		/* interface address */
-	struct addr	*intf_dst_addr;		/* point-to-point dst */
-	struct addr	*intf_link_addr;	/* link-layer address */
-	u_int		 intf_alias_num;	/* number of aliases */
-	struct addr	*intf_alias_addr;	/* array of addresses */
-	struct addr	 intf_addr_data __flexarr;
+	u_int		intf_len;		/* length of entry */
+	char		intf_name[60];		/* interface name */
+	u_short		intf_type;		/* interface type (r/o) */
+	u_short		intf_flags;		/* interface flags */
+	u_int		intf_mtu;		/* interface MTU */
+	struct addr	intf_addr;		/* interface address */
+	struct addr	intf_dst_addr;		/* point-to-point dst */
+	struct addr	intf_link_addr;		/* link-layer address */
+	u_int		intf_alias_num;		/* number of aliases */
+	struct addr	intf_alias_addrs __flexarr; /* array of aliases */
 };
 
 /*
