@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.17 2002/01/29 23:44:01 dugsong Exp $
+ * $Id: ip.h,v 1.18 2002/01/30 00:12:55 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -239,7 +239,7 @@ struct ip_hdr {
 #define IP_OPT_SEC	 (2|IP_OPT_COPY)	/* DoD basic security */
 #define IP_OPT_LSRR	 (3|IP_OPT_COPY)	/* loose source route */
 #define IP_OPT_TS	 (4|IP_OPT_DEBMEAS)	/* timestamp */
-#define IP_OPT_EXTSEC	 (5|IP_OPT_COPY)	/* DoD extended security */
+#define IP_OPT_ESEC	 (5|IP_OPT_COPY)	/* DoD extended security */
 #define IP_OPT_CIPSO	 (6|IP_OPT_COPY)	/* commercial security */
 #define IP_OPT_RR	  7			/* record route */
 #define IP_OPT_SATID	 (8|IP_OPT_COPY)	/* stream ID (obsolete) */
