@@ -1,8 +1,8 @@
-## $Id: Makefile.am,v 1.4 2002/12/02 04:16:23 dugsong Exp $
+## $Id: Makefile.am,v 1.5 2003/03/21 04:40:57 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
-INCLUDES = @CHECKINC@
+INCLUDES = -I$(top_srcdir)/include @CHECKINC@
 
 if HAVE_CHECK
 TESTS = check_addr check_arp check_blob check_eth check_fw check_ip \
