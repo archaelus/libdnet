@@ -3,18 +3,19 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.13 2002/12/14 05:31:41 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.14 2003/03/21 04:03:05 dugsong Exp $
  */
 
 #include "config.h"
 
+#ifndef WIN32
 #include <netinet/in.h>
-
+#include <unistd.h>
+#endif
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "dnet.h"
 #include "queue.h"

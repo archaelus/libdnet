@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.14 2002/12/14 05:33:05 dugsong Exp $
+ * $Id: intf-win32.c,v 1.15 2003/03/21 04:03:04 dugsong Exp $
  */
 
 #include "config.h"
@@ -101,7 +101,7 @@ static void
 _ifrow_to_entry(intf_t *intf, MIB_IFROW *ifrow, struct intf_entry *entry)
 {
 	struct addr *ap;
-	int i;
+	u_long i;
 	
 	memset(entry, 0, sizeof(*entry));
 
@@ -111,14 +111,14 @@ _ifrow_to_entry(intf_t *intf, MIB_IFROW *ifrow, struct intf_entry *entry)
 			if (intf->eth_idx[i] == ifrow->dwIndex)
 				break;
 		}
-		sprintf(entry->intf_name, "eth%d", i);
-		entry->intf_type = ifrow->dwType;
+		sprintf(entry->intf_name, "eth%lu", i);
+		entry->intf_type = (u_short)ifrow->dwType;
 	} else if (ifrow->dwType == MIB_IF_TYPE_LOOPBACK) {
 		for (i = 0; i < intf->loop_cnt; i++) {
 			if (intf->loop_idx[i] == ifrow->dwIndex)
 				break;
 		}
-		sprintf(entry->intf_name, "lo%d", i);
+		sprintf(entry->intf_name, "lo%lu", i);
 		entry->intf_type = ifrow->dwType;
 	} else {
 		/* XXX */
@@ -172,7 +172,7 @@ static int
 _refresh_tables(intf_t *intf)
 {
 	ULONG len;
-	int i;
+	u_int i;
 	
         len = IFTABLESZ;
 	if (GetIfTable(intf->iftable, &len, FALSE) != NO_ERROR)

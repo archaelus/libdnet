@@ -3,13 +3,13 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.8 2002/02/03 05:47:17 dugsong Exp $
+ * $Id: arp-win32.c,v 1.9 2003/03/21 04:03:04 dugsong Exp $
  */
 
 #include "config.h"
 
 #include <ws2tcpip.h>
-#include <Iphlpapi.h>
+#include <iphlpapi.h>
 
 #include <errno.h>
 #include <stdlib.h>
@@ -105,7 +105,8 @@ arp_loop(arp_t *arp, arp_handler callback, void *arg)
 	ULONG len;
 	struct arp_entry entry;
 	u_char buf[2048];
-	int i, ret;
+	u_long i;
+	int ret;
 	
 	iptable = (MIB_IPNETTABLE *)buf;
 	len = sizeof(buf);
