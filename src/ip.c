@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.10 2001/12/14 14:32:50 dugsong Exp $
+ * $Id: ip.c,v 1.11 2001/12/18 08:30:56 dugsong Exp $
  */
 
 #include "config.h"
@@ -311,7 +311,7 @@ ip_add_opt(void *buf, size_t len, const void *optbuf, size_t optlen)
 	if (datalen) {
 		memmove(p + optlen + padlen, p, datalen);
 	}
-	memmove(p, &opt->opt_type, optlen);
+	memmove(p, optbuf, optlen);
 	p += optlen;
 	
 	/* XXX - pad with NOPs to word boundary. */
