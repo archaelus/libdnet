@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.29 2004/01/03 18:18:43 dugsong Exp $
+ * $Id: addr.c,v 1.30 2004/01/05 02:31:45 dugsong Exp $
  */
 
 #include "config.h"
@@ -53,12 +53,13 @@ addr_cmp(const struct addr *a, const struct addr *b)
 {
 	int i, j, k;
 
+	/* XXX */
 	if ((i = a->addr_type - b->addr_type) != 0)
 		return (i);
-
-	/* XXX - 10.0.0.1 is "smaller" than 10.0.0.0/8 */
+	
+	/* XXX - 10.0.0.1 is "smaller" than 10.0.0.0/8? */
 	if ((i = a->addr_bits - b->addr_bits) != 0)
-		return (-i);
+		return (i);
 	
 	j = b->addr_bits / 8;
 
