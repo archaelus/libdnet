@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.17 2001/12/31 23:52:08 dugsong Exp $
+ * $Id: ip.c,v 1.18 2002/01/03 06:34:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -72,12 +72,13 @@ ip_open(void)
 
 	if ((fd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW)) < 0)
 		return (NULL);
-
+#ifdef IP_HDRINCL
 	n = 1;
 	if (setsockopt(fd, IPPROTO_IP, IP_HDRINCL, &n, sizeof(n)) < 0) {
 		close(fd);
 		return (NULL);
 	}
+#endif
 #ifdef SO_SNDBUF
 	len = sizeof(n);
 	if (getsockopt(fd, SOL_SOCKET, SO_SNDBUF, &n, &len) < 0) {
@@ -283,6 +284,34 @@ ip_close(ip_t *i)
 		route_close(i->route);
 #endif
 	free(i);
+	return (0);
+}
+
+char *
+ip_ntoa(ip_addr_t *ip)
+{
+	struct addr addr;
+
+	addr.addr_type = ADDR_TYPE_IP;
+	addr.addr_bits = IP_ADDR_BITS;
+	addr.addr_ip = *ip;
+
+	return (addr_ntoa(&addr));
+}
+
+int
+ip_aton(char *src, ip_addr_t *ip)
+{
+	struct addr addr;
+
+	if (addr_aton(src, &addr) < 0)
+		return (-1);
+
+	if (addr.addr_type != ADDR_TYPE_IP)
+		return (-1);
+	
+	*ip = addr.addr_ip;
+	
 	return (0);
 }
 
