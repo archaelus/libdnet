@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-snoop.c,v 1.8 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: eth-snoop.c,v 1.9 2005/01/30 06:01:57 dugsong Exp $
  */
 
 #include "config.h"
@@ -91,10 +91,10 @@ eth_set(eth_t *e, const eth_addr_t *ea)
 	return (ioctl(e->fd, SIOCSIFADDR, &e->ifr));
 }
 
-size_t
+ssize_t
 eth_send(eth_t *e, const void *buf, size_t len)
 {
-	return ((ssize_t)write(e->fd, buf, len));
+	return (write(e->fd, buf, len));
 }
 
 eth_t *
