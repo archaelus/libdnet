@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.6 2001/10/15 07:28:15 dugsong Exp $
+ * $Id: addr.c,v 1.7 2001/10/17 02:09:06 dugsong Exp $
  */
 
 #include "config.h"
@@ -31,8 +31,6 @@
 #include <string.h>
 
 #include "dnet.h"
-
-#define ROUNDUP(x,y)	((((x)+(y)-1)/(y))*(y))
 
 static const char *octet2dec[] = {
 	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
