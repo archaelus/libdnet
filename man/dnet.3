@@ -1,7 +1,7 @@
 .\"
 .\" Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 .\"
-.\" $Id: dnet.3,v 1.22 2002/02/04 04:02:22 dugsong Exp $
+.\" $Id: dnet.3,v 1.23 2002/02/15 12:30:32 dugsong Exp $
 .\"
 .Dd August 21, 2001
 .Dt DNET 3
@@ -442,6 +442,14 @@ bytes of the IP packet pointed to by
 closes the specified handle.
 .Pp
 .Ss Routing
+Routing table entries are described by the following structure:
+.Bd -literal
+struct route_entry {
+	struct addr	route_dst;	/* destination address */
+	struct addr	route_gw;	/* gateway address */
+};
+.Ed
+.Pp
 .Fn route_open
 is used to obtain a handle to access the kernel
 .Xr route 4
