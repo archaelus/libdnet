@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.21 2002/10/12 23:38:13 dugsong Exp $
+ * $Id: ip.h,v 1.22 2002/12/02 04:28:06 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -349,7 +349,7 @@ struct ip_opt {
 } __attribute__((__packed__));
 
 #ifndef __GNUC__
-#pragma pack()				/* XXX - end squirrely alignment */
+# pragma pack()				/* XXX - end squirrely alignment */
 #endif
 
 /*
@@ -414,8 +414,10 @@ ip_t	*ip_open(void);
 size_t	 ip_send(ip_t *i, const void *buf, size_t len);
 ip_t	*ip_close(ip_t *i);
 
+char	*ip_ntop(const ip_addr_t *ip, char *dst, size_t len);
+int	 ip_pton(const char *src, ip_addr_t *dst);
 char	*ip_ntoa(const ip_addr_t *ip);
-int	 ip_aton(const char *src, ip_addr_t *dst);
+#define	 ip_aton ip_pton
 
 size_t	 ip_add_option(void *buf, size_t len,
 	    int proto, const void *optbuf, size_t optlen);

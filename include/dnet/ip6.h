@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip6.h,v 1.2 2002/12/02 04:07:04 dugsong Exp $
+ * $Id: ip6.h,v 1.3 2002/12/02 04:28:06 dugsong Exp $
  */
 
 #ifndef DNET_IP6_H
@@ -176,6 +176,8 @@ struct ip6_ext_hdr {
 __BEGIN_DECLS
 char	*ip6_ntop(const ip6_addr_t *ip6, char *dst, size_t size);
 int	 ip6_pton(const char *src, ip6_addr_t *dst);
+char	*ip6_ntoa(const ip6_addr_t *ip6);
+#define	 ip6_aton ip6_pton
 
 void	 ip6_checksum(void *buf, size_t len);
 __END_DECLS
