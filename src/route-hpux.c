@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-hpux.c,v 1.7 2002/02/04 03:59:45 dugsong Exp $
+ * $Id: route-hpux.c,v 1.8 2002/02/09 04:02:09 dugsong Exp $
  */
 
 #include "config.h"
@@ -91,12 +91,18 @@ route_get(route_t *r, struct route_entry *entry)
 	struct rtreq rtr;
 
 	memset(&rtr, 0, sizeof(rtr));
-	memcpy(&rtr.rtr_destaddr, &entry->route_dst.addr_ip, IP_ADDR_LEN);
-	
-	if (entry->route_dst.addr_bits < IP_ADDR_BITS)
-		addr_btom(entry->route_dst.addr_bits,
-		    &rtr.rtr_subnetmask, IP_ADDR_LEN);
-	
+
+	/* XXX - gross hack for default route */
+	if (entry->route_dst.addr_ip == IP_ADDR_ANY) {
+		rtr.rtr_destaddr = htonl(0x60060606);
+		rtr.rtr_subnetmask = 0xffffffff;
+	} else {
+		memcpy(&rtr.rtr_destaddr, &entry->route_dst.addr_ip,
+		    IP_ADDR_LEN);
+		if (entry->route_dst.addr_bits < IP_ADDR_BITS)
+			addr_btom(entry->route_dst.addr_bits,
+			    &rtr.rtr_subnetmask, IP_ADDR_LEN);
+	}
 	if (ioctl(r->fd, SIOCGRTENTRY, &rtr) < 0)
 		return (-1);
 
