@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-linux.c,v 1.2 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: eth-linux.c,v 1.3 2001/12/11 22:41:09 dugsong Exp $
  */
 
 #include "config.h"
@@ -105,7 +105,7 @@ eth_get(eth_t *e, eth_addr_t *ea)
 	if (addr_ston(&e->ifr.ifr_hwaddr, &ha) < 0)
 		return (-1);
 
-	memcpy(ea, &ha->addr_eth, sizeof(*ea));
+	memcpy(ea, &ha.addr_eth, sizeof(*ea));
 	return (0);
 }
 
