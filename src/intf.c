@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.48 2004/01/14 06:46:35 dugsong Exp $
+ * $Id: intf.c,v 1.49 2004/05/04 04:22:58 dugsong Exp $
  */
 
 #include "config.h"
@@ -13,18 +13,21 @@
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #ifdef HAVE_SYS_SOCKIO_H
-#include <sys/sockio.h>
+# include <sys/sockio.h>
 #endif
 /* XXX - AIX */
 #ifndef IP_MULTICAST
 # define IP_MULTICAST
 #endif
 #include <net/if.h>
+#ifdef HAVE_NET_IF_VAR_H
+# include <net/if_var.h>
+#endif
 #undef IP_MULTICAST
 /* XXX - IPv6 ioctls */
 #ifdef HAVE_NETINET_IN_VAR_H
-#include <netinet/in.h>
-#include <netinet/in_var.h>
+# include <netinet/in.h>
+# include <netinet/in_var.h>
 #endif
 
 #include <errno.h>
