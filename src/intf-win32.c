@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.20 2005/01/23 07:36:54 dugsong Exp $
+ * $Id: intf-win32.c,v 1.21 2005/01/25 16:59:50 dugsong Exp $
  */
 
 #include "config.h"
@@ -35,14 +35,14 @@ struct intf_handle {
 static char *
 _ifcombo_name(int type)
 {
-	char *name = "if";	/* XXX */
+	char *name = "net";	/* XXX */
 	
 	if (type == MIB_IF_TYPE_ETHERNET) {
 		name = "eth";
 	} else if (type == MIB_IF_TYPE_TOKENRING) {
 		name = "tr";
 	} else if (type == MIB_IF_TYPE_FDDI) {
-		name = "fd";
+		name = "fddi";
 	} else if (type == MIB_IF_TYPE_PPP) {
 		name = "ppp";
 	} else if (type == MIB_IF_TYPE_LOOPBACK) {
