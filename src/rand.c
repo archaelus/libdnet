@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.8 2002/04/08 00:19:26 dugsong Exp $
+ * $Id: rand.c,v 1.9 2002/04/11 19:56:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -20,6 +20,7 @@
 #endif
 #include <fcntl.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include "dnet.h"
