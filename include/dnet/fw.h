@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.h,v 1.8 2001/12/30 20:25:26 dugsong Exp $
+ * $Id: fw.h,v 1.9 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #ifndef DNET_FW_H
@@ -13,13 +13,13 @@
 
 struct fw_rule {
 	char		fw_device[14];	/* interface name */
-	u_char		fw_op:4,	/* operation */
+	uint8_t		fw_op:4,	/* operation */
 			fw_dir:4;	/* direction */
-	u_char		fw_proto;	/* IP protocol */
+	uint8_t		fw_proto;	/* IP protocol */
 	struct addr	fw_src;		/* src address or net */
 	struct addr	fw_dst;		/* dst address or net */
-	u_short		fw_sport[2];	/* range or ICMP type/mask */
-	u_short		fw_dport[2];	/* range or ICMP code/mask */
+	uint16_t	fw_sport[2];	/* range or ICMP type/mask */
+	uint16_t	fw_dport[2];	/* range or ICMP code/mask */
 };
 
 #define FW_OP_ALLOW	1

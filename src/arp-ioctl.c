@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.10 2001/12/30 20:40:04 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.11 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -91,7 +91,7 @@ arp_set_dev(char *device, struct intf_info *info, void *arg)
 {
 	struct arpreq *ar = (struct arpreq *)arg;
 	struct addr dst;
-	u_int32_t mask;
+	uint32_t mask;
 	
 	addr_btom(info->intf_addr.addr_bits, &mask, IP_ADDR_LEN);
 	addr_ston((struct sockaddr *)&ar->arp_pa, &dst);

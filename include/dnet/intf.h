@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.h,v 1.4 2001/12/30 20:07:11 dugsong Exp $
+ * $Id: intf.h,v 1.5 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #ifndef DNET_INTF_H
@@ -19,10 +19,10 @@
 #define INTF_INFO_MTU	0x04		/* intf_mtu is set */
 
 struct intf_info {
-	u_int		intf_info;	/* bitmask of fields set */
+	uint32_t	intf_info;	/* bitmask of fields set */
 	struct addr	intf_addr;	/* interface IP address */
-	u_int		intf_flags;	/* interface flags */
-	u_int		intf_mtu;	/* interface MTU */
+	uint32_t	intf_flags;	/* interface flags */
+	uint32_t	intf_mtu;	/* interface MTU */
 };
 
 #define INTF_FLAG_UP		0x01	/* enable interface */

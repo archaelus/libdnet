@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-pf.c,v 1.5 2001/12/31 05:18:41 dugsong Exp $
+ * $Id: fw-pf.c,v 1.6 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -178,7 +178,7 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 {
 	struct pfioc_rule pr;
 	struct fw_rule fr;
-	u_int32_t n, max;
+	uint32_t n, max;
 	int ret;
 	
 	if (ioctl(fw->fd, DIOCGETRULES, &pr) < 0)

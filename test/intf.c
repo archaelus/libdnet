@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.3 2001/12/30 20:32:16 dugsong Exp $
+ * $Id: intf.c,v 1.4 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -59,7 +59,7 @@ static int
 print_intf(char *device, struct intf_info *info, void *arg)
 {
 	struct addr bcast;
-	u_int32_t mask;
+	uint32_t mask;
 	
 	printf("%s:", device);
 	

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: udp.h,v 1.6 2001/12/14 15:29:20 dugsong Exp $
+ * $Id: udp.h,v 1.7 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #ifndef DNET_UDP_H
@@ -14,10 +14,10 @@
 #define UDP_HDR_LEN	8
 
 struct udp_hdr {
-	u_short		uh_sport;	/* source port */
-	u_short		uh_dport;	/* destination port */
-	u_short		uh_ulen;	/* udp length (including header) */
-	u_short		uh_sum;		/* udp checksum */
+	uint16_t	uh_sport;	/* source port */
+	uint16_t	uh_dport;	/* destination port */
+	uint16_t	uh_ulen;	/* udp length (including header) */
+	uint16_t	uh_sum;		/* udp checksum */
 };
 
 #define UDP_PORT_MAX	65535

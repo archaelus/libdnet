@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.9 2001/12/31 19:42:50 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.10 2001/12/31 21:56:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -94,7 +94,7 @@ rule_to_ipf(struct fw_rule *rule, struct frentry *fr)
 }
 
 static void
-ipf_ports_to_rule(u_char cmp, u_short port, u_short top, u_short *range)
+ipf_ports_to_rule(uint8_t cmp, uint16_t port, uint16_t top, uint16_t *range)
 {
 	switch (cmp) {
 	case FR_EQUAL:
