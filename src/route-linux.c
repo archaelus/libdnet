@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.9 2002/01/20 21:23:28 dugsong Exp $
+ * $Id: route-linux.c,v 1.10 2002/01/22 21:37:58 dugsong Exp $
  */
 
 #include "config.h"
@@ -246,7 +246,7 @@ route_close(route_t *r)
 	if (r->fd > 0)
 		close(r->fd);
 	if (r->nlfd > 0)
-		close(r->nlfd) < 0);
+		close(r->nlfd);
 	free(r);
 	return (NULL);
 }
