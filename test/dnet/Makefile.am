@@ -1,11 +1,11 @@
-## $Id: Makefile.am,v 1.6 2002/02/09 05:10:47 dugsong Exp $
+## $Id: Makefile.am,v 1.7 2002/03/29 06:07:49 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
 sbin_PROGRAMS = dnet
 
 dnet_SOURCES = addr.c arp.c aton.c aton.h dnet.c eth.c fw.c hex.c \
-	icmp.c intf.c ip.c mod.h route.c send.c tcp.c udp.c
+	icmp.c intf.c ip.c mod.h rand.c route.c send.c tcp.c udp.c
 
 man_MANS = dnet.8
 
