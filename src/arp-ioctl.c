@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.21 2002/02/23 19:54:57 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.22 2002/12/03 03:00:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -25,6 +25,7 @@
 #include <sys/mib.h>
 #endif
 
+#include <net/if.h>
 #include <net/if_arp.h>
 #ifdef HAVE_STREAMS_MIB2
 #include <netinet/in.h>

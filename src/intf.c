@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.40 2002/12/02 05:49:05 dugsong Exp $
+ * $Id: intf.c,v 1.41 2002/12/03 03:00:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -14,6 +14,10 @@
 #include <sys/socket.h>
 #ifdef HAVE_SYS_SOCKIO_H
 #include <sys/sockio.h>
+#endif
+/* XXX - AIX */
+#ifndef IP_MULTICAST
+# define IP_MULTICAST
 #endif
 #include <net/if.h>
 
