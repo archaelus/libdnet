@@ -3,14 +3,11 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: dnet.h,v 1.1 2001/10/11 04:14:48 dugsong Exp $
+ * $Id: dnet.h,v 1.2 2002/01/07 02:13:18 dugsong Exp $
  */
 
 #ifndef DNET_H
 #define DNET_H
-
-#include <sys/types.h>
-#include <sys/socket.h>
 
 #include <dnet/os.h>
 
