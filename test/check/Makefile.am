@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.3 2002/08/20 05:34:44 dugsong Exp $
+## $Id: Makefile.am,v 1.4 2002/12/02 04:16:23 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -23,4 +23,4 @@ check_ip_SOURCES = check_ip.c
 check_rand_SOURCES = check_rand.c
 check_route_SOURCES = check_route.c
 
-LDADD = $(top_srcdir)/src/libdnet.a @CHECKLIB@
+LDADD = $(top_builddir)/src/libdnet.a @CHECKLIB@
