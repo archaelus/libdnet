@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.5 2002/01/09 04:21:24 dugsong Exp $
+ * $Id: intf.c,v 1.6 2002/01/23 03:24:33 dugsong Exp $
  */
 
 #include "config.h"
@@ -43,11 +43,13 @@ flags2string(u_int flags)
 	if (flags & INTF_FLAG_LOOPBACK)
 		strlcat(buf, ",LOOP", sizeof(buf));
 	if (flags & INTF_FLAG_POINTOPOINT)
-		strlcat(buf, ",P2P", sizeof(buf));
+		strlcat(buf, ",POINTOPOINT", sizeof(buf));
 	if (flags & INTF_FLAG_NOARP)
 		strlcat(buf, ",NOARP", sizeof(buf));
+	if (flags & INTF_FLAG_BROADCAST)
+		strlcat(buf, ",BROADCAST", sizeof(buf));
 	if (flags & INTF_FLAG_MULTICAST)
-		strlcat(buf, ",MCAST", sizeof(buf));
+		strlcat(buf, ",MULTICAST", sizeof(buf));
 	
 	if (buf[0] != '\0')
 		return (buf + 1);
