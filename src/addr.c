@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.4 2001/10/15 07:17:58 dugsong Exp $
+ * $Id: addr.c,v 1.5 2001/10/15 07:18:35 dugsong Exp $
  */
 
 #include "config.h"
@@ -253,7 +253,7 @@ addr_ntos(struct addr *a, struct sockaddr *sa)
 		memset(sa, 0, sizeof(*sa));
 #ifdef HAVE_SOCKADDR_SA_LEN
 		sdl->sdl_len = sizeof(*sdl);
-#endf
+#endif
 		sdl->sdl_family = AF_LINK;
 		sdl->sdl_alen = ETH_ADDR_LEN;
 		memcpy(LLADDR(sdl), &a->addr_eth, ETH_ADDR_LEN);
