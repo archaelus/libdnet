@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.7 2001/10/19 01:04:38 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.8 2001/12/09 15:49:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -31,6 +31,7 @@
 
 #include <stropts.h>
 #endif
+#include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -399,10 +400,8 @@ arp_loop(arp_t *a, arp_handler callback, void *arg)
 int
 arp_close(arp_t *a)
 {
-	if (a == NULL) {
-		errno = EINVAL;
-		return (-1);
-	}
+	assert(a != NULL);
+
 	if (a->fd != 0 && close(a->fd) < 0)
 		return (-1);
 #ifdef HAVE_ARPREQ_ARP_DEV

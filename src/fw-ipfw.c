@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.7 2001/10/16 15:40:07 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.8 2001/12/09 15:49:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -15,6 +15,7 @@
 #include <netinet/in.h>
 #include <netinet/ip_fw.h>
 
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -196,10 +197,8 @@ fw_add(fw_t *fw, struct fw_rule *rule)
 {
 	struct ip_fw ipfw;
 	
-	if (fw == NULL || rule == NULL) {
-		errno = EINVAL;
-		return (-1);
-	}
+	assert(fw != NULL && rule != NULL);
+
 	fr_to_ipfw(rule, &ipfw);
 
 	return (setsockopt(fw->fd, IPPROTO_IP, IP_FW_ADD,
@@ -227,10 +226,8 @@ fw_delete(fw_t *fw, struct fw_rule *rule)
 	int nbytes, nalloc, ret;
 	u_char *buf, *new;
 
-	if (rule == NULL) {
-		errno = EINVAL;
-		return (-1);
-	}
+	assert(rule != NULL);
+
 	nbytes = nalloc = sizeof(*ipfw);
 	if ((buf = malloc(nbytes)) == NULL)
 		return (-1);
@@ -313,10 +310,8 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 int
 fw_close(fw_t *fw)
 {
-	if (fw == NULL) {
-		errno = EINVAL;
-		return (-1);
-	}
+	assert(fw != NULL);
+
 	if (close(fw->fd) < 0)
 		return (-1);
 

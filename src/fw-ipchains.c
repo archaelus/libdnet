@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipchains.c,v 1.1 2001/10/11 04:14:55 dugsong Exp $
+ * $Id: fw-ipchains.c,v 1.2 2001/12/09 15:49:05 dugsong Exp $
  */
 
 #include "config.h"
@@ -25,6 +25,7 @@
 #include <linux/netfilter_ipv4/ipchains_core.h>
 #endif
 
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -214,10 +215,8 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 int
 fw_close(fw_t *fw)
 {
-	if (fw == NULL) {
-		errno = EINVAL;
-		return (-1);
-	}
+	assert(fw != NULL);
+
 	if (close(fw->fd) < 0)
 		return (-1);
 	
