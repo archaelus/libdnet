@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.17 2002/02/02 04:15:57 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.18 2002/02/02 07:35:59 dugsong Exp $
  */
 
 #include "config.h"
@@ -106,16 +106,18 @@ arp_add(arp_t *a, const struct arp_entry *entry)
 
 	memset(&ar, 0, sizeof(ar));
 
-	if (addr_ntos(&entry->arp_pa, &ar.arp_pa) < 0 ||
-	    addr_ntos(&entry->arp_ha, &ar.arp_ha) < 0)
+	if (addr_ntos(&entry->arp_pa, &ar.arp_pa) < 0)
 		return (-1);
 
 	/* XXX - see arp(7) for details... */
 #ifdef __linux__
+	if (addr_ntos(&entry->arp_ha, &ar.arp_ha) < 0)
+		return (-1);
 	ar.arp_ha.sa_family = ARP_HRD_ETH;
 #else
-	/* XXX - Solaris, HP-UX, others? */
+	/* XXX - Solaris, HP-UX, IRIX, other Mentat stacks? */
 	ar.arp_ha.sa_family = AF_UNSPEC;
+	memcpy(ar.arp_ha.sa_data, &entry->arp_ha.addr_eth, ETH_ADDR_LEN);
 #endif
 
 #ifdef HAVE_ARPREQ_ARP_DEV
