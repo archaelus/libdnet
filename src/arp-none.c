@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-none.c,v 1.4 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: arp-none.c,v 1.5 2002/02/02 04:15:57 dugsong Exp $
  */
 
 #include "config.h"
@@ -24,21 +24,21 @@ arp_open(void)
 }
 
 int
-arp_add(arp_t *a, const struct addr *pa, const struct addr *ha)
+arp_add(arp_t *a, const struct arp_entry *entry)
 {
 	errno = ENOSYS;
 	return (-1);
 }
 
 int
-arp_delete(arp_t *a, const struct addr *pa)
+arp_delete(arp_t *a, const struct arp_entry *entry)
 {
 	errno = ENOSYS;
 	return (-1);
 }
 
 int
-arp_get(arp_t *a, const struct addr *pa, struct addr *ha)
+arp_get(arp_t *a, struct arp_entry *entry)
 {
 	errno = ENOSYS;
 	return (-1);
