@@ -1,16 +1,16 @@
 /*
  * rand.h
  *
- * Pseudorandom number generation, based on OpenBSD arc4random().
+ * Pseudo-random number generation, based on OpenBSD arc4random().
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.h,v 1.1 2002/03/29 06:05:37 dugsong Exp $
+ * $Id: rand.h,v 1.2 2002/03/29 06:59:07 dugsong Exp $
  */
 
-#ifndef RAND_H
-#define RAND_H
+#ifndef DNET_RAND_H
+#define DNET_RAND_H
 
 typedef struct rand_handle rand_t;
 
@@ -25,5 +25,6 @@ uint16_t rand_uint16(rand_t *r);
 uint32_t rand_uint32(rand_t *r);
 
 rand_t	*rand_close(rand_t *r);
+__END_DECLS
 
-#endif /* RAND_H */
+#endif /* DNET_RAND_H */
