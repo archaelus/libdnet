@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: udp.h,v 1.7 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: udp.h,v 1.8 2002/04/02 05:05:39 dugsong Exp $
  */
 
 #ifndef DNET_UDP_H
@@ -22,11 +22,11 @@ struct udp_hdr {
 
 #define UDP_PORT_MAX	65535
 
-#define udp_fill_hdr(hdr, sport, dport, ulen) do {		\
-	struct udp_hdr *udp_fill_p = (struct udp_hdr *)(hdr);	\
-	udp_fill_p->uh_sport = htons(sport);			\
-	udp_fill_p->uh_dport = htons(dport);			\
-	udp_fill_p->uh_ulen = htons(ulen);			\
+#define udp_pack_hdr(hdr, sport, dport, ulen) do {		\
+	struct udp_hdr *udp_pack_p = (struct udp_hdr *)(hdr);	\
+	udp_pack_p->uh_sport = htons(sport);			\
+	udp_pack_p->uh_dport = htons(dport);			\
+	udp_pack_p->uh_ulen = htons(ulen);			\
 } while (0)
 
 #endif /* DNET_UDP_H */

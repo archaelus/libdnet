@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.h,v 1.11 2002/01/20 21:21:00 dugsong Exp $
+ * $Id: fw.h,v 1.12 2002/04/02 05:05:39 dugsong Exp $
  */
 
 #ifndef DNET_FW_H
@@ -28,7 +28,7 @@ struct fw_rule {
 #define FW_DIR_IN	1
 #define FW_DIR_OUT	2
 
-#define fw_fill_rule(rule, dev, o, dir, p, s, d, sp1, sp2, dp1, dp2) \
+#define fw_pack_rule(rule, dev, o, dir, p, s, d, sp1, sp2, dp1, dp2) \
 do {									\
 	strlcpy((rule)->fw_device, dev, sizeof((rule)->fw_device));	\
 	(rule)->fw_op = o; (rule)->fw_dir = dir;			\

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.h,v 1.9 2002/02/23 19:55:54 dugsong Exp $
+ * $Id: addr.h,v 1.10 2002/04/02 05:05:39 dugsong Exp $
  */
 
 #ifndef DNET_ADDR_H
@@ -33,7 +33,7 @@ struct addr {
 #define addr_data16	__addr_u.__data16
 #define addr_data32	__addr_u.__data32
 
-#define addr_fill(addr, type, bits, data, len) do {	\
+#define addr_pack(addr, type, bits, data, len) do {	\
 	(addr)->addr_type = type;			\
 	(addr)->addr_bits = bits;			\
 	memmove((addr)->addr_data8, (char *)data, len);	\

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.11 2002/01/20 21:21:00 dugsong Exp $
+ * $Id: eth.h,v 1.12 2002/04/02 05:05:39 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
@@ -50,11 +50,11 @@ struct eth_hdr {
 
 #define ETH_ADDR_BROADCAST	"\xff\xff\xff\xff\xff\xff"
 
-#define eth_fill_hdr(h, dst, src, type) do {			\
-	struct eth_hdr *eth_fill_p = (struct eth_hdr *)(h);	\
-	memmove(&eth_fill_p->eth_dst, &(dst), ETH_ADDR_LEN);	\
-	memmove(&eth_fill_p->eth_src, &(src), ETH_ADDR_LEN);	\
-	eth_fill_p->eth_type = htons(type);			\
+#define eth_pack_hdr(h, dst, src, type) do {			\
+	struct eth_hdr *eth_pack_p = (struct eth_hdr *)(h);	\
+	memmove(&eth_pack_p->eth_dst, &(dst), ETH_ADDR_LEN);	\
+	memmove(&eth_pack_p->eth_src, &(src), ETH_ADDR_LEN);	\
+	eth_pack_p->eth_type = htons(type);			\
 } while (0)
 
 typedef struct eth_handle eth_t;
