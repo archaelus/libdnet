@@ -3,12 +3,10 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.22 2005/01/25 20:09:46 dugsong Exp $
+ * $Id: intf-win32.c,v 1.23 2005/02/15 05:31:19 dugsong Exp $
  */
 
 #include "config.h"
-
-#include <iphlpapi.h>
 
 #include <ctype.h>
 #include <errno.h>
@@ -17,6 +15,8 @@
 #include <string.h>
 
 #include "dnet.h"
+
+#include <iphlpapi.h>
 
 struct ifcombo {
 	DWORD		*idx;
