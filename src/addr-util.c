@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr-util.c,v 1.2 2002/12/02 04:28:05 dugsong Exp $
+ * $Id: addr-util.c,v 1.3 2002/12/02 06:17:27 dugsong Exp $
  */
 
 #include <stdio.h>
@@ -142,7 +142,7 @@ ip_ntoa(const ip_addr_t *ip)
 {
 	struct addr a;
 	
-	addr_pack(&a, ADDR_TYPE_IP, IP_ADDR_BITS, &ip, IP_ADDR_LEN);
+	addr_pack(&a, ADDR_TYPE_IP, IP_ADDR_BITS, ip, IP_ADDR_LEN);
 	return (addr_ntoa(&a));
 }
 
@@ -228,7 +228,7 @@ ip6_ntoa(const ip6_addr_t *ip6)
 {
 	struct addr a;
 	
-	addr_pack(&a, ADDR_TYPE_IP6, IP6_ADDR_BITS, &ip6->data, IP6_ADDR_LEN);
+	addr_pack(&a, ADDR_TYPE_IP6, IP6_ADDR_BITS, ip6->data, IP6_ADDR_LEN);
 	return (addr_ntoa(&a));
 }
 
