@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.4 2001/10/16 06:07:35 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.5 2001/10/16 06:16:07 dugsong Exp $
  */
 
 #include "config.h"
@@ -166,7 +166,7 @@ ipfw_to_fr(struct ip_fw *ipfw, struct fw_rule *fr)
 				if (ipfw->fw_uar.fw_icmptypes[i / 32] &
 				    (1U << (i % 32))) {
 					fr->sport[0] = i;
-					fr->sport[1] = 0xffff;
+					fr->sport[1] = 0xff;
 					break;
 				}
 			}

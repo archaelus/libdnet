@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw.c,v 1.3 2001/10/16 06:14:00 dugsong Exp $
+ * $Id: fw.c,v 1.4 2001/10/16 06:16:33 dugsong Exp $
  */
 
 #include "config.h"
@@ -146,10 +146,10 @@ arg_to_fr(int argc, char *argv[], struct fw_rule *fr)
 			return (-1);
 		}
 		fr->sport[0] = (u_short)strtol(argv[6], &p, 10);
-		fr->sport[1] = 0xffff;
+		fr->sport[1] = 0xff;
 		if (*p == '/') {
 			fr->dport[0] = (u_short)strtol(p + 1, NULL, 10);
-			fr->dport[1] = 0xffff;
+			fr->dport[1] = 0xff;
 		}
 	}
 	return (0);
