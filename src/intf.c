@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.7 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: intf.c,v 1.8 2001/12/29 21:20:56 dugsong Exp $
  */
 
 #include "config.h"
@@ -130,6 +130,7 @@ intf_delete(intf_t *i, char *device, struct addr *addr)
 int
 intf_set(intf_t *i, char *device, struct addr *addr, int *flags)
 {
+	struct addr bcast;
 	struct ifreq ifr;
 	eth_t *eth;
 
@@ -147,9 +148,14 @@ intf_set(intf_t *i, char *device, struct addr *addr, int *flags)
 			if (ioctl(i->fd, SIOCSIFADDR, &ifr) < 0)
 				return (-1);
 			
-			if (addr->addr_bits < IP_ADDR_BITS &&
-			    addr_btos(addr->addr_bits, &ifr.ifr_addr) == 0) {
-				return (ioctl(i->fd, SIOCSIFNETMASK, &ifr));
+			if (addr_btos(addr->addr_bits, &ifr.ifr_addr) == 0) {
+				if (ioctl(i->fd, SIOCSIFNETMASK, &ifr) < 0)
+					return (-1);
+			}
+			if (addr_bcast(addr, &bcast) == 0 &&
+			    addr_ntos(&bcast, &ifr.ifr_broadaddr) == 0) {
+				if (ioctl(i->fd, SIOCSIFBRDADDR, &ifr) < 0)
+					return (-1);
 			}
 			break;
 		case ADDR_TYPE_ETH:
