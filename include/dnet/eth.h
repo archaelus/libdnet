@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.1 2001/10/11 04:14:48 dugsong Exp $
+ * $Id: eth.h,v 1.2 2001/10/30 19:23:26 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
@@ -55,5 +55,11 @@ typedef struct eth_handle eth_t;
 eth_t	*eth_open(char *device);
 ssize_t	 eth_send(eth_t *e, const void *buf, size_t len);
 int	 eth_close(eth_t *e);
+
+#define eth_fill(h, dst, src, type) do {		\
+	memcpy(&((h)->eth_dst), &(dst), ETH_ADDR_LEN);	\
+	memcpy(&((h)->eth_src), &(src), ETH_ADDR_LEN);	\
+	(h)->eth_type = htons(type);			\
+} while (0)
 
 #endif /* DNET_ETH_H */
