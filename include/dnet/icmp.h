@@ -6,7 +6,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: icmp.h,v 1.7 2001/12/29 23:02:36 dugsong Exp $
+ * $Id: icmp.h,v 1.8 2001/12/31 19:29:03 dugsong Exp $
  */
 
 #ifndef DNET_ICMP_H
@@ -160,7 +160,7 @@ union icmp_msg {
 #define		ICMP_PHOTURIS_NEED_AUTHN	4	/* no authentication */
 #define		ICMP_PHOTURIS_NEED_AUTHZ	5	/* no authorization */
 
-#define	ICMP_MAXTYPE		40
+#define	ICMP_TYPE_MAX		40
 
 #define	ICMP_INFOTYPE(type)						\
 	((type) == ICMP_ECHOREPLY || (type) == ICMP_ECHO ||		\
