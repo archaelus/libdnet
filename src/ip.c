@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.25 2002/01/31 08:33:25 dugsong Exp $
+ * $Id: ip.c,v 1.26 2002/01/31 08:51:06 dugsong Exp $
  */
 
 #include "config.h"
@@ -106,7 +106,7 @@ _ip_match_intf(const struct intf_entry *entry, void *arg)
 		i->ip_src.addr_ip == IP_ADDR_ANY)) {
 		if (i->eth != NULL)
 			i->eth = eth_close(i->eth);
-		if ((i->eth = eth_open(device)) == NULL)
+		if ((i->eth = eth_open(entry->intf_name)) == NULL)
 			return (-1);
 		if (eth_get(i->eth, &i->eth_src.addr_eth) < 0) {
 			i->eth = eth_close(i->eth);
