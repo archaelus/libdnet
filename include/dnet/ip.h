@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.15 2002/01/20 21:21:00 dugsong Exp $
+ * $Id: ip.h,v 1.16 2002/01/26 07:38:03 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -55,7 +55,7 @@ struct ip_hdr {
 #define IP_OFFMASK	0x1fff		/* mask for fragmenting bits */
 
 /*
- * Type of service
+ * Type of service, RFC 1349
  */
 #define IP_TOS_LOWDELAY		0x10
 #define IP_TOS_THROUGHPUT	0x08
