@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.18 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: intf-win32.c,v 1.19 2004/01/14 06:47:31 dugsong Exp $
  */
 
 #include "config.h"
@@ -213,7 +213,7 @@ _find_ifindex(intf_t *intf, const char *device)
 intf_t *
 intf_open(void)
 {
-	return (calloc(1, sizeof(struct intf_handle)));
+	return (calloc(1, sizeof(intf_t)));
 }
 
 int
