@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-util.c,v 1.8 2005/01/25 21:30:40 dugsong Exp $
+ * $Id: ip-util.c,v 1.9 2005/02/17 02:55:56 dugsong Exp $
  */
 
 #include "config.h"
@@ -116,6 +116,8 @@ ip_checksum(void *buf, size_t len)
 			    htons(ip->ip_p + len);
 			sum = ip_cksum_add(&ip->ip_src, 8, sum);
 			udp->uh_sum = ip_cksum_carry(sum);
+			if (!udp->uh_sum)
+				udp->uh_sum = 0xffff;	/* RFC 768 */
 		}
 	} else if (ip->ip_p == IP_PROTO_ICMP || ip->ip_p == IP_PROTO_IGMP) {
 		struct icmp_hdr *icmp = (struct icmp_hdr *)((u_char *)ip + hl);
