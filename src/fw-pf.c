@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-pf.c,v 1.12 2003/01/21 18:46:03 dugsong Exp $
+ * $Id: fw-pf.c,v 1.13 2003/04/07 05:43:08 dugsong Exp $
  */
 
 #include "config.h"
@@ -177,6 +177,11 @@ fw_add(fw_t *fw, const struct fw_rule *rule)
 	assert(fw != NULL && rule != NULL);
 	memset(&pcr, 0, sizeof(pcr));
 	fr_to_pr(rule, &pcr.newrule);
+#ifdef PF_CHANGE_GET_TICKET
+	pcr.action = PF_CHANGE_GET_TICKET;
+	if (ioctl(fw->fd, DIOCCHANGERULE, &pcr) < 0)
+		return (-1);
+#endif
 	pcr.action = PF_CHANGE_ADD_TAIL;
 	
 	return (ioctl(fw->fd, DIOCCHANGERULE, &pcr));
@@ -190,8 +195,13 @@ fw_delete(fw_t *fw, const struct fw_rule *rule)
 	assert(fw != NULL && rule != NULL);
 	memset(&pcr, 0, sizeof(pcr));
 	fr_to_pr(rule, &pcr.oldrule);
+#ifdef PF_CHANGE_GET_TICKET
+	pcr.action = PF_CHANGE_GET_TICKET;
+	if (ioctl(fw->fd, DIOCCHANGERULE, &pcr) < 0)
+		return (-1);
+#endif
 	pcr.action = PF_CHANGE_REMOVE;
-
+	
 	return (ioctl(fw->fd, DIOCCHANGERULE, &pcr));
 }
 
