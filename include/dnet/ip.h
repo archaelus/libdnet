@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.7 2001/12/18 08:30:32 dugsong Exp $
+ * $Id: ip.h,v 1.8 2001/12/30 15:44:58 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -243,7 +243,8 @@ ip_t	*ip_open(void);
 ssize_t	 ip_send(ip_t *i, const void *buf, size_t len);
 int	 ip_close(ip_t *i);
 
-size_t	 ip_add_opt(void *buf, size_t len, const void *optbuf, size_t optlen);
+size_t	 ip_add_option(void *buf, size_t len,
+	    int proto, const void *optbuf, size_t optlen);
 void	 ip_checksum(void *buf, size_t len);
 
 int	 ip_cksum_add(void *buf, size_t len, int cksum);
