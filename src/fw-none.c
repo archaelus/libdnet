@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-none.c,v 1.2 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: fw-none.c,v 1.3 2002/01/09 04:06:15 dugsong Exp $
  */
 
 #include "config.h"
@@ -22,14 +22,14 @@ fw_open(void)
 }
 
 int
-fw_add(fw_t *f, struct fw_rule *rule)
+fw_add(fw_t *f, const struct fw_rule *rule)
 {
 	errno = ENOSYS;
 	return (-1);
 }
 
 int
-fw_delete(fw_t *f, struct fw_rule *rule)
+fw_delete(fw_t *f, const struct fw_rule *rule)
 {
 	errno = ENOSYS;
 	return (-1);

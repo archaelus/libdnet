@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.12 2002/01/07 10:35:22 dugsong Exp $
+ * $Id: intf.c,v 1.13 2002/01/09 04:08:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -134,7 +134,7 @@ intf_delete(intf_t *i, char *device, struct addr *addr)
 #endif
 
 int
-intf_set(intf_t *i, char *device, struct intf_info *info)
+intf_set(intf_t *i, const char *device, const struct intf_info *info)
 {
 	struct addr bcast;
 	struct ifreq ifr;
@@ -182,7 +182,7 @@ intf_set(intf_t *i, char *device, struct intf_info *info)
 }
 
 int
-intf_get(intf_t *i, char *device, struct intf_info *info)
+intf_get(intf_t *i, const char *device, struct intf_info *info)
 {
 	struct ifreq ifr;
 

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.2 2002/01/07 05:01:56 dugsong Exp $
+ * $Id: intf-win32.c,v 1.3 2002/01/09 04:08:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,7 @@ intf_open(void)
 }
 
 static int
-_intf_get(char *device, struct intf_info *info, void *arg)
+_intf_get(const char *device, const struct intf_info *info, void *arg)
 {
 	intf_t *intf = (intf_t *)arg;
 
@@ -41,7 +41,7 @@ _intf_get(char *device, struct intf_info *info, void *arg)
 }
 
 int
-intf_get(intf_t *intf, char *device, struct intf_info *info)
+intf_get(intf_t *intf, const char *device, struct intf_info *info)
 {
 	int ret;
 
@@ -60,7 +60,7 @@ intf_get(intf_t *intf, char *device, struct intf_info *info)
 }
 
 int
-intf_set(intf_t *intf, char *device, struct intf_info *info)
+intf_set(intf_t *intf, const char *device, const struct intf_info *info)
 {
 	/*
 	 * XXX - could set interface down via SetIfEntry(),
