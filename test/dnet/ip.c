@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
+ * $Id: ip.c,v 1.3 2001/12/11 22:41:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -119,7 +119,7 @@ ip_main(int argc, char *argv[])
 
 	ip->ip_len = htons(len);
 
-	ip_cksum(ip);
+	ip_checksum(buf, len);
 	
 	if (i != NULL) {
 		if (ip_send(i, buf, len) != len)
