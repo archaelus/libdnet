@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.12 2001/12/30 15:44:58 dugsong Exp $
+ * $Id: ip.c,v 1.13 2001/12/30 20:40:04 dugsong Exp $
  */
 
 #include "config.h"
@@ -111,11 +111,11 @@ ip_open(void)
 
 #ifdef HAVE_RAWIP_COOKED
 static int
-ip_match_intf(char *device, struct addr *addr, int flags, void *arg)
+ip_match_intf(char *device, struct intf_info *info, void *arg)
 {
 	ip_t *i = (ip_t *)arg;
 	
-	if (addr->addr_ip == i->ip_src.addr_ip ||
+	if (info->intf_addr.addr_ip == i->ip_src.addr_ip ||
 	    i->ip_src.addr_ip == IP_ADDR_ANY) {
 		if (intf_get(i->intf, device, &i->eth_src, NULL) == 0) {
 			if (i->eth != NULL)
