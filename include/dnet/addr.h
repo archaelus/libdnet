@@ -5,12 +5,13 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.h,v 1.8 2002/01/20 21:21:00 dugsong Exp $
+ * $Id: addr.h,v 1.9 2002/02/23 19:55:54 dugsong Exp $
  */
 
 #ifndef DNET_ADDR_H
 #define DNET_ADDR_H
 
+#define ADDR_TYPE_NONE		0	/* No address set */
 #define	ADDR_TYPE_ETH		1	/* Ethernet */
 #define	ADDR_TYPE_IP		2	/* Internet Protocol v4 */
 
