@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: route.c,v 1.1 2002/02/08 07:26:58 dugsong Exp $
+ * $Id: route.c,v 1.2 2002/03/29 05:24:36 dugsong Exp $
  */
 
 #include "config.h"
@@ -67,7 +67,8 @@ route_main(int argc, char *argv[])
 		    "net" : "host", addr_ntoa(&entry.route_dst),
 		    addr_ntoa(&entry.route_gw));
 	} else if (strcmp(cmd, "add") == 0) {
-		if (addr_aton(argv[2], &entry.route_dst) < 0 ||
+		if (argc < 4 ||
+		    addr_aton(argv[2], &entry.route_dst) < 0 ||
 		    addr_aton(argv[3], &entry.route_gw) < 0)
 			err(1, "addr_aton");
 		if (route_add(r, &entry) < 0)
