@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.2 2001/10/15 01:53:46 dugsong Exp $
+ * $Id: ip.c,v 1.3 2001/10/15 05:07:38 dugsong Exp $
  */
 
 #include "config.h"
@@ -24,7 +24,7 @@
 
 struct ip_handle {
 	int	fd;
-#ifdef HAVE_COOKED_RAWIP
+#ifdef HAVE_RAWIP_COOKED
 	eth_t		*eth;
 	intf_t		*intf;
 	arp_t		*arp;
@@ -34,7 +34,7 @@ struct ip_handle {
 #endif
 };
 
-#ifdef HAVE_COOKED_RAWIP
+#ifdef HAVE_RAWIP_COOKED
 ip_t *
 ip_open(void)
 {
@@ -62,7 +62,7 @@ ip_open(void)
 	}
 	return (i);
 }
-#else /* !HAVE_COOKED_RAWIP */
+#else /* !HAVE_RAWIP_COOKED */
 ip_t *
 ip_open(void)
 {
@@ -106,9 +106,9 @@ ip_open(void)
 	i->fd = fd;
 	return (i);
 }
-#endif /* !HAVE_COOKED_RAWIP */
+#endif /* !HAVE_RAWIP_COOKED */
 
-#ifdef HAVE_COOKED_RAWIP
+#ifdef HAVE_RAWIP_COOKED
 static int
 ip_match_intf(char *device, struct addr *addr, int flags, void *arg)
 {
@@ -196,7 +196,7 @@ ip_send(ip_t *i, const void *buf, size_t len)
 
 	return (len);
 }
-#else /* !HAVE_COOKED_RAWIP */
+#else /* !HAVE_RAWIP_COOKED */
 ssize_t
 ip_send(ip_t *i, const void *buf, size_t len)
 {
@@ -228,7 +228,7 @@ ip_send(ip_t *i, const void *buf, size_t len)
 	    (struct sockaddr *)&sin, sizeof(sin)));
 #endif
 }
-#endif /* !HAVE_COOKED_RAWIP */
+#endif /* !HAVE_RAWIP_COOKED */
 
 int
 ip_close(ip_t *i)
@@ -239,7 +239,7 @@ ip_close(ip_t *i)
 	}
 	if (close(i->fd) < 0)
 		return (-1);
-#ifdef HAVE_COOKED_RAWIP	
+#ifdef HAVE_RAWIP_COOKED	
 	if (i->intf != NULL)
 		intf_close(i->intf);
 
