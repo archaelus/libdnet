@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.5 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: arp-win32.c,v 1.6 2002/01/31 08:33:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -18,7 +18,6 @@
 #include "dnet.h"
 
 struct arp_handle {
-	intf_t			*intf;
 	const struct addr	*pa;
 	struct addr		*ha;
 };
@@ -31,9 +30,6 @@ arp_open(void)
 	if ((arp = calloc(1, sizeof(*arp))) == NULL)
 		return (NULL);
 
-	if ((arp->intf = intf_open()) == NULL)
-		return (arp_close(arp));
-	
 	return (arp);
 }
 
@@ -146,8 +142,6 @@ arp_loop(arp_t *arp, arp_handler callback, void *arg)
 arp_t *
 arp_close(arp_t *arp)
 {
-	if (arp->intf != NULL)
-		intf_close(arp->intf);
 	free(arp);
 	return (NULL);
 }
