@@ -1,9 +1,12 @@
-# $Id: THANKS,v 1.6 2004/09/01 17:35:05 dugsong Exp $
+# $Id: THANKS,v 1.7 2005/02/08 20:56:59 dugsong Exp $
 
 many thanks to all the folks who have contributed to libdnet:
 
 Thamer Al-Harbash <tmh@whitefang.com>
 	excellent bug reports and fearless beta-testing
+
+Michael Coulter <mjc@bitz.ca>
+	OpenBSD pfioc_pooladdr fix
 
 Michael A. Davis <mike@datanerds.net>
 	win32 code cleanup
