@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.14 2002/01/09 05:48:38 dugsong Exp $
+ * $Id: addr.c,v 1.15 2002/01/17 21:08:04 dugsong Exp $
  */
 
 #include "config.h"
@@ -279,7 +279,7 @@ addr_ntoa(const struct addr *a)
 	static char *p, buf[BUFSIZ];
 	char *q;
 	
-	if (p == NULL || p > buf + sizeof(buf))
+	if (p == NULL || p > buf + sizeof(buf) - 32 /* XXX */)
 		p = buf;
 	
 	if (addr_ntop(a, p, (buf + sizeof(buf)) - p) < 0)
