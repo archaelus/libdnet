@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
+ * $Id: arp.c,v 1.3 2002/01/07 00:55:29 dugsong Exp $
  */
 
 #include "config.h"
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "dnet.h"
@@ -64,7 +65,7 @@ arp_main(int argc, char *argv[])
 	char *name, *value;
 	int c, len;
 
-	srand(getpid());
+	srand(time(NULL));
 
 	arp = (struct arp_hdr *)buf;
 	arp->ar_hrd = htons(ARP_HRD_ETH);

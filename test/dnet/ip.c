@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.3 2001/12/11 22:41:40 dugsong Exp $
+ * $Id: ip.c,v 1.4 2002/01/07 00:55:29 dugsong Exp $
  */
 
 #include "config.h"
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "dnet.h"
@@ -57,7 +58,7 @@ ip_main(int argc, char *argv[])
 	int c, len;
 	ip_t *i = NULL;
 
-	srand(getpid());
+	srand(time(NULL));
 
 	ip = (struct ip_hdr *)buf;
 	ip->ip_hl = 5;
