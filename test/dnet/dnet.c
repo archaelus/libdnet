@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: dnet.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
+ * $Id: dnet.c,v 1.3 2002/02/05 00:47:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -26,12 +26,15 @@ struct module {
 };
 
 static struct module dnet_modules[] = {
+	{ "addr",	addr_usage,	addr_main },
+	{ "hex",	hex_usage,	hex_main },
 	{ "eth",	eth_usage,	eth_main },
 	{ "arp",	arp_usage,	arp_main },
 	{ "ip",		ip_usage,	ip_main },
 	{ "icmp",	icmp_usage,	icmp_main },
 	{ "tcp",	tcp_usage,	tcp_main },
 	{ "udp",	udp_usage,	udp_main },
+	{ "send",	send_usage,	send_main },
 	{ NULL,		NULL,		NULL }
 };
 

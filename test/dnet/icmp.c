@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: icmp.c,v 1.3 2002/01/07 02:15:47 dugsong Exp $
+ * $Id: icmp.c,v 1.4 2002/02/05 00:47:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -22,7 +22,7 @@
 void
 icmp_usage(int die)
 {
-	fprintf(stderr, "Usage: dnet icmp [type|code value] ...\n");
+	fprintf(stderr, "Usage: dnet icmp [type|code <value>] ...\n");
 	if (die)
 		exit(1);
 }

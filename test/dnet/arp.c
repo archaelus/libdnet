@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.c,v 1.5 2002/02/04 04:02:00 dugsong Exp $
+ * $Id: arp.c,v 1.6 2002/02/05 00:47:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -23,32 +23,9 @@
 void
 arp_usage(int die)
 {
-	fprintf(stderr, "Usage: dnet arp [op|sha|spa|tha|tpa value] ...\n");
+	fprintf(stderr, "Usage: dnet arp [op|sha|spa|tha|tpa <value>] ...\n");
 	if (die)
 		exit(1);
-}
-
-static int
-op_aton(char *string, uint16_t *op)
-{
-	long l;
-	char *p;
-
-	if (strncasecmp(string, "req", 3) == 0)
-		*op = htons(ARP_OP_REQUEST);
-	else if (strncasecmp(string, "rep", 3) == 0)
-		*op = htons(ARP_OP_REPLY);
-	else if (strncasecmp(string, "revreq", 6) == 0)
-		*op = htons(ARP_OP_REVREQUEST);
-	else if (strncasecmp(string, "revrep", 6) == 0)
-		*op = htons(ARP_OP_REVREPLY);
-	else {
-		l = strtol(string, &p, 10);
-		if (*string == '\0' || *p != '\0' || l > 0xffff)
-			return (-1);
-		*op = htons(l & 0xffff);
-	}
-	return (0);
 }
 
 int

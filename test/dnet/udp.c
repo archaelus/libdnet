@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: udp.c,v 1.5 2002/01/07 02:27:05 dugsong Exp $
+ * $Id: udp.c,v 1.6 2002/02/05 00:47:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -23,27 +23,9 @@
 void
 udp_usage(int die)
 {
-	fprintf(stderr, "Usage: dnet udp [sport|dport value] ...\n");
+	fprintf(stderr, "Usage: dnet udp [sport|dport <value>] ...\n");
 	if (die)
 		exit(1);
-}
-
-static int
-port_aton(char *string, uint16_t *port)
-{
-	struct servent *sp;
-	long l;
-	char *p;
-	
-	if ((sp = getservbyname(string, "udp")) != NULL) {
-		*port = sp->s_port;
-	} else {
-		l = strtol(string, &p, 10);
-		if (*string == '\0' || *p != '\0' || l > 0xffff)
-			return (-1);
-		*port = htons(l & 0xffff);
-	}
-	return (0);
 }
 
 int
