@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.4 2001/10/14 23:42:46 dugsong Exp $
+ * $Id: route-bsd.c,v 1.5 2001/10/15 02:06:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -27,7 +27,6 @@
 #elif defined(HAVE_DEV_ROUTE)
 #include <sys/stream.h>
 #include <sys/stropts.h>
-#include <fcntl.h>
 #endif
 
 #define route_t	oroute_t	/* XXX - unixware */
@@ -36,6 +35,7 @@
 #include <netinet/in.h>
 
 #include <errno.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
