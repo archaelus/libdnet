@@ -1,7 +1,7 @@
 .\"
 .\" Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 .\"
-.\" $Id: dnet.3,v 1.6 2001/12/29 02:33:51 dugsong Exp $
+.\" $Id: dnet.3,v 1.7 2001/12/29 21:05:46 dugsong Exp $
 .\"
 .Dd August 21, 2001
 .Dt DNET 3
@@ -14,6 +14,8 @@
 .Ss Addressing
 .Ft int
 .Fn addr_cmp "struct addr *a" "struct addr *b"
+.Ft int
+.Fn addr_bcast "struct addr *a" "struct addr *b"
 .Ft int
 .Fn addr_ntop "struct addr *src" "char *dst" "size_t size"
 .Ft int
@@ -31,9 +33,9 @@
 .Ft int
 .Fn addr_stob "struct sockaddr *sa" "u_short *bits"
 .Ft int
-.Fn addr_btom "u_short bits" "u_int32_t mask"
+.Fn addr_btom "u_short bits" "void *mask" "size_t size"
 .Ft int
-.Fn addr_mtob "u_int32_t mask" "u_short *bits"
+.Fn addr_mtob "void *mask" "size_t size" "u_short *bits"
 .Ss Address Resolution Protocol
 .Ft arp_t *
 .Fn arp_open "void"
@@ -173,6 +175,12 @@ returning an integer less than, equal to, or greater than zero if
 is found, respectively, to be less than, equal to, or greater than
 .Fa b .
 Both addresses must be of the same address type.
+.Pp
+.Fn addr_bcast
+computes the broadcast address for the network specified in
+.Fa a
+and writes it into
+.Fa b .
 .Pp
 .Fn addr_ntop
 converts an address from network format to a string.
