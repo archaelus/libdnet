@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.29 2002/01/07 03:57:47 dugsong Exp $
+dnl $Id: configure.in,v 1.30 2002/01/07 05:04:40 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -98,7 +98,9 @@ if test "$CYGWIN" != yes ; then
 fi
 
 dnl Check for arp interface.
-if test "$ac_cv_dnet_ioctl_arp" = yes ; then
+if test "$ac_cv_header_Iphlpapi_h" = yes ; then
+	LIBOBJS="$LIBOBJS arp-win32.o"
+elif test "$ac_cv_dnet_ioctl_arp" = yes ; then
 	LIBOBJS="$LIBOBJS arp-ioctl.o"
 elif test "$ac_cv_dnet_route_h_has_rt_msghdr" = yes ; then
 	LIBOBJS="$LIBOBJS arp-bsd.o"
