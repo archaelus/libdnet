@@ -6,18 +6,21 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.12 2004/05/04 03:19:43 dugsong Exp $
+ * $Id: rand.c,v 1.13 2005/01/25 20:10:10 dugsong Exp $
  */
 
 #include "config.h"
 
 #ifdef _WIN32
-#include <windows.h>
-#include <wincrypt.h>
+/* XXX */
+# undef _WIN32_WINNT
+# define _WIN32_WINNT 0x0400
+# include <wincrypt.h>
+# define inline __inline
 #else
-#include <sys/types.h>
-#include <sys/time.h>
-#include <unistd.h>
+# include <sys/types.h>
+# include <sys/time.h>
+# include <unistd.h>
 #endif
 #include <fcntl.h>
 #include <stdlib.h>
