@@ -3,8 +3,10 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.c,v 1.1 2001/10/11 04:14:46 dugsong Exp $
+ * $Id: eth.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
  */
+
+#include "config.h"
 
 #include <sys/types.h>
 

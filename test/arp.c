@@ -3,13 +3,16 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp.c,v 1.1 2001/10/11 04:14:45 dugsong Exp $
+ * $Id: arp.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
  */
+
+#include "config.h"
 
 #include <sys/types.h>
 
 #include <err.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "dnet.h"

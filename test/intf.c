@@ -3,9 +3,11 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.1 2001/10/11 04:14:46 dugsong Exp $
+ * $Id: intf.c,v 1.2 2001/10/12 08:20:06 dugsong Exp $
  */
- 
+
+#include "config.h"
+
 #include <sys/types.h>
 
 #include <err.h>
