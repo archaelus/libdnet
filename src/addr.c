@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.5 2001/10/15 07:18:35 dugsong Exp $
+ * $Id: addr.c,v 1.6 2001/10/15 07:28:15 dugsong Exp $
  */
 
 #include "config.h"
@@ -16,6 +16,9 @@
 #include <net/if.h>
 #ifdef HAVE_NET_IF_DL_H
 #include <net/if_dl.h>
+#endif
+#ifdef HAVE_NET_RAW_H
+#include <net/raw.h>
 #endif
 #include <netinet/in.h>
 #include <arpa/inet.h>
