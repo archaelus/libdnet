@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: blob.c,v 1.2 2002/04/05 06:39:52 dugsong Exp $
+ * $Id: blob.c,v 1.3 2002/04/11 19:55:39 dugsong Exp $
  */
 
 #include "config.h"
@@ -319,7 +319,7 @@ fmt_H(int pack, int len, blob_t *b, va_list *ap)
 	if (len) return (-1);
 	
 	if (pack) {
-		uint16_t n = va_arg(*ap, uint16_t);
+		uint16_t n = va_arg(*ap, int);
 		n = htons(n);
 		if (blob_write(b, &n, sizeof(n)) < 0)
 			return (-1);
@@ -351,7 +351,7 @@ fmt_c(int pack, int len, blob_t *b, va_list *ap)
 	if (len) return (-1);
 	
 	if (pack) {
-		uint8_t n = va_arg(*ap, uint8_t);
+		uint8_t n = va_arg(*ap, int);
 		return (blob_write(b, &n, sizeof(n)));
 	} else {
 		uint8_t *n = va_arg(*ap, uint8_t *);
@@ -379,7 +379,7 @@ fmt_h(int pack, int len, blob_t *b, va_list *ap)
 	if (len) return (-1);
 	
 	if (pack) {
-		uint16_t n = va_arg(*ap, uint16_t);
+		uint16_t n = va_arg(*ap, int);
 		return (blob_write(b, &n, sizeof(n)));
 	} else {
 		uint16_t *n = va_arg(*ap, uint16_t *);
