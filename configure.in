@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.14 2001/10/18 16:10:43 dugsong Exp $
+dnl $Id: configure.in,v 1.15 2001/10/19 00:45:41 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -26,12 +26,13 @@ fi
 
 dnl Checks for libraries.
 AC_LBL_LIBRARY_NET
+AC_CHECK_LIB(nm, open_mib)
 
 dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(fcntl.h unistd.h)
 AC_CHECK_HEADERS(sys/bufmod.h sys/dlpi.h sys/dlpihdr.h sys/dlpi_ext.h \
-	sys/ioctl.h sys/sockio.h sys/sysctl.h sys/time.h)
+	sys/ioctl.h sys/mib.h sys/sockio.h sys/sysctl.h sys/time.h)
 AC_CHECK_HEADERS(net/bpf.h net/if_dl.h net/pfvar.h net/raw.h \
 	netinet/ip_fw.h linux/ip_fw.h linux/ip_fwchains.h \
 	linux/netfilter_ipv4/ipchains_core.h)
