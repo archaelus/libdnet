@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.14 2004/09/10 02:35:51 dugsong Exp $
+## $Id: Makefile.am,v 1.15 2005/01/23 07:11:49 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -15,4 +15,4 @@ EXTRA_libdnet_la_SOURCES = arp-bsd.c arp-ioctl.c arp-none.c arp-win32.c \
 
 libdnet_la_LIBADD = @LTLIBOBJS@
 
-libdnet_la_LDFLAGS = -version-info 0:0:0
+libdnet_la_LDFLAGS = -version-info 1:0:0
