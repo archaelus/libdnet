@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-bsd.c,v 1.9 2002/02/02 04:15:57 dugsong Exp $
+ * $Id: arp-bsd.c,v 1.10 2002/03/29 01:38:36 dugsong Exp $
  */
 
 #include "config.h"
@@ -264,9 +264,12 @@ arp_loop(arp_t *arp, arp_handler callback, void *arg)
 	if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0)
 		return (-1);
 
-	if (len == 0 || (buf = malloc(len)) == NULL)
-		return (-1);
+	if (len == 0)
+		return (0);
 
+	if ((buf = malloc(len)) == NULL)
+		return (-1);
+	
 	if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
 		free(buf);
 		return (-1);
