@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.2 2002/03/29 06:22:29 dugsong Exp $
+ * $Id: rand.c,v 1.3 2002/04/01 06:44:17 dugsong Exp $
  */
 
 #include "config.h"
@@ -61,7 +61,7 @@ rand_t *
 rand_open(void)
 {
 	rand_t *r;
-	u_char seed[128];
+	u_char seed[256];
 #ifdef WIN32
 	HCRYPTPROV hcrypt = 0;
 
@@ -81,7 +81,8 @@ rand_open(void)
 #endif
 	if ((r = malloc(sizeof(*r))) != NULL) {
 		rand_init(r);
-		rand_addrandom(r, seed, sizeof(seed));
+		rand_addrandom(r, seed, 128);
+		rand_addrandom(r, seed + 128, 128);
 	}
 	return (r);
 }
