@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.12 2002/04/05 03:08:29 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.13 2002/12/14 05:31:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -21,7 +21,7 @@
 
 struct ip_intf {
 	eth_t			*eth;
-	char			 name[60];
+	char			 name[INTF_NAME_LEN];
 	struct addr		 ha;
 	struct addr		 pa;
 	int			 mtu;
