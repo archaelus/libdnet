@@ -2,23 +2,22 @@
 make *_loop() prevent modification within loop, or modify only
 post-iteration
 
-prefix everything with dnet_*
+prefix everything with dnet_*, maybe new API with common dnet_t handle?
 
-documentation
-
-example code
-
-automated regression (automake 'check' target)
+more documentation and example code
 
 ip-cooked.c: use RTM_RESOLVE for ip_lookup_mac() (GetBestInterface()?)
 
 add a way to enable ip forwarding?
 
-IPv6, NAT, ipsec interface?
+finish IPv6 support everywhere (fw, route, ip6, win32, etc.)
 
-add Checkpoint FW-1 support, via OPSEC
+reimplement win32 fw (lost with laptop hd crash!@#$%)
 
-successfully built on:
+NAT, ipsec interface?
+
+maybe Checkpoint FW-1 support, via OPSEC (hrr)
+
 --------+------+-----+-----+----+----+------+-------+
         | addr | arp | eth | fw | ip | intf | route |
 --------+------+-----+-----+----+----+------+-------+
@@ -60,11 +59,11 @@ arp-{bsd,ioctl} both b0rked on unixware
 
 eth_send() doesn't allow src mac spoofing on MacOS X (no
 BIOCSHDRCMPLT) without patch (http://slagheap.net/etherspoof/),
-maybe also b0rked on BSD/OS (markus, you know?)
+also b0rked on BSD/OS, says markus
 
 no support for ICMP code in ipfw, therefore none in fw-ipfw.c
 
 need reliable, legit Tru64, Unixware, and AIX accounts with root
 access to finish the ports to those platforms...
 
-$Id: TODO,v 1.20 2002/02/09 04:48:52 dugsong Exp $
+$Id: TODO,v 1.21 2003/03/08 05:59:36 dugsong Exp $
