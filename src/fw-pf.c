@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-pf.c,v 1.4 2001/12/30 20:23:28 dugsong Exp $
+ * $Id: fw-pf.c,v 1.5 2001/12/31 05:18:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -41,6 +41,7 @@ fr_to_pr(struct fw_rule *fr, struct pf_rule *pr)
 	pr->direction = (fr->fw_dir == FW_DIR_IN) ? PF_IN : PF_OUT;
 	pr->proto = fr->fw_proto;
 
+	pr->af = AF_INET;
 	pr->src.addr.v4.s_addr = fr->fw_src.addr_ip;
 	addr_btom(fr->fw_src.addr_bits, &pr->src.mask.v4.s_addr, IP_ADDR_LEN);
 	
@@ -92,6 +93,9 @@ pr_to_fr(struct pf_rule *pr, struct fw_rule *fr)
 	fr->fw_dir = pr->direction == PF_IN ? FW_DIR_IN : FW_DIR_OUT;
 	fr->fw_proto = pr->proto;
 
+	if (pr->af != AF_INET)
+		return (-1);
+	
 	fr->fw_src.addr_type = ADDR_TYPE_IP;
 	addr_mtob(&pr->src.mask.v4.s_addr, IP_ADDR_LEN, &fr->fw_src.addr_bits);
 	fr->fw_src.addr_ip = pr->src.addr.v4.s_addr;
