@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.21 2005/01/25 16:59:50 dugsong Exp $
+ * $Id: intf-win32.c,v 1.22 2005/01/25 20:09:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -186,7 +186,7 @@ _refresh_tables(intf_t *intf)
 	 * Map "unfriendly" win32 interface indices to ours.
 	 * XXX - like IP_ADAPTER_INFO ComboIndex
 	 */
-	for (i = 0; i < (int)intf->iftable->dwNumEntries; i++) {
+	for (i = 0; i < intf->iftable->dwNumEntries; i++) {
 		ifrow = &intf->iftable->table[i];
 		if (ifrow->dwType < MIB_IF_TYPE_MAX) {
 			_ifcombo_add(&intf->ifcombo[ifrow->dwType],
