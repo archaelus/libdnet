@@ -6,12 +6,12 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.11 2003/03/21 04:03:05 dugsong Exp $
+ * $Id: rand.c,v 1.12 2004/05/04 03:19:43 dugsong Exp $
  */
 
 #include "config.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
 #include <wincrypt.h>
 #else
@@ -65,7 +65,7 @@ rand_open(void)
 {
 	rand_t *r;
 	u_char seed[256];
-#ifdef WIN32
+#ifdef _WIN32
 	HCRYPTPROV hcrypt = 0;
 
 	CryptAcquireContext(&hcrypt, NULL, NULL, PROV_RSA_FULL,

@@ -3,12 +3,12 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.15 2004/01/14 04:52:11 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.16 2004/05/04 03:19:43 dugsong Exp $
  */
 
 #include "config.h"
 
-#ifndef WIN32
+#ifndef _WIN32
 #include <netinet/in.h>
 #include <unistd.h>
 #endif

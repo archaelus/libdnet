@@ -5,13 +5,13 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.9 2003/03/16 17:38:04 dugsong Exp $
+ * $Id: os.h,v 1.10 2004/05/04 03:19:42 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
 #define DNET_OS_H
 
-#ifdef WIN32
+#ifdef _WIN32
 # include <windows.h>
 # include <winsock2.h>
 # include <stdint.h>
