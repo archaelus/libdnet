@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.41 2002/12/03 03:00:25 dugsong Exp $
+ * $Id: intf.c,v 1.42 2002/12/03 03:29:50 dugsong Exp $
  */
 
 #include "config.h"
@@ -20,6 +20,7 @@
 # define IP_MULTICAST
 #endif
 #include <net/if.h>
+#undef IP_MULTICAST
 
 #include <errno.h>
 #include <stdio.h>
