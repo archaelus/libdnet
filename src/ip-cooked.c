@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.6 2002/02/04 06:13:07 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.7 2002/02/04 06:29:46 dugsong Exp $
  */
 
 #include "config.h"
@@ -167,6 +167,8 @@ ip_send(ip_t *ip, const void *buf, size_t len)
 				break;
 		}
 		_request_arp(ipi, &arpent.arp_pa);
+
+		usleep(10 << i);
 	}
 	if (i == 3)
 		memset(&arpent.arp_ha.addr_eth, 0xff, ETH_ADDR_LEN);
