@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-pf.c,v 1.8 2002/01/20 21:23:28 dugsong Exp $
+ * $Id: fw-pf.c,v 1.9 2002/05/14 06:54:30 dugsong Exp $
  */
 
 #include "config.h"
@@ -25,6 +25,11 @@
 #include <unistd.h>
 
 #include "dnet.h"
+
+#ifdef PF_RULE_LABEL_SIZE
+/* XXX */
+#define addr		addr.addr
+#endif
 
 struct fw_handle {
 	int	fd;
