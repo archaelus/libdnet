@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.5 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: route-linux.c,v 1.6 2001/12/29 21:06:41 dugsong Exp $
  */
 
 #include "config.h"
@@ -227,7 +227,7 @@ route_loop(route_t *r, route_handler callback, void *arg)
 
 		dst.addr_type = gw.addr_type = ADDR_TYPE_IP;
 		
-		if (addr_mtob(mask, &dst.addr_bits) < 0)
+		if (addr_mtob(&mask, IP_ADDR_LEN, &dst.addr_bits) < 0)
 			continue;
 		
 		if ((ret = callback(&dst, &gw, arg)) != 0)
