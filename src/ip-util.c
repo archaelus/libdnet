@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-util.c,v 1.7 2002/12/02 04:10:03 dugsong Exp $
+ * $Id: ip-util.c,v 1.8 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -14,7 +14,7 @@
 
 #include "dnet.h"
 
-size_t
+ssize_t
 ip_add_option(void *buf, size_t len, int proto,
     const void *optbuf, size_t optlen)
 {

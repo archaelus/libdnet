@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-win32.c,v 1.4 2004/01/14 04:52:11 dugsong Exp $
+ * $Id: ip-win32.c,v 1.5 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -48,7 +48,7 @@ ip_open(void)
 	return (ip);
 }
 
-size_t
+ssize_t
 ip_send(ip_t *ip, const void *buf, size_t len)
 {
 	struct ip_hdr *hdr = (struct ip_hdr *)buf;

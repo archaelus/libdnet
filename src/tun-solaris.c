@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: tun-solaris.c,v 1.1 2004/09/10 02:35:51 dugsong Exp $
+ * $Id: tun-solaris.c,v 1.2 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -92,7 +92,7 @@ tun_fileno(tun_t *tun)
 	return (tun->fd);
 }
 
-size_t
+ssize_t
 tun_send(tun_t *tun, const void *buf, size_t size)
 {
 	struct strbuf sbuf;
@@ -102,7 +102,7 @@ tun_send(tun_t *tun, const void *buf, size_t size)
 	return (putmsg(tun->fd, NULL, &sbuf, 0) >= 0 ? sbuf.len : -1);
 }
 
-size_t
+ssize_t
 tun_recv(tun_t *tun, void *buf, size_t size)
 {
 	struct strbuf sbuf;

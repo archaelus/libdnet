@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.16 2004/05/04 03:19:43 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.17 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -137,7 +137,7 @@ _request_arp(struct ip_intf *ipi, struct addr *dst)
 	eth_send(ipi->eth, frame, sizeof(frame));
 }
 
-size_t
+ssize_t
 ip_send(ip_t *ip, const void *buf, size_t len)
 {
 	struct ip_hdr *iph;

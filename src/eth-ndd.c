@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-ndd.c,v 1.6 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: eth-ndd.c,v 1.7 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -57,10 +57,10 @@ eth_open(const char *device)
 	return (e);
 }
 
-size_t
+ssize_t
 eth_send(eth_t *e, const void *buf, size_t len)
 {
-	return ((ssize_t)write(e->fd, buf, len));
+	return (write(e->fd, buf, len));
 }
 
 eth_t *

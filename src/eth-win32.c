@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-win32.c,v 1.8 2005/01/25 20:08:51 dugsong Exp $
+ * $Id: eth-win32.c,v 1.9 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -110,7 +110,7 @@ eth_open(const char *device)
 	return (eth);
 }
 
-size_t
+ssize_t
 eth_send(eth_t *eth, const void *buf, size_t len)
 {
 	PacketInitPacket(eth->pkt, (void *)buf, len);

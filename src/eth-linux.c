@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-linux.c,v 1.7 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: eth-linux.c,v 1.8 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -66,14 +66,14 @@ eth_open(const char *device)
 	return (e);
 }
 
-size_t
+ssize_t
 eth_send(eth_t *e, const void *buf, size_t len)
 {
 	struct eth_hdr *eth = (struct eth_hdr *)buf;
 	
 	e->sll.sll_protocol = eth->eth_type;
 
-	return ((ssize_t)sendto(e->fd, buf, len, 0, (struct sockaddr *)&e->sll,
+	return (sendto(e->fd, buf, len, 0, (struct sockaddr *)&e->sll,
 	    sizeof(e->sll)));
 }
 

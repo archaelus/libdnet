@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.28 2004/01/14 04:52:11 dugsong Exp $
+ * $Id: ip.c,v 1.29 2005/01/25 21:30:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -59,7 +59,7 @@ ip_open(void)
 	return (i);
 }
 
-size_t
+ssize_t
 ip_send(ip_t *i, const void *buf, size_t len)
 {
 	struct ip_hdr *ip;
