@@ -1,5 +1,8 @@
 ipfw2 on FreeBSD/5 (5.1 has pf)
 
+optimize port wildcard rules for each firewall type - e.g. using ipf
+FR_NONE, pf PF_OP_NONE, etc.
+
 ipchains sleazy exec
 
 audit addr_ntos() for non-zero'd host bits
@@ -73,4 +76,4 @@ need reliable, legit HP-UX, Unixware, and AIX accounts with root
 access to finish the ports to those platforms. i'd be happy to port to
 other platforms also, given similar (temporary) access.
 
-$Id: TODO,v 1.24 2005/02/10 17:12:20 dugsong Exp $
+$Id: TODO,v 1.25 2005/02/14 21:56:59 dugsong Exp $
