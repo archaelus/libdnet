@@ -53,6 +53,7 @@ To build a Microsoft Visual C++ native library and Python module
 
 	./configure
 	cd python && C:/Python23/python.exe setup.py build
+	cd ../src && lib /out:dnet.lib *.obj
 
 
-# $Id: INSTALL,v 1.3 2005/02/15 05:57:53 dugsong Exp $
+# $Id: INSTALL,v 1.4 2005/02/15 07:38:19 dugsong Exp $
