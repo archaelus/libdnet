@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: blob.c,v 1.1 2002/04/05 03:05:41 dugsong Exp $
+ * $Id: blob.c,v 1.2 2002/04/05 06:39:52 dugsong Exp $
  */
 
 #include "config.h"
@@ -408,8 +408,9 @@ fmt_s(int pack, int len, blob_t *b, va_list *ap)
 		}
 	} else {
 		if (len <= 0) return (-1);
-		
-		end = MIN(len, b->end - b->off);
+
+		if ((end = b->end - b->off) < len)
+			end = len;
 		
 		for (i = 0; i < end; i++) {
 			if ((p[i] = b->base[b->off + i]) == '\0') {
