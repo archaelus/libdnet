@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.42 2002/12/03 03:29:50 dugsong Exp $
+ * $Id: intf.c,v 1.43 2002/12/14 03:59:36 dugsong Exp $
  */
 
 #include "config.h"
@@ -473,9 +473,9 @@ _match_intf_src(const struct intf_entry *entry, void *arg)
 }
 
 int
-intf_get_src(intf_t *intf, struct intf_entry *entry, struct addr *dst)
+intf_get_src(intf_t *intf, struct intf_entry *entry, struct addr *src)
 {
-	memcpy(&entry->intf_addr, dst, sizeof(*dst));
+	memcpy(&entry->intf_addr, src, sizeof(*src));
 	
 	if (intf_loop(intf, _match_intf_src, entry) != 1) {
 		errno = ENXIO;
