@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.4 2002/04/02 05:23:07 dugsong Exp $
+ * $Id: rand.c,v 1.5 2002/04/02 06:20:57 dugsong Exp $
  */
 
 #include "config.h"
@@ -73,7 +73,8 @@ rand_open(void)
 	struct timeval *tv = (struct timeval *)seed;
 	int fd;
 
-	if ((fd = open("/dev/arandom", O_RDONLY)) != -1) {
+	if ((fd = open("/dev/arandom", O_RDONLY)) != -1 ||
+	    (fd = open("/dev/urandom", O_RDONLY)) != -1) {
 		read(fd, seed + sizeof(*tv), sizeof(seed) - sizeof(*tv));
 		close(fd);
 	}
