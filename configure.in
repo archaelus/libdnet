@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.28 2002/01/07 03:52:51 dugsong Exp $
+dnl $Id: configure.in,v 1.29 2002/01/07 03:57:47 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -83,7 +83,6 @@ fi
 
 dnl Checks for library functions.
 AC_FUNC_MEMCMP
-AC_CHECK_FUNCS(socket)
 AC_REPLACE_FUNCS(err inet_pton strlcat strlcpy)
 
 dnl Checks for other system-specific jonks.
