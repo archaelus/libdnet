@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.h,v 1.10 2002/01/06 21:57:25 dugsong Exp $
+ * $Id: ip.h,v 1.11 2002/01/07 00:35:13 dugsong Exp $
  */
 
 #ifndef DNET_IP_H
@@ -240,7 +240,7 @@ typedef struct ip_handle ip_t;
 
 __BEGIN_DECLS
 ip_t	*ip_open(void);
-ssize_t	 ip_send(ip_t *i, const void *buf, size_t len);
+size_t	 ip_send(ip_t *i, const void *buf, size_t len);
 int	 ip_close(ip_t *i);
 
 char	*ip_ntoa(ip_addr_t *ip);
