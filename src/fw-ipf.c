@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.10 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.11 2002/01/01 16:29:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -36,6 +36,11 @@
 #define KMEM_NAME	"/dev/kmem"
 
 #include "dnet.h"
+
+#if !defined(fi_saddr) && !defined(fi_daddr)
+# define fi_saddr	fi_src.s_addr
+# define fi_daddr	fi_dst.s_addr
+#endif
 
 struct fw_handle {
 	int	fd;
