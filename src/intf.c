@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.17 2002/01/31 08:47:55 dugsong Exp $
+ * $Id: intf.c,v 1.18 2002/01/31 08:56:06 dugsong Exp $
  */
 
 #include "config.h"
@@ -300,7 +300,7 @@ _intf_set_type(struct intf_entry *entry)
 # define NEXTIFR(i)	((struct ifreq *)((u_char *)&i->ifr_addr + \
 				i->ifr_addr.sa_len))
 #else
-# define NEXTIFR(i)	(i + sizeof(i))
+# define NEXTIFR(i)	(i + 1)
 #endif
 
 int
