@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.12 2002/01/07 01:54:23 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.13 2002/01/09 04:01:02 dugsong Exp $
  */
 
 #include "config.h"
@@ -116,7 +116,7 @@ eth_match_ppa(eth_t *e, char *device)
 #endif
 
 eth_t *
-eth_open(char *device)
+eth_open(const char *device)
 {
 	union DL_primitives *dlp;
 	uint32_t buf[8192];
@@ -280,7 +280,7 @@ eth_get(eth_t *e, eth_addr_t *ea)
 }
 
 int
-eth_set(eth_t *e, eth_addr_t *ea)
+eth_set(eth_t *e, const eth_addr_t *ea)
 {
 	union DL_primitives *dlp;
 	u_char buf[2048];

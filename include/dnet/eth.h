@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth.h,v 1.9 2002/01/07 00:35:13 dugsong Exp $
+ * $Id: eth.h,v 1.10 2002/01/09 04:01:15 dugsong Exp $
  */
 
 #ifndef DNET_ETH_H
@@ -53,9 +53,9 @@ struct eth_hdr {
 typedef struct eth_handle eth_t;
 
 __BEGIN_DECLS
-eth_t	*eth_open(char *device);
+eth_t	*eth_open(const char *device);
 int	 eth_get(eth_t *e, eth_addr_t *ea);
-int	 eth_set(eth_t *e, eth_addr_t *ea);
+int	 eth_set(eth_t *e, const eth_addr_t *ea);
 size_t	 eth_send(eth_t *e, const void *buf, size_t len);
 int	 eth_close(eth_t *e);
 

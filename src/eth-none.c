@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-none.c,v 1.3 2002/01/07 01:54:24 dugsong Exp $
+ * $Id: eth-none.c,v 1.4 2002/01/09 04:01:02 dugsong Exp $
  */
 
 #include "config.h"
@@ -17,7 +17,7 @@
 #include "dnet.h"
 
 eth_t *
-eth_open(char *device)
+eth_open(const char *device)
 {
 	errno = ENOSYS;
 	return (NULL);
@@ -32,6 +32,20 @@ eth_send(eth_t *e, const void *buf, size_t len)
 
 int
 eth_close(eth_t *e)
+{
+	errno = ENOSYS;
+	return (-1);
+}
+
+int
+eth_get(eth_t *e, eth_addr_t *ea)
+{
+	errno = ENOSYS;
+	return (-1);
+}
+
+int
+eth_set(eth_t *e, const eth_addr_t *ea)
 {
 	errno = ENOSYS;
 	return (-1);

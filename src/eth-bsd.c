@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-bsd.c,v 1.5 2002/01/07 01:54:21 dugsong Exp $
+ * $Id: eth-bsd.c,v 1.6 2002/01/09 04:01:02 dugsong Exp $
  */
 
 #include "config.h"
@@ -37,7 +37,7 @@ struct eth_handle {
 };
 
 eth_t *
-eth_open(char *device)
+eth_open(const char *device)
 {
 	struct ifreq ifr;
 	char file[32];
@@ -152,7 +152,7 @@ eth_get(eth_t *e, eth_addr_t *ea)
 
 #if defined(SIOCSIFLLADDR)
 int
-eth_set(eth_t *e, eth_addr_t *ea)
+eth_set(eth_t *e, const eth_addr_t *ea)
 {
 	struct ifreq ifr;
 	struct addr ha;
@@ -169,7 +169,7 @@ eth_set(eth_t *e, eth_addr_t *ea)
 }
 #else
 int
-eth_set(eth_t *e, eth_addr_t *ea)
+eth_set(eth_t *e, const eth_addr_t *ea)
 {
 	errno = ENOSYS;
 	return (-1);

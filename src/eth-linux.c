@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-linux.c,v 1.4 2002/01/07 01:54:23 dugsong Exp $
+ * $Id: eth-linux.c,v 1.5 2002/01/09 04:01:02 dugsong Exp $
  */
 
 #include "config.h"
@@ -40,7 +40,7 @@ struct eth_handle {
 };
 
 eth_t *
-eth_open(char *device)
+eth_open(const char *device)
 {
 	eth_t *e;
 	int n;
@@ -110,7 +110,7 @@ eth_get(eth_t *e, eth_addr_t *ea)
 }
 
 int
-eth_set(eth_t *e, eth_addr_t *ea)
+eth_set(eth_t *e, const eth_addr_t *ea)
 {
 	struct addr ha;
 
