@@ -17,6 +17,10 @@ ip-cooked.c: use RTM_RESOLVE for ip_lookup_mac()
 
 fw-pf.c: fix loop for 'flush'
 
+add a way to enable ip forwarding, set intf mtu, etc.?
+
+ipsec interface?
+
 successfully built on:
 --------+------+-----+-----+----+----+------+-------+
         | addr | arp | eth | fw | ip | intf | route |
@@ -55,4 +59,4 @@ aix     |      |     |     |    |    |      |       |
 win32   |      |     |     |    |    |      |       |
 --------+------+-----+-----+----+----+------+-------+
 
-$Id: TODO,v 1.5 2001/10/15 00:08:47 dugsong Exp $
+$Id: TODO,v 1.6 2001/10/15 01:53:13 dugsong Exp $
