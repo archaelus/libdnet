@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.10 2002/02/23 19:54:57 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.11 2002/02/23 20:12:22 dugsong Exp $
  */
 
 #include "config.h"
@@ -200,9 +200,9 @@ ip_send(ip_t *ip, const void *buf, size_t len)
 			    ((p - start) >> 3));
 
 			ip_checksum(iph, ip_hl + fraglen);
-			
-			if (eth_send(ipi->eth, frame,
-			    ETH_HDR_LEN + ip_hl + fraglen) < 0)
+
+			i = ETH_HDR_LEN + ip_hl + fraglen;
+			if (eth_send(ipi->eth, frame, i) != i)
 				return (-1);
 			p += fraglen;
 			if (end - p < fraglen)
@@ -211,8 +211,8 @@ ip_send(ip_t *ip, const void *buf, size_t len)
 		return (len);
 	}
 	memcpy(frame + ETH_HDR_LEN, buf, len);
-	
-	if (eth_send(ipi->eth, frame, ETH_HDR_LEN + len) != ETH_HDR_LEN + len)
+	i = ETH_HDR_LEN + len;
+	if (eth_send(ipi->eth, frame, i) != i)
 		return (-1);
 	
 	return (len);
