@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.25 2003/03/10 05:31:48 dugsong Exp $
+ * $Id: addr.c,v 1.26 2003/03/18 18:49:11 dugsong Exp $
  */
 
 #include "config.h"
@@ -355,22 +355,18 @@ addr_stob(const struct sockaddr *sa, uint16_t *bits)
 	uint16_t n;
 	u_char *p;
 
-	if (sa->sa_family == AF_INET) {
+#ifdef HAVE_SOCKADDR_IN6
+	if (sa->sa_family == AF_INET6) {
+		len = IP6_ADDR_LEN;
+		p = (u_char *)&so->sin6.sin6_addr;
+	} else
+#endif
+	{
 #ifdef HAVE_SOCKADDR_SA_LEN
 		if ((len = sa->sa_len - IP_ADDR_LEN) > IP_ADDR_LEN)
 #endif
 		len = IP_ADDR_LEN;
 		p = (u_char *)&so->sin.sin_addr.s_addr;
-	}
-#ifdef HAVE_SOCKADDR_IN6
-	else if (sa->sa_family == AF_INET6) {
-		len = IP6_ADDR_LEN;
-		p = (u_char *)&so->sin6.sin6_addr;
-	}
-#endif
-	else {
-		errno = EINVAL;
-		return (-1);
 	}
 	for (n = i = 0; i < len; i++, n += 8) {
 		if (p[i] != 0xff)
