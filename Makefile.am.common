@@ -1,0 +1,5 @@
+## $Id: Makefile.am.common,v 1.1 2001/10/11 04:14:43 dugsong Exp $
+
+AUTOMAKE_OPTIONS = foreign no-dependencies
+
+DISTCLEANFILES = *~
