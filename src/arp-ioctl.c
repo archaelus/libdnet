@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.1 2001/10/13 03:01:27 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.2 2001/10/13 03:17:37 dugsong Exp $
  */
 
 #include "config.h"
@@ -176,7 +176,7 @@ arp_get(arp_t *a, struct addr *pa, struct addr *ha)
 		return (-1);
 	
 #ifdef HAVE_ARPREQ_ARP_DEV
-	if (intf_loop(a->intf, arp_intf_match, &ar) != 1) {
+	if (intf_loop(a->intf, arp_set_dev, &ar) != 1) {
 		errno = ESRCH;
 		return (-1);
 	}
