@@ -3,7 +3,7 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.39 2002/02/23 23:25:37 dugsong Exp $
+dnl $Id: configure.in,v 1.40 2002/03/29 06:08:40 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
@@ -94,6 +94,7 @@ fi
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
+AC_C_INLINE
 AC_TYPE_PID_T
 AC_TYPE_SIZE_T
 if test "$ac_cv_header_sys_socket_h" = yes ; then
