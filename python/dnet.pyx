@@ -5,7 +5,7 @@
 #
 # Copyright (c) 2003 Dug Song <dugsong@monkey.org>
 #
-# $Id: dnet.pyx,v 1.7 2004/05/04 23:07:34 dugsong Exp $
+# $Id: dnet.pyx,v 1.8 2004/05/04 23:19:59 dugsong Exp $
 
 """dumb networking library
 
@@ -1079,9 +1079,9 @@ cdef extern from *:
     int     rand_get(rand_t *rand, char *buf, int len)
     int     rand_set(rand_t *rand, char *seed, int len)
     int     rand_add(rand_t *rand, char *buf, int len)
-    int     rand_uint8(rand_t *rand)
-    int     rand_uint16(rand_t *rand)
-    int     rand_uint32(rand_t *rand)
+    unsigned int     rand_uint8(rand_t *rand)
+    unsigned int     rand_uint16(rand_t *rand)
+    unsigned long     rand_uint32(rand_t *rand)
     rand_t *rand_close(rand_t *rand)
 
 cdef class rand:
