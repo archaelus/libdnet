@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: dnet.h,v 1.5 2002/12/02 04:15:11 dugsong Exp $
+ * $Id: dnet.h,v 1.6 2004/09/10 03:10:01 dugsong Exp $
  */
 
 #ifndef DNET_H
@@ -23,6 +23,7 @@
 #include <dnet/intf.h>
 #include <dnet/route.h>
 #include <dnet/fw.h>
+#include <dnet/tun.h>
 
 #include <dnet/blob.h>
 #include <dnet/rand.h>
