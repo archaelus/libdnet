@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-util.c,v 1.5 2002/01/22 06:16:40 dugsong Exp $
+ * $Id: ip-util.c,v 1.6 2002/12/01 14:14:22 dugsong Exp $
  */
 
 #include "config.h"
@@ -128,26 +128,31 @@ ip_checksum(void *buf, size_t len)
 	if (ip->ip_p == IP_PROTO_TCP) {
 		struct tcp_hdr *tcp = (struct tcp_hdr *)((u_char *)ip + hl);
 		
-		if (len < TCP_HDR_LEN) return;
-		tcp->th_sum = 0;
-		sum = ip_cksum_add(tcp, len, 0) + htons(ip->ip_p + len);
-		sum = ip_cksum_add(&ip->ip_src, 8, sum);
-		tcp->th_sum = ip_cksum_carry(sum);
+		if (len >= TCP_HDR_LEN) {
+			tcp->th_sum = 0;
+			sum = ip_cksum_add(tcp, len, 0) +
+			    htons(ip->ip_p + len);
+			sum = ip_cksum_add(&ip->ip_src, 8, sum);
+			tcp->th_sum = ip_cksum_carry(sum);
+		}
 	} else if (ip->ip_p == IP_PROTO_UDP) {
 		struct udp_hdr *udp = (struct udp_hdr *)((u_char *)ip + hl);
 
-		if (len < UDP_HDR_LEN) return;
-		udp->uh_sum = 0;
-		sum = ip_cksum_add(udp, len, 0) + htons(ip->ip_p + len);
-		sum = ip_cksum_add(&ip->ip_src, 8, sum);
-		udp->uh_sum = ip_cksum_carry(sum);
+		if (len >= UDP_HDR_LEN) {
+			udp->uh_sum = 0;
+			sum = ip_cksum_add(udp, len, 0) +
+			    htons(ip->ip_p + len);
+			sum = ip_cksum_add(&ip->ip_src, 8, sum);
+			udp->uh_sum = ip_cksum_carry(sum);
+		}
 	} else if (ip->ip_p == IP_PROTO_ICMP || ip->ip_p == IP_PROTO_IGMP) {
 		struct icmp_hdr *icmp = (struct icmp_hdr *)((u_char *)ip + hl);
 		
-		if (len < ICMP_HDR_LEN) return;
-		icmp->icmp_cksum = 0;
-		sum = ip_cksum_add(icmp, len, 0);
-		icmp->icmp_cksum = ip_cksum_carry(sum);
+		if (len >= ICMP_HDR_LEN) {
+			icmp->icmp_cksum = 0;
+			sum = ip_cksum_add(icmp, len, 0);
+			icmp->icmp_cksum = ip_cksum_carry(sum);
+		}
 	}
 }
 
