@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.21 2005/02/08 05:50:30 dugsong Exp $
+ * $Id: route-bsd.c,v 1.22 2005/02/10 05:18:38 dugsong Exp $
  */
 
 #include "config.h"
@@ -419,7 +419,7 @@ _kread(int fd, void *addr, void *buf, int len)
 	return (read(fd, buf, len) == len ? 0 : -1);
 }
 
-int
+static int
 _radix_walk(int fd, struct radix_node *rn, route_handler callback, void *arg)
 {
 	struct radix_node rnode;
@@ -433,16 +433,13 @@ _radix_walk(int fd, struct radix_node *rn, route_handler callback, void *arg)
 		if (!(rnode.rn_flags & RNF_ROOT)) {
 			_kread(fd, rn, &rt, sizeof(rt));
 			_kread(fd, rt_key(&rt), &sin, sizeof(sin));
-			sin.sin_family = AF_INET;
 			addr_ston((struct sockaddr *)&sin, &entry.route_dst);
 			if (!(rt.rt_flags & RTF_HOST)) {
 				_kread(fd, rt_mask(&rt), &sin, sizeof(sin));
-				sin.sin_family = AF_INET;
 				addr_stob((struct sockaddr *)&sin,
 				    &entry.route_dst.addr_bits);
 			}
 			_kread(fd, rt.rt_gateway, &sin, sizeof(sin));
-			sin.sin_family = AF_INET;
 			addr_ston((struct sockaddr *)&sin, &entry.route_gw);
 			if ((ret = callback(&entry, arg)) != 0)
 				return (ret);
