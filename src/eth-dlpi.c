@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.7 2001/10/14 19:20:13 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.8 2001/10/14 19:34:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -291,7 +291,7 @@ eth_set_hwaddr(eth_t *e, struct addr *ha)
 	dlp = (union DL_primitives *)buf;
 	dlp->set_physaddr_req.dl_primitive = DL_SET_PHYS_ADDR_REQ;
 	dlp->set_physaddr_req.dl_addr_length = ETH_ADDR_LEN;
-	dlp->set_physaddr_req_dl_addr_offset = buf + DL_SET_PHYS_ADDR_REQ_SIZE;
+	dlp->set_physaddr_req.dl_addr_offset = DL_SET_PHYS_ADDR_REQ_SIZE;
 
 	memcpy(buf + DL_SET_PHYS_ADDR_REQ_SIZE, &ha->addr_eth, ETH_ADDR_LEN);
 	
