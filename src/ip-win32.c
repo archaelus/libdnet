@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-win32.c,v 1.2 2002/01/20 21:23:28 dugsong Exp $
+ * $Id: ip-win32.c,v 1.3 2002/03/29 01:39:26 dugsong Exp $
  */
 
 #include "config.h"
@@ -40,9 +40,10 @@ ip_open(void)
 	
 	on = TRUE;
 	if (setsockopt(ip->fd, IPPROTO_IP, IP_HDRINCL,
-	    (const char *)&on, sizeof(on)) == SOCKET_ERROR)
+	    (const char *)&on, sizeof(on)) == SOCKET_ERROR) {
+		SetLastError(ERROR_NETWORK_ACCESS_DENIED);
 		return (ip_close(ip));
-	
+	}
 	ip->sin.sin_family = AF_INET;
 	ip->sin.sin_port = htons(666);
 	
