@@ -3,11 +3,11 @@ dnl configure.in
 dnl
 dnl Copyright (c) 2000 Dug Song <dugsong@monkey.org>
 dnl
-dnl $Id: configure.in,v 1.16 2001/10/19 01:29:00 dugsong Exp $
+dnl $Id: configure.in,v 1.17 2001/10/19 01:51:20 dugsong Exp $
 
 AC_INIT(include/dnet.h)
 
-AM_INIT_AUTOMAKE(libdnet, 0.4)
+AM_INIT_AUTOMAKE(libdnet, 0.5)
 AM_CONFIG_HEADER(include/config.h)
 
 dnl Check for system type.
