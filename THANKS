@@ -1,6 +1,9 @@
 
 thank you!
 
+Markus Friedl <markus@openbsd.org>
+	for testing on BSD/OS
+
 K2 <k2@ktwo.ca>
 	for setting me up on HP-UX, OSF1, UnixWare, Solaris x86,
 	Slackware, etc. and for general moral support, eh?
@@ -29,4 +32,4 @@ Mike Stolarchuk <mts@off.to>
 xs <xs@nitric.net>
 	for testing on NetBSD
 
-$Id: THANKS,v 1.2 2001/10/17 03:44:28 dugsong Exp $
+$Id: THANKS,v 1.3 2001/10/22 13:20:42 dugsong Exp $
