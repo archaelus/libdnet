@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-none.c,v 1.3 2002/01/09 04:15:41 dugsong Exp $
+ * $Id: route-none.c,v 1.4 2002/01/20 21:23:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -51,9 +51,8 @@ route_loop(route_t *r, route_handler callback, void *arg)
 	return (-1);
 }
 
-int
+route_t *
 route_close(route_t *r)
 {
-	errno = ENOSYS;
-	return (-1);
+	return (NULL);
 }

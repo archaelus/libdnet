@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-none.c,v 1.3 2002/01/09 03:55:46 dugsong Exp $
+ * $Id: arp-none.c,v 1.4 2002/01/20 21:23:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -51,9 +51,8 @@ arp_loop(arp_t *a, arp_handler callback, void *arg)
 	return (-1);
 }
 
-int
+arp_t *
 arp_close(arp_t *a)
 {
-	errno = ENOSYS;
-	return (-1);
+	return (NULL);
 }

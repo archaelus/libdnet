@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.13 2002/01/09 04:08:23 dugsong Exp $
+ * $Id: intf.c,v 1.14 2002/01/20 21:23:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -96,10 +96,9 @@ intf_open(void)
 	if ((intf = calloc(1, sizeof(*intf))) == NULL)
 		return (NULL);
 
-	if ((intf->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-		free(intf);
-		return (NULL);
-	}
+	if ((intf->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+		return (intf_close(intf));
+	
 	return (intf);
 }
 
@@ -263,14 +262,13 @@ intf_loop(intf_t *i, intf_handler callback, void *arg)
 	return (0);
 }
 
-int
+intf_t *
 intf_close(intf_t *intf)
 {
 	assert(intf != NULL);
 
-	if (close(intf->fd) < 0)
-		return (-1);
-	
+	if (intf->fd > 0)
+		close(intf->fd);
 	free(intf);
-	return (0);
+	return (NULL);
 }

@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-none.c,v 1.3 2002/01/09 04:06:15 dugsong Exp $
+ * $Id: fw-none.c,v 1.4 2002/01/20 21:23:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -42,9 +42,8 @@ fw_loop(fw_t *f, fw_handler callback, void *arg)
 	return (-1);
 }
 
-int
+fw_t *
 fw_close(fw_t *f)
 {
-	errno = ENOSYS;
-	return (-1);
+	return (NULL);
 }

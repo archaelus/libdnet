@@ -3,7 +3,7 @@
  * 
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-bsd.c,v 1.7 2002/01/09 06:39:33 dugsong Exp $
+ * $Id: arp-bsd.c,v 1.8 2002/01/20 21:23:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -55,13 +55,12 @@ arp_open(void)
 		return (NULL);
 
 #ifdef HAVE_STREAMS_ROUTE
-	if ((a->fd = open("/dev/route", O_RDWR, 0)) < 0) {
+	if ((a->fd = open("/dev/route", O_RDWR, 0)) < 0)
 #else
-	if ((a->fd = socket(PF_ROUTE, SOCK_RAW, 0)) < 0) {
+	if ((a->fd = socket(PF_ROUTE, SOCK_RAW, 0)) < 0)
 #endif
-		free(a);
-		return (NULL);
-	}
+		return (arp_close(a));
+	
 	a->pid = getpid();
 
 	return (a);
@@ -299,14 +298,13 @@ arp_loop(arp_t *a, arp_handler callback, void *arg)
 }
 #endif
 
-int
+arp_t *
 arp_close(arp_t *a)
 {
 	assert(a != NULL);
-	
-	if (close(a->fd) < 0)
-		return (-1);
-	
+
+	if (a->fd > 0)
+		close(a->fd);
 	free(a);
-	return (0);
+	return (NULL);
 }

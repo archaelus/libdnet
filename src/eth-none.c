@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-none.c,v 1.4 2002/01/09 04:01:02 dugsong Exp $
+ * $Id: eth-none.c,v 1.5 2002/01/20 21:23:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -30,11 +30,10 @@ eth_send(eth_t *e, const void *buf, size_t len)
 	return (-1);
 }
 
-int
+eth_t *
 eth_close(eth_t *e)
 {
-	errno = ENOSYS;
-	return (-1);
+	return (NULL);
 }
 
 int

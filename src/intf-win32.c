@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.5 2002/01/09 07:22:09 dugsong Exp $
+ * $Id: intf-win32.c,v 1.6 2002/01/20 21:23:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -126,9 +126,9 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 	return (0);
 }
 
-int
+intf_t *
 intf_close(intf_t *intf)
 {
 	free(intf);
-	return (0);
+	return (NULL);
 }

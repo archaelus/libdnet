@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.8 2002/01/09 04:15:41 dugsong Exp $
+ * $Id: route-linux.c,v 1.9 2002/01/20 21:23:28 dugsong Exp $
  */
 
 #include "config.h"
@@ -45,22 +45,18 @@ route_open(void)
 	if ((r = calloc(1, sizeof(*r))) == NULL)
 		return (NULL);
 
-	if ((r->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-		free(r);
-		return (NULL);
-	}
-	if ((r->nlfd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE)) < 0) {
-		close(r->fd);
-		free(r);
-		return (NULL);
-	}
+	if ((r->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+		return (route_close(r));
+	
+	if ((r->nlfd = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE)) < 0)
+		return (route_close(r));
+	
 	memset(&snl, 0, sizeof(snl));
 	snl.nl_family = AF_NETLINK;
 
-	if (bind(r->nlfd, (struct sockaddr *)&snl, sizeof(snl)) < 0) {
-		route_close(r);
-		return (NULL);
-	}
+	if (bind(r->nlfd, (struct sockaddr *)&snl, sizeof(snl)) < 0)
+		return (route_close(r));
+	
 	return (r);
 }
 
@@ -242,14 +238,15 @@ route_loop(route_t *r, route_handler callback, void *arg)
 	return (ret);
 }
 
-int
+route_t *
 route_close(route_t *r)
 {
 	assert(r != NULL);
 
-	if (close(r->fd) < 0 || close(r->nlfd) < 0)
-		return (-1);
-	
+	if (r->fd > 0)
+		close(r->fd);
+	if (r->nlfd > 0)
+		close(r->nlfd) < 0);
 	free(r);
-	return (0);
+	return (NULL);
 }
