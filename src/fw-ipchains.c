@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipchains.c,v 1.7 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: fw-ipchains.c,v 1.8 2004/05/05 21:25:20 dugsong Exp $
  */
 
 #include "config.h"
@@ -12,10 +12,11 @@
 #include <sys/socket.h>
 
 #include <netinet/in.h>
-#include <linux/ip.h>
-#include <linux/tcp.h>
-#include <linux/udp.h>
-#include <linux/icmp.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <netinet/udp.h>
+#undef __USE_BSD
+#include <netinet/ip_icmp.h>
 #include <linux/if.h>
 #ifdef HAVE_LINUX_IP_FW_H
 #include <linux/ip_fw.h>
