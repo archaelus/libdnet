@@ -1,9 +1,10 @@
+
 /*
  * fw-ipf.c
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.14 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.15 2003/03/06 04:51:49 dugsong Exp $
  */
 
 #include "config.h"
@@ -15,6 +16,7 @@
 #include <sys/socket.h>
 
 #include <net/if.h>
+#define _NETINET_IP6_H_		/* XXX */
 #include <netinet/in.h>
 #define ip_t	ipf_ip_t
 #ifdef HAVE_NETINET_IP_FIL_COMPAT_H
