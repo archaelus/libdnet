@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.16 2002/07/11 04:41:15 dugsong Exp $
+ * $Id: route-bsd.c,v 1.17 2002/12/02 05:45:31 dugsong Exp $
  */
 
 #include "config.h"
@@ -222,9 +222,9 @@ route_loop(route_t *r, route_handler callback, void *arg)
 	char *buf, *lim, *next;
 	int ret;
 #ifdef HAVE_SYS_SYSCTL_H
-	int mib[6] = { CTL_NET, PF_ROUTE, 0, AF_INET, NET_RT_DUMP, 0 };
+	int mib[6] = { CTL_NET, PF_ROUTE, 0, 0 /* XXX */, NET_RT_DUMP, 0 };
 	size_t len;
-
+	
 	if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0)
 		return (-1);
 
@@ -277,11 +277,12 @@ route_loop(route_t *r, route_handler callback, void *arg)
 		
 		if (addr_ston(sa, &entry.route_gw) < 0)
 			continue;
-
-		if (entry.route_dst.addr_type != ADDR_TYPE_IP ||
-		    entry.route_gw.addr_type != ADDR_TYPE_IP)
-			continue;
 		
+		if (entry.route_dst.addr_type != entry.route_gw.addr_type ||
+		    (entry.route_dst.addr_type != ADDR_TYPE_IP &&
+			entry.route_dst.addr_type != ADDR_TYPE_IP6))
+			continue;
+
 		if (rtm->rtm_addrs & RTA_NETMASK) {
 			sa = NEXTSA(sa);
 			if (addr_stob(sa, &entry.route_dst.addr_bits) < 0)
