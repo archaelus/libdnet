@@ -4,12 +4,11 @@
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  * Copyright (c) 2001 Jean-Baptiste Marchand, Hervé Schauer Consultants.  
  *
- * $Id: fw-pktfilter.c,v 1.1 2004/01/07 00:02:15 dugsong Exp $
+ * $Id: fw-pktfilter.c,v 1.2 2005/01/25 20:09:16 dugsong Exp $
  */
 
 #include "config.h"
 
-#include <ws2tcpip.h>
 #include <iphlpapi.h>
 
 #include <ctype.h>
