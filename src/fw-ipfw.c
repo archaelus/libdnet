@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.13 2002/01/20 21:23:28 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.14 2002/01/25 04:25:40 dugsong Exp $
  */
 
 #include "config.h"
@@ -29,7 +29,7 @@ struct fw_handle {
 };
 
 static void
-fr_to_ipfw_device(char *device, char *name, short *unit)
+fr_to_ipfw_device(const char *device, char *name, short *unit)
 {
 	char *p;
 
