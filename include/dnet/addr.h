@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.h,v 1.11 2002/12/02 04:07:39 dugsong Exp $
+ * $Id: addr.h,v 1.12 2003/02/27 03:44:55 dugsong Exp $
  */
 
 #ifndef DNET_ADDR_H
@@ -44,7 +44,9 @@ struct addr {
 
 __BEGIN_DECLS
 int	 addr_cmp(const struct addr *a, const struct addr *b);
+
 int	 addr_bcast(const struct addr *a, struct addr *b);
+int	 addr_net(const struct addr *a, struct addr *b);
 
 char	*addr_ntop(const struct addr *src, char *dst, size_t size);
 int	 addr_pton(const char *src, struct addr *dst);
