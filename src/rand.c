@@ -6,7 +6,7 @@
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1996 David Mazieres <dm@lcs.mit.edu>
  *
- * $Id: rand.c,v 1.5 2002/04/02 06:20:57 dugsong Exp $
+ * $Id: rand.c,v 1.6 2002/04/07 19:01:25 dugsong Exp $
  */
 
 #include "config.h"
@@ -156,6 +156,28 @@ rand_uint32(rand_t *r)
 	val |= rand_getbyte(r) << 8;
 	val |= rand_getbyte(r);
 	return (val);
+}
+
+int
+rand_shuffle(rand_t *r, void *base, size_t nmemb, size_t size)
+{
+	u_char *save, *src, *dst, *start = (u_char *)base;
+	int i, j;
+
+	if (r == NULL || (save = malloc(size)) == NULL)
+		return (-1);
+
+	for (i = 0; i < nmemb; i++) {
+		if ((j = rand_uint32(r) % (nmemb - 1)) != i) {
+			src = start + (size * i);
+			dst = start + (size * j);
+			memcpy(save, dst, size);
+			memcpy(dst, src, size);
+			memcpy(src, save, size);
+		}
+	}
+	free(save);
+	return (0);
 }
 
 rand_t *
