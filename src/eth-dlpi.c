@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.9 2001/12/09 15:49:05 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.10 2001/12/31 19:27:31 dugsong Exp $
  */
 
 #include "config.h"
@@ -34,6 +34,10 @@
 #include <unistd.h>
 
 #include "dnet.h"
+
+#ifndef INFTIM
+#define INFTIM	-1
+#endif
 
 struct eth_handle {
 	int	fd;
