@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.18 2002/01/31 08:56:06 dugsong Exp $
+ * $Id: intf.c,v 1.19 2002/01/31 09:13:14 dugsong Exp $
  */
 
 #include "config.h"
@@ -333,10 +333,11 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 	for (ifr = ifc.ifc_req; ifr < lifr; ) {
 		memset(entry, 0, sizeof(*entry));
 		
-		strcpy(iftmp.ifr_name, ifr->ifr_name);
+		strlcpy(iftmp.ifr_name, ifr->ifr_name,
+		    sizeof(iftmp.ifr_name));
 		strlcpy(entry->intf_name, ifr->ifr_name,
 		    sizeof(entry->intf_name));
-
+		
 		/* Get addresses for this interface. */
 		for (ap = entry->intf_addr_data; ifr < lifr && ap < lap;
 		    ifr = NEXTIFR(ifr)) {
@@ -391,12 +392,6 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 				return (-1);
 			if (addr_ston(&iftmp.ifr_addr, ap) < 0)
 				return (-1);
-#elif defined(SIOCGENADDR)
-			if (ioctl(intf->fd, SIOCGENADDR, &iftmp) < 0)
-				return (-1);
-			ap->addr_type = ADDR_TYPE_ETH;
-			ap->addr_bits = ETH_ADDR_BITS;
-			memcpy(&ap->addr_eth, iftmp.ifr_enaddr, ETH_ADDR_LEN);
 #else
 			eth_t *eth;
 
