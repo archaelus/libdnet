@@ -1,9 +1,9 @@
 /*
- * eth-none.c
+ * eth-win32.c
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-win32.c,v 1.6 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: eth-win32.c,v 1.7 2004/09/10 03:10:46 dugsong Exp $
  */
 
 #include "config.h"
