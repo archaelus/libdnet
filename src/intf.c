@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.16 2002/01/31 08:33:25 dugsong Exp $
+ * $Id: intf.c,v 1.17 2002/01/31 08:47:55 dugsong Exp $
  */
 
 #include "config.h"
@@ -192,7 +192,7 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 	strlcpy(ifra.ifra_name, entry->intf_name, sizeof(ifra.ifra_name));
 #endif
 	for (i = 0; i < orig->intf_alias_num; i++) {
-#ifdef SIOCDIFADDR
+#ifdef SIOCAIFADDR	/* XXX - Linux has SIOCDIFADDR we want to skip */
 		addr_ntos(&orig->intf_alias_addr[i], &ifra.ifra_addr);
 		ioctl(intf->fd, SIOCDIFADDR, &ifra);
 #else
