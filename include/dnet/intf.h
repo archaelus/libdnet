@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.h,v 1.15 2002/12/14 04:02:36 dugsong Exp $
+ * $Id: intf.h,v 1.16 2004/01/13 07:41:09 dugsong Exp $
  */
 
 #ifndef DNET_INTF_H
@@ -34,7 +34,11 @@ struct intf_entry {
  */
 #define INTF_TYPE_OTHER		1	/* other */
 #define INTF_TYPE_ETH		6	/* Ethernet */
+#define INTF_TYPE_TOKENRING	9	/* Token Ring */
+#define INTF_TYPE_FDDI		15	/* FDDI */
+#define INTF_TYPE_PPP		23	/* Point-to-Point Protocol */
 #define INTF_TYPE_LOOPBACK	24	/* software loopback */
+#define INTF_TYPE_SLIP		28	/* Serial Line Interface Protocol */
 #define INTF_TYPE_TUN		53	/* proprietary virtual/internal */
 
 /*
