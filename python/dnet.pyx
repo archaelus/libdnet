@@ -1,7 +1,7 @@
 #
 # dnet.pyx
 #
-# $Id: dnet.pyx,v 1.14 2004/09/10 03:07:53 dugsong Exp $
+# $Id: dnet.pyx,v 1.15 2004/09/10 05:30:59 dugsong Exp $
 
 """dumb networking library
 
@@ -1350,6 +1350,10 @@ cdef class tun:
         def __get__(self):
             return tun_fileno(self.tun)
 
+    def fileno(self):
+        """Return file descriptor for tunnel handle."""
+        return tun_fileno(self.tun)
+    
     def send(self, pkt):
         """Send an IP packet, returning the number of bytes sent
         or -1 on failure.
