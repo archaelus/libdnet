@@ -5,7 +5,7 @@
 #
 # Copyright (c) 2003 Dug Song <dugsong@monkey.org>
 #
-# $Id: dnet.pyx,v 1.4 2004/01/05 03:09:25 dugsong Exp $
+# $Id: dnet.pyx,v 1.5 2004/01/06 20:56:37 dugsong Exp $
 
 """dumb networking library
 
@@ -530,7 +530,8 @@ cdef class arp:
         cdef arp_entry entry
         entry.arp_pa = pa._addr
         entry.arp_ha = ha._addr
-        return arp_add(self.arp, &entry)
+        if arp_add(self.arp, &entry) < 0:
+            raise OSError, __oserror()
 
     def delete(self, addr pa):
         """Delete an entry from the system ARP table.
@@ -540,7 +541,8 @@ cdef class arp:
         """
         cdef arp_entry entry
         entry.arp_pa = pa._addr
-        return arp_delete(self.arp, &entry)
+        if arp_delete(self.arp, &entry) < 0:
+            raise OSError, __oserror()
     
     def get(self, addr pa):
         """Return the hardware address for a given protocol address
@@ -885,7 +887,8 @@ cdef class route:
         cdef route_entry entry
         entry.route_dst = dst._addr
         entry.route_gw = gw._addr
-        return route_add(self.route, &entry)
+        if route_add(self.route, &entry) < 0:
+            raise OSError, __oserror()
 
     def delete(self, addr dst):
         """Delete an entry from the system routing table.
@@ -895,7 +898,8 @@ cdef class route:
         """
         cdef route_entry entry
         entry.route_dst = dst._addr
-        return route_delete(self.route, &entry)
+        if route_delete(self.route, &entry) < 0:
+            raise OSError, __oserror()
     
     def get(self, addr dst):
         """Return the hardware address for a given protocol address
