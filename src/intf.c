@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.30 2002/02/01 04:25:46 dugsong Exp $
+ * $Id: intf.c,v 1.31 2002/02/01 04:30:01 dugsong Exp $
  */
 
 #include "config.h"
@@ -163,14 +163,6 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 			}
 		}
 	}
-#if defined(SIOCDIFADDR) && !defined(sgi)	/* XXX - IRIX b0rked w/ifra */
-	/* Delete original address, if none specified. */
-	else if (orig->intf_addr != NULL) {
-		addr_ntos(orig->intf_addr, &ifr.ifr_addr);
-		if (ioctl(intf->fd, SIOCDIFADDR, &ifr) < 0)
-			return (-1);
-	}
-#endif
 	/* Set link-level address. */
 	if (entry->intf_link_addr != NULL &&
 	    addr_cmp(entry->intf_link_addr, orig->intf_link_addr) != 0) {
