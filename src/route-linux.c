@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.14 2004/01/14 04:52:11 dugsong Exp $
+ * $Id: route-linux.c,v 1.15 2005/01/23 07:36:54 dugsong Exp $
  */
 
 #include "config.h"
@@ -172,7 +172,7 @@ route_get(route_t *r, struct route_entry *entry)
 	if ((i = recvmsg(r->nlfd, &msg, 0)) <= 0)
 		return (-1);
 
-	if (nmsg->nlmsg_len < sizeof(*nmsg) || nmsg->nlmsg_len > i ||
+	if (nmsg->nlmsg_len < (int)sizeof(*nmsg) || nmsg->nlmsg_len > i ||
 	    nmsg->nlmsg_seq != seq) {
 		errno = EINVAL;
 		return (-1);

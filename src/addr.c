@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr.c,v 1.32 2004/08/27 01:23:25 dugsong Exp $
+ * $Id: addr.c,v 1.33 2005/01/23 07:36:54 dugsong Exp $
  */
 
 #include "config.h"
@@ -170,7 +170,7 @@ addr_pton(const char *src, struct addr *dst)
 	long bits = -1;
 	int i;
 	
-	for (i = 0; i < sizeof(tmp) - 1; i++) {
+	for (i = 0; i < (int)sizeof(tmp) - 1; i++) {
 		if (src[i] == '/') {
 			tmp[i] = '\0';
 			if (strchr(&src[i + 1], '.')) {
@@ -439,11 +439,11 @@ addr_mtob(const void *mask, size_t size, uint16_t *bits)
 
 	p = (u_char *)mask;
 	
-	for (n = i = 0; i < size; i++, n += 8) {
+	for (n = i = 0; i < (int)size; i++, n += 8) {
 		if (p[i] != 0xff)
 			break;
 	}
-	if (i != size && p[i]) {
+	if (i != (int)size && p[i]) {
 		for (j = 7; j > 0; j--, n++) {
 			if ((p[i] & (1 << j)) == 0)
 				break;

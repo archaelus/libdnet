@@ -3,8 +3,10 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: addr-util.c,v 1.3 2002/12/02 06:17:27 dugsong Exp $
+ * $Id: addr-util.c,v 1.4 2005/01/23 07:36:54 dugsong Exp $
  */
+
+#include "config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -262,7 +264,7 @@ ip6_pton(const char *p, ip6_addr_t *ip6)
 			ep = ""; /* XXX */
 			break;
 		} else if (l >= 0 && l <= 0xffff) {
-			data[n] = (uint16_t)htons(l);
+			data[n] = htons((uint16_t)l);
 
 			if (ep[0] == '\0') {
 				n++;

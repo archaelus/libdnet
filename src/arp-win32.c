@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.11 2004/01/14 06:47:31 dugsong Exp $
+ * $Id: arp-win32.c,v 1.12 2005/01/23 07:36:54 dugsong Exp $
  */
 
 #include "config.h"
@@ -116,7 +116,7 @@ arp_loop(arp_t *arp, arp_handler callback, void *arg)
 	entry.arp_ha.addr_type = ADDR_TYPE_ETH;
 	entry.arp_ha.addr_bits = ETH_ADDR_BITS;
 	
-	for (i = 0; i < arp->iptable->dwNumEntries; i++) {
+	for (i = 0; i < (int)arp->iptable->dwNumEntries; i++) {
 		if (arp->iptable->table[i].dwPhysAddrLen != ETH_ADDR_LEN)
 			continue;
 		entry.arp_pa.addr_ip = arp->iptable->table[i].dwAddr;

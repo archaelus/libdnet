@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.23 2004/01/14 04:52:10 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.24 2005/01/23 07:36:54 dugsong Exp $
  */
 
 #include "config.h"
@@ -291,7 +291,7 @@ arp_loop(arp_t *r, arp_handler callback, void *arg)
 		if (msg.len >= sizeof(*tea) && tea->PRIM_type == T_ERROR_ACK)
 			return (-1);
 		
-		if (rc != MOREDATA || msg.len < sizeof(*toa) ||
+		if (rc != MOREDATA || msg.len < (int)sizeof(*toa) ||
 		    toa->PRIM_type != T_OPTMGMT_ACK ||
 		    toa->MGMT_flags != T_SUCCESS)
 			return (-1);
