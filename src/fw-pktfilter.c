@@ -4,10 +4,12 @@
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  * Copyright (c) 2001 Jean-Baptiste Marchand, Hervé Schauer Consultants.  
  *
- * $Id: fw-pktfilter.c,v 1.3 2005/02/15 05:31:19 dugsong Exp $
+ * $Id: fw-pktfilter.c,v 1.4 2005/02/15 06:37:06 dugsong Exp $
  */
 
 #include "config.h"
+
+#include <iphlpapi.h>
 
 #include <ctype.h>
 #include <errno.h>
@@ -16,8 +18,6 @@
 #include <string.h>
 
 #include "dnet.h"
-
-#include <iphlpapi.h>
 
 #define PKTFILTER_PIPE "\\\\.\\pipe\\PktFltPipe"	
 #define MAX_RULE_LENGTH 256
