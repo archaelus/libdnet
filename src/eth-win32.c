@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-win32.c,v 1.1 2002/01/26 20:45:02 dugsong Exp $
+ * $Id: eth-win32.c,v 1.2 2002/01/26 21:31:30 dugsong Exp $
  */
 
 #include "config.h"
@@ -92,17 +92,35 @@ eth_close(eth_t *eth)
 }
 
 int
-eth_get(eth_t *e, eth_addr_t *ea)
+eth_get(eth_t *eth, eth_addr_t *ea)
 {
-	errno = ENOSYS;
-	SetLastError(ERROR_NOT_SUPPORTED);
+	PACKET_OID_DATA *data;
+	u_char buf[512];
+
+	data = (PACKET_OID_DATA *)buf;
+	data->Oid = OID_802_3_CURRENT_ADDRESS;
+	data->Length = ETH_ADDR_LEN;
+
+	if (PacketRequest(eth->lpa, FALSE, data) == TRUE) {
+		memcpy(ea, data->Data, ETH_ADDR_LEN);
+		return (0);
+	}
 	return (-1);
 }
 
 int
-eth_set(eth_t *e, const eth_addr_t *ea)
+eth_set(eth_t *eth, const eth_addr_t *ea)
 {
-	errno = ENOSYS;
-	SetLastError(ERROR_NOT_SUPPORTED);
+	PACKET_OID_DATA *data;
+	u_char buf[512];
+
+	data = (PACKET_OID_DATA *)buf;
+	data->Oid = OID_802_3_CURRENT_ADDRESS;
+	memcpy(data->Data, ea, ETH_ADDR_LEN);
+	data->Length = ETH_ADDR_LEN;
+	
+	if (PacketRequest(eth->lpa, TRUE, data) == TRUE)
+		return (0);
+	
 	return (-1);
 }
