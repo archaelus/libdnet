@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.54 2005/01/23 07:36:54 dugsong Exp $
+ * $Id: intf.c,v 1.55 2005/02/10 16:57:35 dugsong Exp $
  */
 
 #include "config.h"
@@ -415,6 +415,14 @@ _intf_get_noalias(intf_t *intf, struct intf_entry *entry)
 			return (-1);
 		if (addr_ston(&ifr.ifr_addr, &entry->intf_link_addr) < 0)
 			return (-1);
+#elif defined(SIOCRPHYSADDR)
+		/* Tru64 */
+		struct ifdevea *ifd = (struct ifdevea *)&ifr; /* XXX */
+		
+		if (ioctl(intf->fd, SIOCRPHYSADDR, ifd) < 0)
+			return (-1);
+		addr_pack(&entry->intf_link_addr, ADDR_TYPE_ETH, ETH_ADDR_BITS,
+		    ifd->current_pa, ETH_ADDR_LEN);
 #else
 		eth_t *eth;
 		
