@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.6 2001/12/30 20:23:28 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.7 2001/12/30 20:27:27 dugsong Exp $
  */
 
 #include "config.h"
@@ -38,10 +38,7 @@
 
 typedef u_int32_t ip_addr_t;
 
-#include "dnet/eth.h"
-#include "dnet/addr.h"
-#include "dnet/tcp.h"
-#include "dnet/fw.h"
+#include "dnet.h"
 
 struct fw_handle {
 	int	fd;
