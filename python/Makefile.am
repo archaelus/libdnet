@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.1 2004/01/03 08:43:01 dugsong Exp $
+## $Id: Makefile.am,v 1.2 2004/01/03 20:51:00 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -11,7 +11,7 @@ dnet.c: dnet.pyx
 	pyrexc dnet.pyx
 
 python-build: dnet.c
-	python setup.py build
+	$(PYTHON) setup.py build
 	touch python-build
 
 python-clean:
