@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.6 2001/10/14 19:05:46 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.7 2001/10/14 19:20:13 dugsong Exp $
  */
 
 #include "config.h"
@@ -75,7 +75,7 @@ strioctl(int fd, int cmd, int len, char *dp)
 	struct strioctl str;
 	
 	str.ic_cmd = cmd;
-	str.ic_timout = -1;
+	str.ic_timout = INFTIM;
 	str.ic_len = len;
 	str.ic_dp = dp;
 	
