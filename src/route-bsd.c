@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.13 2002/02/04 03:59:45 dugsong Exp $
+ * $Id: route-bsd.c,v 1.14 2002/02/04 04:31:45 dugsong Exp $
  */
 
 #include "config.h"
@@ -183,11 +183,13 @@ route_open(void)
 int
 route_add(route_t *r, const struct route_entry *entry)
 {
+	struct route_entry rtent;
 	u_char buf[BUFSIZ];
 
+	memcpy(&rtent, entry, sizeof(rtent));
+	
 	if (route_msg(r, RTM_ADD, buf, sizeof(buf),
-	    (struct addr *)&entry->route_dst,
-	    (struct addr *)&entry->route_gw) < 0)
+	    &rtent.route_dst, &rtent.route_gw) < 0)
 		return (-1);
 	
 	return (0);
@@ -199,14 +201,13 @@ route_delete(route_t *r, const struct route_entry *entry)
 	struct route_entry rtent;
 	u_char buf[BUFSIZ];
 
-	memcpy(&rtent.route_dst, &entry->route_dst, sizeof(rtent.route_dst));
+	memcpy(&rtent, entry, sizeof(rtent));
 	
 	if (route_get(r, &rtent) < 0)
 		return (-1);
 	
 	if (route_msg(r, RTM_DELETE, buf, sizeof(buf),
-	    (struct addr *)&entry->route_dst,
-	    (struct addr *)&entry->route_gw) < 0)
+	    &rtent.route_dst, &rtent.route_gw) < 0)
 		return (-1);
 	
 	return (0);
