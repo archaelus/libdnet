@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: os.h,v 1.11 2005/01/25 21:28:31 dugsong Exp $
+ * $Id: os.h,v 1.12 2005/02/15 05:31:00 dugsong Exp $
  */
 
 #ifndef DNET_OS_H
@@ -22,6 +22,9 @@
   typedef u_char	uint8_t;
   typedef u_short	uint16_t;
   typedef u_int		uint32_t;
+# ifndef __CYGWIN__
+  typedef long		ssize_t;
+# endif
 #else
 # include <sys/param.h>
 # include <sys/types.h>
