@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.46 2004/01/13 07:37:04 dugsong Exp $
+ * $Id: intf.c,v 1.47 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -646,10 +646,12 @@ intf_loop(intf_t *intf, intf_handler callback, void *arg)
 intf_t *
 intf_close(intf_t *intf)
 {
-	if (intf->fd >= 0)
-		close(intf->fd);
-	if (intf->fd6 >= 0)
-		close(intf->fd6);
-	free(intf);
+	if (intf != NULL) {
+		if (intf->fd >= 0)
+			close(intf->fd);
+		if (intf->fd6 >= 0)
+			close(intf->fd6);
+		free(intf);
+	}
 	return (NULL);
 }

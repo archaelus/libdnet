@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-hpux.c,v 1.10 2004/01/03 17:27:24 dugsong Exp $
+ * $Id: route-hpux.c,v 1.11 2004/01/14 04:52:11 dugsong Exp $
  */
 
 #include "config.h"
@@ -37,12 +37,10 @@ route_open(void)
 {
 	route_t *r;
 
-	if ((r = calloc(1, sizeof(*r))) == NULL)
-		return (NULL);
-
-	if ((r->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-		return (route_close(r));
-	
+	if ((r = calloc(1, sizeof(*r))) != NULL) {
+		if ((r->fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+			return (route_close(r));
+	}
 	return (r);
 }
 
@@ -173,8 +171,10 @@ route_loop(route_t *r, route_handler callback, void *arg)
 route_t *
 route_close(route_t *r)
 {
-	if (r->fd > 0)
-		close(r->fd);
-	free(r);
+	if (r != NULL) {
+		if (r->fd >= 0)
+			close(r->fd);
+		free(r);
+	}
 	return (NULL);
 }

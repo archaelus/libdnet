@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-ndd.c,v 1.5 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: eth-ndd.c,v 1.6 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -66,11 +66,11 @@ eth_send(eth_t *e, const void *buf, size_t len)
 eth_t *
 eth_close(eth_t *e)
 {
-	assert(e != NULL);
-
-	if (e->fd > 0)
-		close(e->fd);
-	free(e);
+	if (e != NULL) {
+		if (e->fd >= 0)
+			close(e->fd);
+		free(e);
+	}
 	return (NULL);
 }
 

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-win32.c,v 1.9 2003/03/21 04:03:04 dugsong Exp $
+ * $Id: arp-win32.c,v 1.10 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -26,9 +26,7 @@ arp_open(void)
 {
 	arp_t *arp;
 
-	if ((arp = calloc(1, sizeof(*arp))) == NULL)
-		return (NULL);
-
+	arp = calloc(1, sizeof(*arp));
 	return (arp);
 }
 
@@ -136,6 +134,8 @@ arp_loop(arp_t *arp, arp_handler callback, void *arg)
 arp_t *
 arp_close(arp_t *arp)
 {
-	free(arp);
+	if (arp != NULL) {
+		free(arp);
+	}
 	return (NULL);
 }

@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.15 2003/03/06 04:38:35 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.16 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -126,7 +126,7 @@ eth_open(const char *device)
 
 	if ((e = calloc(1, sizeof(*e))) == NULL)
 		return (NULL);
-	
+
 #ifdef HAVE_SYS_DLPIHDR_H
 	if ((e->fd = open("/dev/streams/dlb", O_RDWR)) < 0)
 		return (eth_close(e));
@@ -136,8 +136,8 @@ eth_open(const char *device)
 		return (eth_close(e));
 	}
 #else
+	e->fd = -1;
 	snprintf(dev, sizeof(dev), "/dev/%s", device);
-	
 	if ((p = strpbrk(dev, "0123456789")) == NULL) {
 		errno = EINVAL;
 		return (eth_close(e));
@@ -240,11 +240,11 @@ eth_send(eth_t *e, const void *buf, size_t len)
 eth_t *
 eth_close(eth_t *e)
 {
-	assert(e != NULL);
-
-	if (e->fd > 0)
-		close(e->fd);
-	free(e);
+	if (e != NULL) {
+		if (e->fd >= 0)
+			close(e->fd);
+		free(e);
+	}
 	return (NULL);
 }
 

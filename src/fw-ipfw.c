@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipfw.c,v 1.15 2003/01/06 14:26:02 dugsong Exp $
+ * $Id: fw-ipfw.c,v 1.16 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -186,12 +186,10 @@ fw_open(void)
 {
 	fw_t *fw;
 	
-	if ((fw = calloc(1, sizeof(*fw))) == NULL)
-		return (NULL);
-
-	if ((fw->fd = socket(AF_INET, SOCK_RAW, IPPROTO_IP)) < 0)
-		return (fw_close(fw));
-	
+	if ((fw = calloc(1, sizeof(*fw))) != NULL) {
+		if ((fw->fd = socket(AF_INET, SOCK_RAW, IPPROTO_IP)) < 0)
+			return (fw_close(fw));
+	}
 	return (fw);
 }
 
@@ -317,10 +315,10 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 fw_t *
 fw_close(fw_t *fw)
 {
-	assert(fw != NULL);
-
-	if (fw->fd > 0)
-		close(fw->fd);
-	free(fw);
+	if (fw != NULL) {
+		if (fw->fd >= 0)
+			close(fw->fd);
+		free(fw);
+	}
 	return (NULL);
 }

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-pf.c,v 1.14 2003/10/15 17:26:31 dugsong Exp $
+ * $Id: fw-pf.c,v 1.15 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -169,12 +169,10 @@ fw_open(void)
 {
 	fw_t *fw;
 
-	if ((fw = calloc(1, sizeof(*fw))) == NULL)
-		return (NULL);
-
-	if ((fw->fd = open("/dev/pf", O_RDWR)) < 0)
-		return (fw_close(fw));
-	
+	if ((fw = calloc(1, sizeof(*fw))) != NULL) {
+		if ((fw->fd = open("/dev/pf", O_RDWR)) < 0)
+			return (fw_close(fw));
+	}
 	return (fw);
 }
 
@@ -242,10 +240,10 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 fw_t *
 fw_close(fw_t *fw)
 {
-	assert(fw != NULL);
-
-	if (fw->fd > 0)
-		close(fw->fd);
-	free(fw);
+	if (fw != NULL) {
+		if (fw->fd >= 0)
+			close(fw->fd);
+		free(fw);
+	}
 	return (NULL);
 }

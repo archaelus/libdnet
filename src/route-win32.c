@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-win32.c,v 1.9 2004/01/13 07:20:44 dugsong Exp $
+ * $Id: route-win32.c,v 1.10 2004/01/14 04:52:11 dugsong Exp $
  */
 
 #include "config.h"
@@ -146,6 +146,7 @@ route_loop(route_t *route, route_handler callback, void *arg)
 route_t *
 route_close(route_t *route)
 {
-	free(route);
+	if (route != NULL)
+		free(route);
 	return (NULL);
 }

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipchains.c,v 1.6 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: fw-ipchains.c,v 1.7 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -115,12 +115,10 @@ fw_open(void)
 {
 	fw_t *fw;
 
-	if ((fw = calloc(1, sizeof(*fw))) == NULL)
-		return (NULL);
-
-	if ((fw->fd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW)) < 0)
-		return (fw_close(fw));
-
+	if ((fw = calloc(1, sizeof(*fw))) != NULL) {
+		if ((fw->fd = socket(AF_INET, SOCK_RAW, IPPROTO_RAW)) < 0)
+			return (fw_close(fw));
+	}
 	return (fw);
 }
 
@@ -219,10 +217,10 @@ fw_loop(fw_t *fw, fw_handler callback, void *arg)
 fw_t *
 fw_close(fw_t *fw)
 {
-	assert(fw != NULL);
-
-	if (fw->fd > 0)
-		close(fw->fd);
-	free(fw);
+	if (fw != NULL) {
+		if (fw->fd >= 0)
+			close(fw->fd);
+		free(fw);
+	}
 	return (NULL);
 }

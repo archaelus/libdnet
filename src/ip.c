@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.27 2002/02/04 04:11:13 dugsong Exp $
+ * $Id: ip.c,v 1.28 2004/01/14 04:52:11 dugsong Exp $
  */
 
 #include "config.h"
@@ -94,8 +94,10 @@ ip_send(ip_t *i, const void *buf, size_t len)
 ip_t *
 ip_close(ip_t *i)
 {
-	if (i->fd > 0)
-		close(i->fd);
-	free(i);
+	if (i != NULL) {
+		if (i->fd >= 0)
+			close(i->fd);
+		free(i);
+	}
 	return (NULL);
 }

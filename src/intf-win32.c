@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.17 2004/01/13 07:45:50 dugsong Exp $
+ * $Id: intf-win32.c,v 1.18 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -361,14 +361,16 @@ intf_close(intf_t *intf)
 {
 	int i;
 
-	for (i = 0; i < MIB_IF_TYPE_MAX; i++) {
-		if (intf->ifcombo[i].idx)
-			free(intf->ifcombo[i].idx);
+	if (intf != NULL) {
+		for (i = 0; i < MIB_IF_TYPE_MAX; i++) {
+			if (intf->ifcombo[i].idx)
+				free(intf->ifcombo[i].idx);
+		}
+		if (intf->iftable)
+			free(intf->iftable);
+		if (intf->iptable)
+			free(intf->iptable);
+		free(intf);
 	}
-	if (intf->iftable)
-		free(intf->iftable);
-	if (intf->iptable)
-		free(intf->iptable);
-	free(intf);
 	return (NULL);
 }

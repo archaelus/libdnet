@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-snoop.c,v 1.7 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: eth-snoop.c,v 1.8 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -100,10 +100,10 @@ eth_send(eth_t *e, const void *buf, size_t len)
 eth_t *
 eth_close(eth_t *e)
 {
-	assert(e != NULL);
-	
-	if (e->fd > 0)
-		close(e->fd);
-	free(e);
+	if (e != NULL) {
+		if (e->fd >= 0)
+			close(e->fd);
+		free(e);
+	}
 	return (NULL);
 }

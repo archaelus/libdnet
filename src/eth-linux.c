@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-linux.c,v 1.6 2002/01/20 21:23:27 dugsong Exp $
+ * $Id: eth-linux.c,v 1.7 2004/01/14 04:52:10 dugsong Exp $
  */
 
 #include "config.h"
@@ -45,24 +45,24 @@ eth_open(const char *device)
 	eth_t *e;
 	int n;
 	
-	if ((e = calloc(1, sizeof(*e))) == NULL)
-		return (NULL);
-	
-	if ((e->fd = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) < 0)
-		return (eth_close(e));
+	if ((e = calloc(1, sizeof(*e))) != NULL) {
+		if ((e->fd = socket(PF_PACKET, SOCK_RAW,
+			 htons(ETH_P_ALL))) < 0)
+			return (eth_close(e));
 #ifdef SO_BROADCAST
-	n = 1;
-	if (setsockopt(e->fd, SOL_SOCKET, SO_BROADCAST, &n, sizeof(n)) < 0)
-		return (eth_close(e));
+		n = 1;
+		if (setsockopt(e->fd, SOL_SOCKET, SO_BROADCAST, &n,
+			sizeof(n)) < 0)
+			return (eth_close(e));
 #endif
-	strlcpy(e->ifr.ifr_name, device, sizeof(e->ifr.ifr_name));
-	
-	if (ioctl(e->fd, SIOCGIFINDEX, &e->ifr) < 0)
-		return (eth_close(e));
-
-	e->sll.sll_family = AF_PACKET;
-	e->sll.sll_ifindex = e->ifr.ifr_ifindex;
-	
+		strlcpy(e->ifr.ifr_name, device, sizeof(e->ifr.ifr_name));
+		
+		if (ioctl(e->fd, SIOCGIFINDEX, &e->ifr) < 0)
+			return (eth_close(e));
+		
+		e->sll.sll_family = AF_PACKET;
+		e->sll.sll_ifindex = e->ifr.ifr_ifindex;
+	}
 	return (e);
 }
 
@@ -80,11 +80,11 @@ eth_send(eth_t *e, const void *buf, size_t len)
 eth_t *
 eth_close(eth_t *e)
 {
-	assert(e != NULL);
-
-	if (e->fd > 0)
-		close(e->fd);
-	free(e);
+	if (e != NULL) {
+		if (e->fd >= 0)
+			close(e->fd);
+		free(e);
+	}
 	return (NULL);
 }
 
