@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.16 2004/01/07 04:31:44 dugsong Exp $
+ * $Id: intf-win32.c,v 1.17 2004/01/13 07:45:50 dugsong Exp $
  */
 
 #include "config.h"
@@ -132,7 +132,8 @@ _ifrow_to_entry(intf_t *intf, MIB_IFROW *ifrow, struct intf_entry *entry)
 	lap = ap + ((entry->intf_len - sizeof(*entry)) /
 	    sizeof(entry->intf_alias_addrs[0]));
 	for (i = 0; i < intf->iptable->dwNumEntries; i++) {
-		if (intf->iptable->table[i].dwIndex == ifrow->dwIndex) {
+		if (intf->iptable->table[i].dwIndex == ifrow->dwIndex &&
+		    intf->iptable->table[i].dwAddr != 0) {
 			if (entry->intf_addr.addr_type == ADDR_TYPE_NONE) {
 				/* Set primary address if unset. */
 				entry->intf_addr.addr_type = ADDR_TYPE_IP;
