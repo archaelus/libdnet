@@ -4,7 +4,7 @@
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  * Copyright (c) 1999 Masaki Hirabaru <masaki@merit.edu>
  * 
- * $Id: route-bsd.c,v 1.1 2001/10/11 04:14:51 dugsong Exp $
+ * $Id: route-bsd.c,v 1.2 2001/10/11 16:05:21 dugsong Exp $
  */
 
 #include "config.h"
@@ -137,6 +137,11 @@ route_msg(route_t *r, int type, u_char *buf, int buflen,
 #endif
 		if (addr_ston(sa, gw) < 0)
 			return (-1);
+
+		if (gw->addr_type != ADDR_TYPE_IP) {
+			errno = EINVAL;
+			return (-1);
+		}
 	}
 	return (0);
 }
