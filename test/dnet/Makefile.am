@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.5 2002/02/09 04:51:48 dugsong Exp $
+## $Id: Makefile.am,v 1.6 2002/02/09 05:10:47 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -12,3 +12,7 @@ man_MANS = dnet.8
 EXTRA_DIST = $(man_MANS)
 
 LDADD = $(top_srcdir)/src/libdnet.a
+
+dnet.8.txt: dnet.8
+	groff -t -e -mdoc -Tascii dnet.8 | col -bx > $@
+
