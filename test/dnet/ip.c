@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip.c,v 1.9 2002/02/08 07:26:58 dugsong Exp $
+ * $Id: ip.c,v 1.10 2002/02/08 07:43:53 dugsong Exp $
  */
 
 #include "config.h"
@@ -17,8 +17,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "aton.h"
 #include "dnet.h"
+#include "aton.h"
 #include "mod.h"
 
 void
