@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.25 2002/01/31 23:51:08 dugsong Exp $
+ * $Id: intf.c,v 1.26 2002/02/01 03:42:37 dugsong Exp $
  */
 
 #include "config.h"
@@ -203,38 +203,42 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 			return (-1);
 	}
 	/* Delete any existing aliases. */
-#ifdef SIOCAIFADDR
+#ifdef SIOCAIFADDR			/* XXX - skip Linux SIOCDIFADDR */
+	memset(&ifra, 0, sizeof(ifra));
 	strlcpy(ifra.ifra_name, entry->intf_name, sizeof(ifra.ifra_name));
-#endif
+	
 	for (i = 0; i < orig->intf_alias_num; i++) {
-#ifdef SIOCAIFADDR	/* XXX - Linux has SIOCDIFADDR we want to skip */
 		addr_ntos(&orig->intf_alias_addr[i], &ifra.ifra_addr);
 		ioctl(intf->fd, SIOCDIFADDR, &ifra);
+	}
 #else
+	for (i = 0; i < orig->intf_alias_num; i++) {
 		snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), "%s:%d",
 		    entry->intf_name, i + 1);
 # ifdef SIOCLIFREMOVEIF
-		/* XXX - overloading lifreq with ifreq */
+		/* XXX - overloading Solaris lifreq with ifreq */
 		ioctl(intf->fd, SIOCLIFREMOVEIF, &ifr);
 # else
 		ifr.ifr_flags = 0;
 		ioctl(intf->fd, SIOCSIFFLAGS, &ifr);
-# endif /* SIOCLIFREMOVEIF */
-#endif
+# endif
 	}
+#endif
 	/* Set aliases. */
-	for (i = 0; i < entry->intf_alias_num; i++) {
 #ifdef SIOCAIFADDR
+	for (i = 0; i < entry->intf_alias_num; i++) {
 		if (addr_ntos(&entry->intf_alias_addr[i], &ifra.ifra_addr) < 0)
 			return (-1);
-		
 		addr_bcast(&entry->intf_alias_addr[i], &bcast);
 		addr_ntos(&bcast, &ifra.ifra_brdaddr);
-		addr_btos(IP_ADDR_BITS, &ifra.ifra_mask);
+		addr_btos(&entry->intf_alias_addr[i].addr_bits,
+		    &ifra.ifra_mask);
 		
 		if (ioctl(intf->fd, SIOCAIFADDR, &ifra) < 0)
 			return (-1);
+	}
 #else
+	for (i = 0; i < entry->intf_alias_num; i++) {
 		snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), "%s:%d",
 		    entry->intf_name, i + 1);
 # ifdef SIOCLIFADDIF
@@ -245,8 +249,9 @@ intf_set(intf_t *intf, const struct intf_entry *entry)
 			return (-1);
 		if (ioctl(intf->fd, SIOCSIFADDR, &ifr) < 0)
 			return (-1);
-#endif /* SIOCAIFADDR */
 	}
+	strlcpy(ifr.ifr_name, entry->intf_name, sizeof(ifr.ifr_name));
+#endif
 	/* Set interface flags. */
 	if (ioctl(intf->fd, SIOCGIFFLAGS, &ifr) < 0)
 		return (-1);
