@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: ip-cooked.c,v 1.4 2002/02/04 05:25:39 dugsong Exp $
+ * $Id: ip-cooked.c,v 1.5 2002/02/04 05:54:51 dugsong Exp $
  */
 
 #include "config.h"
@@ -149,9 +149,10 @@ ip_send(ip_t *ip, const void *buf, size_t len)
 			    sizeof(arpent.arp_pa));
 			
 			if (arp_get(ip->arp, &arpent) < 0)
-				addr_aton("ff:ff:ff:ff:ff", &arpent.arp_ha);
+				memset(&arpent.arp_ha.addr_eth, 0xff,
+				    ETH_ADDR_LEN);
 		} else
-			addr_aton("ff:ff:ff:ff:ff", &arpent.arp_ha);
+			memset(&arpent.arp_ha.addr_eth, 0xff, ETH_ADDR_LEN);
 	}
 	eth_fill_hdr(frame, arpent.arp_ha.addr_eth,
 	    ipi->ha.addr_eth, ETH_TYPE_IP);
