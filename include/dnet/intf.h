@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.h,v 1.7 2002/01/20 21:21:00 dugsong Exp $
+ * $Id: intf.h,v 1.8 2002/01/22 17:34:11 dugsong Exp $
  */
 
 #ifndef DNET_INTF_H
@@ -29,7 +29,8 @@ struct intf_info {
 #define INTF_FLAG_LOOPBACK	0x02	/* is a loopback net (r/o) */
 #define INTF_FLAG_POINTOPOINT	0x04	/* point-to-point link (r/o) */
 #define INTF_FLAG_NOARP		0x08	/* disable ARP */
-#define INTF_FLAG_MULTICAST	0x10	/* supports multicast (r/o) */
+#define INTF_FLAG_BROADCAST	0x10	/* supports broadcast (r/o) */
+#define INTF_FLAG_MULTICAST	0x20	/* supports multicast (r/o) */
 
 typedef struct intf_handle intf_t;
 
