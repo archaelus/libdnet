@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: arp-ioctl.c,v 1.4 2001/10/15 05:07:38 dugsong Exp $
+ * $Id: arp-ioctl.c,v 1.5 2001/10/15 07:17:58 dugsong Exp $
  */
 
 #include "config.h"
@@ -111,6 +111,14 @@ arp_add(arp_t *a, struct addr *pa, struct addr *ha)
 	if (addr_ntos(pa, &ar.arp_pa) < 0 ||
 	    addr_ntos(ha, &ar.arp_ha) < 0)
 		return (-1);
+
+	/* XXX - see arp(7) for details... */
+#ifdef __linux__
+	ar.arp_ha.sa_family = ARP_HRD_ETH;
+#else
+	/* XXX - Solaris, HP-UX, others? */
+	ar.arp_ha.sa_family = AF_UNSPEC;
+#endif
 
 #ifdef HAVE_ARPREQ_ARP_DEV
 	if (intf_loop(a->intf, arp_set_dev, &ar) != 1) {
