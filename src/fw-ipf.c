@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: fw-ipf.c,v 1.11 2002/01/01 16:29:10 dugsong Exp $
+ * $Id: fw-ipf.c,v 1.12 2002/01/07 01:54:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -219,7 +219,7 @@ fw_delete(fw_t *fw, struct fw_rule *rule)
 }
 
 static int
-fw_kcopy(fw_t *fw, u_char *buf, off_t pos, ssize_t n)
+fw_kcopy(fw_t *fw, u_char *buf, off_t pos, size_t n)
 {
 	int i;
 	

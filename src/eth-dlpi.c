@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-dlpi.c,v 1.11 2001/12/31 21:56:24 dugsong Exp $
+ * $Id: eth-dlpi.c,v 1.12 2002/01/07 01:54:23 dugsong Exp $
  */
 
 #include "config.h"
@@ -198,7 +198,7 @@ eth_open(char *device)
 	return (e);
 }
 
-ssize_t
+size_t
 eth_send(eth_t *e, const void *buf, size_t len)
 {
 #if defined(DLIOCRAW)

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-none.c,v 1.2 2002/01/06 22:00:01 dugsong Exp $
+ * $Id: eth-none.c,v 1.3 2002/01/07 01:54:24 dugsong Exp $
  */
 
 #include "config.h"
@@ -23,7 +23,7 @@ eth_open(char *device)
 	return (NULL);
 }
 
-ssize_t
+size_t
 eth_send(eth_t *e, const void *buf, size_t len)
 {
 	errno = ENOSYS;
