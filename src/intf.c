@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf.c,v 1.28 2002/02/01 04:04:21 dugsong Exp $
+ * $Id: intf.c,v 1.29 2002/02/01 04:13:47 dugsong Exp $
  */
 
 #include "config.h"
@@ -109,7 +109,7 @@ intf_open(void)
 int
 intf_set(intf_t *intf, const struct intf_entry *entry)
 {
-#ifdef SIOCAIFADDR
+#if defined(SIOCAIFADDR) || defined(SIOCDIFADDR)
 	struct dnet_ifaliasreq ifra;
 #endif
 	struct ifreq ifr;
