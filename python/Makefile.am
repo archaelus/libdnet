@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.5 2004/05/05 20:34:56 dugsong Exp $
+## $Id: Makefile.am,v 1.6 2004/05/05 21:06:09 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -11,7 +11,7 @@ $(srcdir)/dnet.c: $(srcdir)/dnet.pyx
 	pyrexc $(srcdir)/dnet.pyx
 
 python-build: $(srcdir)/dnet.c
-	$(PYTHON) setup.py build --build-lib build
+	$(PYTHON) setup.py build
 	touch python-build
 
 python-clean:
@@ -22,7 +22,7 @@ clean: python-clean
 distclean: clean
 
 install-exec-local:
-	python $(srcdir)/setup.py install --prefix=$(DESTDIR)$(prefix)
+	$(PYTHON) setup.py install --prefix=$(DESTDIR)$(prefix)
 
 TESTS = test.py
 endif
