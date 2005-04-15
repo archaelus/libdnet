@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.15 2005/01/23 07:36:54 dugsong Exp $
+ * $Id: route-linux.c,v 1.16 2005/04/15 15:52:50 dugsong Exp $
  */
 
 #include "config.h"
@@ -14,6 +14,7 @@
 #include <sys/uio.h>
 
 #include <asm/types.h>
+#include <netinet/in.h>
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
 
