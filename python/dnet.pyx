@@ -1,7 +1,7 @@
 #
 # dnet.pyx
 #
-# $Id: dnet.pyx,v 1.24 2005/02/25 23:05:09 dugsong Exp $
+# $Id: dnet.pyx,v 1.25 2005/08/25 05:49:48 dugsong Exp $
 
 """dumb networking library
 
@@ -42,7 +42,7 @@ cdef extern from *:
 
 cdef __memcpy(char *dst, object src, int n):
     if PyString_Size(src) != n:
-        raise ValueError, "not a %d-byte binary string: %s" % (n, src)
+        raise ValueError, "not a %d-byte binary string: %r" % (n, src)
     memcpy(dst, src, n)
 
 cdef __oserror():
@@ -556,8 +556,14 @@ cdef class addr:
         return a
     
     def __cmp__(addr x, addr y):
-        return addr_cmp(&x._addr, &y._addr)
-
+        cdef int i
+        i = addr_cmp(&x._addr, &y._addr)
+        if i < 0:
+            return -1
+        if i > 0:
+            return 1
+        return 0
+    
     def __contains__(self, addr other):
         cdef addr_t s1, s2, o1, o2
         if addr_net(&self._addr, &s1) != 0 or \
