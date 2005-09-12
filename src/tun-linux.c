@@ -6,13 +6,14 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: tun-linux.c,v 1.3 2005/02/10 20:18:01 dugsong Exp $
+ * $Id: tun-linux.c,v 1.4 2005/09/12 02:18:06 dugsong Exp $
  */
 
 #include "config.h"
 
 #include <sys/ioctl.h>
 #include <sys/socket.h>
+#include <sys/uio.h>
 
 #include <linux/if.h>
 #include <linux/if_tun.h>
