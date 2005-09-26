@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.24 2005/02/15 06:37:06 dugsong Exp $
+ * $Id: intf-win32.c,v 1.25 2005/09/26 02:47:08 dugsong Exp $
  */
 
 #include "config.h"
@@ -231,26 +231,6 @@ intf_get(intf_t *intf, struct intf_entry *entry)
 	_ifrow_to_entry(intf, &ifrow, entry);
 	
 	return (0);
-}
-
-/* XXX - gross hack required by eth-win32:eth_open() */
-const char *
-intf_get_desc(intf_t *intf, const char *name)
-{
-	static char desc[MAXLEN_IFDESCR + 1];
-	MIB_IFROW ifrow;
-	
-	if (_refresh_tables(intf) < 0)
-		return (NULL);
-	
-	ifrow.dwIndex = _find_ifindex(intf, name);
-	
-	if (GetIfEntry(&ifrow) != NO_ERROR)
-		return (NULL);
-
-	strlcpy(desc, ifrow.bDescr, sizeof(desc));
-	
-	return (desc);
 }
 
 int
