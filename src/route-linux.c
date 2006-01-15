@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2000 Dug Song <dugsong@monkey.org>
  *
- * $Id: route-linux.c,v 1.17 2006/01/09 22:19:02 dugsong Exp $
+ * $Id: route-linux.c,v 1.18 2006/01/15 07:33:29 dugsong Exp $
  */
 
 #include "config.h"
@@ -246,12 +246,12 @@ route_loop(route_t *r, route_handler callback, void *arg)
 		fclose(fp);
 	}
 	if (ret == 0 && (fp = fopen(PROC_IPV6_ROUTE_FILE, "r")) != NULL) {
-		char s[32], d[8][5], n[8][5];
+		char s[33], d[8][5], n[8][5];
 		u_int slen, dlen;
 		
 		while (fgets(buf, sizeof(buf), fp) != NULL) {
 			sscanf(buf, "%04s%04s%04s%04s%04s%04s%04s%04s %02x "
-			    "%s %02x %04s%04s%04s%04s%04s%04s%04s%04s ",
+			    "%32s %02x %04s%04s%04s%04s%04s%04s%04s%04s ",
 			    d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7],
 			    &dlen, s, &slen,
 			    n[0], n[1], n[2], n[3], n[4], n[5], n[6], n[7]);
