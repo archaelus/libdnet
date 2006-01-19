@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.16 2005/02/10 17:06:36 dugsong Exp $
+## $Id: Makefile.am,v 1.17 2006/01/19 06:11:01 dugsong Exp $
 
 include $(top_srcdir)/Makefile.am.common
 
@@ -6,13 +6,6 @@ lib_LTLIBRARIES = libdnet.la
 
 libdnet_la_SOURCES = addr-util.c addr.c blob.c ip-util.c ip6.c rand.c
 
-EXTRA_libdnet_la_SOURCES = arp-bsd.c arp-ioctl.c arp-none.c arp-win32.c \
-	eth-bsd.c eth-dlpi.c eth-linux.c eth-ndd.c eth-none.c eth-pfilt.c \
-	eth-snoop.c eth-win32.c fw-ipchains.c fw-ipf.c fw-ipfw.c fw-none.c \
-	fw-pf.c fw-pktfilter.c intf-win32.c intf.c ip-cooked.c ip.c \
-	ip-win32.c route-bsd.c route-hpux.c route-linux.c route-none.c \
-	route-win32.c tun-bsd.c tun-linux.c tun-none.c tun-solaris.c
-
 libdnet_la_LIBADD = @LTLIBOBJS@
 
-libdnet_la_LDFLAGS = -version-info 1:0:0
+libdnet_la_LDFLAGS = -version-info 1:1:0
