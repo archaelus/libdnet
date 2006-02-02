@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2001 Dug Song <dugsong@monkey.org>
  *
- * $Id: eth-bsd.c,v 1.10 2005/01/25 21:30:39 dugsong Exp $
+ * $Id: eth-bsd.c,v 1.11 2006/02/02 04:17:39 dugsong Exp $
  */
 
 #include "config.h"
@@ -45,7 +45,7 @@ eth_open(const char *device)
 	int i;
 
 	if ((e = calloc(1, sizeof(*e))) != NULL) {
-		for (i = 0; i < 32; i++) {
+		for (i = 0; i < 128; i++) {
 			snprintf(file, sizeof(file), "/dev/bpf%d", i);
 			e->fd = open(file, O_WRONLY);
 			if (e->fd != -1 || errno != EBUSY)
