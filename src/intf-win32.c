@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2002 Dug Song <dugsong@monkey.org>
  *
- * $Id: intf-win32.c,v 1.25 2005/09/26 02:47:08 dugsong Exp $
+ * $Id: intf-win32.c,v 1.26 2006/02/02 04:18:33 dugsong Exp $
  */
 
 #include "config.h"
@@ -109,7 +109,9 @@ _ifrow_to_entry(intf_t *intf, MIB_IFROW *ifrow, struct intf_entry *entry)
 	
 	/* Get interface flags. */
 	entry->intf_flags = 0;
-	if (ifrow->dwAdminStatus == MIB_IF_ADMIN_STATUS_UP)
+	if (ifrow->dwAdminStatus == MIB_IF_ADMIN_STATUS_UP &&
+	    (ifrow->dwOperStatus == MIB_IF_OPER_STATUS_OPERATIONAL ||
+	     ifrow->dwOperStatus == MIB_IF_OPER_STATUS_CONNECTED))
 		entry->intf_flags |= INTF_FLAG_UP;
 	if (ifrow->dwType == MIB_IF_TYPE_LOOPBACK)
 		entry->intf_flags |= INTF_FLAG_LOOPBACK;
